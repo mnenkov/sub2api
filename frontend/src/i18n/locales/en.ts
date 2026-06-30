@@ -1,22 +1,46 @@
 export default {
   // Home Page
   home: {
-    viewOnGithub: 'View on GitHub',
-    viewDocs: 'View Documentation',
-    docs: 'Docs',
+    viewOnGithub: '',
+    viewDocs: '',
+    docs: '',
     switchToLight: 'Switch to Light Mode',
     switchToDark: 'Switch to Dark Mode',
     dashboard: 'Dashboard',
     login: 'Login',
     getStarted: 'Get Started',
     goToDashboard: 'Go to Dashboard',
-    // User-focused value proposition
+    secondaryCta: 'Check API key usage',
+    headerTagline: 'AI API Gateway',
+    heroTitle: 'One OpenAI-compatible endpoint for leading AI models',
     heroSubtitle: 'One Key, All AI Models',
-    heroDescription: 'No need to manage multiple subscriptions. Access Claude, GPT, Gemini and more with a single API key',
+    heroDescription: 'Route requests to GPT, Claude, Gemini, Grok and more through a single API key with spend controls, shared billing, usage analytics, and zero-config SDK compatibility.',
+    heroMetrics: [
+      { value: '25%', label: 'cheaper than going direct' },
+      { value: '<50ms', label: 'routing overhead' },
+      { value: '99.9%', label: 'uptime SLA' }
+    ],
+    heroPanel: {
+      title: 'Spend guardrail active',
+      description: 'Team budget, key limits, and model routing are enforced before every request.',
+      spend: 'Month spend'
+    },
+    stats: [
+      { value: '25%', label: 'cheaper than direct provider access' },
+      { value: '10+', label: 'models available behind one endpoint' },
+      { value: '<50ms', label: 'median routing overhead' },
+      { value: '99.9%', label: 'uptime SLA for production teams' }
+    ],
     tags: {
       subscriptionToApi: 'Subscription to API',
       stickySession: 'Session Persistence',
-      realtimeBilling: 'Pay As You Go'
+      realtimeBilling: 'Pay As You Go',
+      items: [
+        'OpenAI-compatible API',
+        'Budget guardrails per key',
+        'Shared billing for teams',
+        'Usage analytics by model'
+      ]
     },
     // Pain points section
     painPoints: {
@@ -46,67 +70,148 @@ export default {
       subtitle: 'Three simple steps to stress-free AI access'
     },
     features: {
+      title: 'Built for teams shipping with multiple AI providers',
+      subtitle: 'Use one gateway for routing, budgets, collaboration, and analytics while keeping your existing SDKs and HTTP clients.',
       unifiedGateway: 'One-Click Access',
       unifiedGatewayDesc: 'Get a single API key to call all connected AI models. No separate applications needed.',
       multiAccount: 'Always Reliable',
       multiAccountDesc: 'Smart routing across multiple upstream accounts with automatic failover. Say goodbye to errors.',
       balanceQuota: 'Pay What You Use',
-      balanceQuotaDesc: 'Usage-based billing with quota limits. Full visibility into team consumption.'
+      balanceQuotaDesc: 'Usage-based billing with quota limits. Full visibility into team consumption.',
+      items: [
+        {
+          icon: 'server',
+          title: 'One endpoint for every model',
+          description: 'Call leading models through an OpenAI-compatible base URL without rewriting your application.'
+        },
+        {
+          icon: 'shield',
+          title: 'Budget guardrails',
+          description: 'Set spend limits per key, user, or team so experiments cannot run past approved budgets.'
+        },
+        {
+          icon: 'users',
+          title: 'Team collaboration',
+          description: 'Share billing, manage access, and track usage across engineers, projects, and teams.'
+        },
+        {
+          icon: 'chart',
+          title: 'Usage analytics',
+          description: 'See model, team, and key-level spend so cost decisions are based on live usage data.'
+        },
+        {
+          icon: 'bolt',
+          title: 'Fast intelligent routing',
+          description: 'Keep routing overhead under 50ms while steering traffic to the right model for each request.'
+        },
+        {
+          icon: 'swap',
+          title: 'Zero-config migration',
+          description: 'Change your base URL and API key, then keep using Cursor, Continue, OpenAI SDKs, or raw HTTP.'
+        }
+      ]
+    },
+    howItWorks: {
+      title: 'How it works',
+      subtitle: 'Start with your current OpenAI-compatible client, then add model choice, budgets, and team visibility at the gateway layer.',
+      steps: [
+        {
+          title: 'Point clients at the gateway',
+          description: 'Swap the base URL and API key in your existing SDK, editor, or HTTP client.'
+        },
+        {
+          title: 'Choose models and limits',
+          description: 'Enable provider routes, assign team access, and set spend limits per key or group.'
+        },
+        {
+          title: 'Track usage in one place',
+          description: 'Review requests, cost, and model mix from a single shared billing and analytics view.'
+        }
+      ]
     },
     // Comparison section
     comparison: {
-      title: 'Why Choose Us?',
+      title: 'Why use a gateway instead of direct provider keys?',
+      subtitle: 'Direct keys work for one developer and one model. A gateway gives teams cost control, shared usage, and provider flexibility without changing application code.',
       headers: {
+        capability: 'Capability',
+        direct: 'Direct provider keys',
+        gateway: 'AI API Gateway',
         feature: 'Comparison',
         official: 'Official Subscriptions',
         us: 'Our Platform'
       },
-      items: {
-        pricing: {
-          feature: 'Pricing',
-          official: 'Fixed monthly fee, pay even if unused',
-          us: 'Pay only for what you use'
+      items: [
+        {
+          feature: 'Cost control',
+          direct: 'Provider invoices are scattered by account',
+          gateway: 'Spend limits and shared billing per key or team'
         },
-        models: {
-          feature: 'Model Selection',
-          official: 'Single provider only',
-          us: 'Switch between models freely'
+        {
+          feature: 'Model choice',
+          direct: 'Each provider needs separate setup',
+          gateway: '10+ models through one OpenAI-compatible endpoint'
         },
-        management: {
-          feature: 'Account Management',
-          official: 'Manage each service separately',
-          us: 'Unified key, one dashboard'
+        {
+          feature: 'Setup',
+          direct: 'SDK and key changes for every provider',
+          gateway: 'Zero-config switch by changing base URL and API key'
         },
-        stability: {
-          feature: 'Stability',
-          official: 'Single account rate limits',
-          us: 'Multi-account pool, auto-failover'
+        {
+          feature: 'Visibility',
+          direct: 'Usage is split across provider dashboards',
+          gateway: 'Analytics show model, team, and key-level spend'
         },
-        control: {
-          feature: 'Usage Control',
-          official: 'Not available',
-          us: 'Quotas & detailed analytics'
+        {
+          feature: 'Reliability',
+          direct: 'Single account limits can interrupt workflows',
+          gateway: 'Routing and failover designed for production traffic'
         }
-      }
+      ]
     },
     providers: {
-      title: 'Supported AI Models',
-      description: 'One API, Multiple Choices',
+      title: 'Models and tools that fit your workflow',
+      description: 'Route to leading AI providers and keep using the development tools your team already has.',
+      compatibility: 'Compatible with Cursor, Continue, OpenAI SDKs, and raw HTTP',
       supported: 'Supported',
       soon: 'Soon',
       claude: 'Claude',
       gemini: 'Gemini',
       antigravity: 'Antigravity',
-      more: 'More'
+      more: 'More',
+      items: [
+        { model: 'gpt-5', name: 'OpenAI', note: 'GPT family' },
+        { model: 'claude-opus', name: 'Anthropic', note: 'Claude family' },
+        { model: 'gemini-pro', name: 'Google', note: 'Gemini family' },
+        { model: 'grok-4', name: 'xAI', note: 'Grok family' },
+        { model: 'openrouter', name: 'More models', note: 'Additional routes' }
+      ]
+    },
+    tools: [
+      { icon: 'cursor', name: 'Cursor', description: 'Change base URL and key' },
+      { icon: 'continue', name: 'Continue', description: 'Use the same API shape' },
+      { icon: 'gpt-5', name: 'OpenAI SDK', description: 'Works with standard clients' },
+      { icon: 'raw-http', name: 'Raw HTTP', description: 'Call REST endpoints directly' }
+    ],
+    benefits: {
+      title: 'Designed for production usage',
+      items: [
+        '25% cheaper than going direct',
+        '10+ models behind one endpoint',
+        '<50ms routing overhead',
+        '99.9% uptime SLA'
+      ]
     },
     // CTA section
     cta: {
-      title: 'Ready to Get Started?',
-      description: 'Sign up now and get free trial credits to experience seamless AI access',
-      button: 'Sign Up Free'
+      title: 'Start with the clients you already use',
+      description: 'Create a key, set a budget, and route your first OpenAI-compatible request through a unified AI API gateway.',
+      button: 'Start routing',
+      secondaryButton: 'View usage dashboard'
     },
     footer: {
-      allRightsReserved: 'All rights reserved.'
+      allRightsReserved: 'All rights reserved.',
+      tagline: 'Unified model access, budget controls, and team analytics.'
     }
   },
 
@@ -187,8 +292,8 @@ export default {
 
   // Setup Wizard
   setup: {
-    title: 'Sub2API Setup',
-    description: 'Configure your Sub2API instance',
+    title: 'Subtrix Setup',
+    description: 'Configure your AI API Gateway instance',
     database: {
       title: 'Database Configuration',
       description: 'Connect to your PostgreSQL database',
@@ -349,8 +454,8 @@ export default {
     blockingNotice: 'Deployment and operation compliance acknowledgment is required before continuing to use the console.',
     riskNotice: 'This acknowledgment provides clear, conspicuous, and reproducible notice of compliance obligations and operation risks for self-hosted instances.',
     version: 'Document Version',
-    openDocument: 'Open the GitHub document',
-    documentSource: 'The agreement text comes from Markdown files in this project repository. When the agreement content changes, the document version must be incremented; acknowledgments of older versions become invalid and console users must acknowledge again.',
+    openDocument: 'Open the compliance document',
+    documentSource: 'The agreement text comes from Markdown files bundled with this deployment. When the agreement content changes, the document version must be incremented; acknowledgments of older versions become invalid and console users must acknowledge again.',
     inputLabel: 'Type the following confirmation phrase exactly',
     inputPlaceholder: 'Type the confirmation phrase to continue',
     inputMismatch: 'The confirmation phrase does not match. Type the displayed text exactly.',
@@ -1573,7 +1678,7 @@ export default {
         step1: {
           title: 'Create an R2 Bucket',
           line1: 'Log in to the Cloudflare Dashboard (dash.cloudflare.com), select "R2 Object Storage" from the sidebar',
-          line2: 'Click "Create bucket", enter a name (e.g. sub2api-backups), choose a region',
+          line2: 'Click "Create bucket", enter a name (e.g. gateway-backups), choose a region',
           line3: 'Click create to finish'
         },
         step2: {
@@ -3191,7 +3296,7 @@ export default {
         expiresAt: 'Expires At',
         actions: 'Actions'
       },
-      usageWindowsHint: '"5h / 7d" are the upstream account\'s official rolling usage windows (e.g. OpenAI ChatGPT, Claude). They are imposed by the upstream provider on the account itself — not configured by sub2api, and unrelated to the models you map. Usage resets automatically once each window rolls over, and the limit cannot be lifted from within sub2api.',
+      usageWindowsHint: '"5h / 7d" are the upstream account\'s official rolling usage windows (e.g. OpenAI ChatGPT, Claude). They are imposed by the upstream provider on the account itself, not configured by this gateway, and unrelated to the models you map. Usage resets automatically once each window rolls over, and the limit cannot be lifted from within the gateway.',
       allPrivacyModes: 'All Privacy States',
       privacyUnset: 'Unset',
       privacyTrainingOff: 'Training data sharing disabled',
@@ -3546,7 +3651,7 @@ export default {
       poolMode: 'Pool Mode',
       poolModeHint: 'Enable when upstream is an account pool; errors won\'t mark local account status',
       poolModeInfo:
-        'When enabled, upstream 429/403/401 errors will auto-retry without marking the account as rate-limited or errored. Suitable for upstream pointing to another sub2api instance.',
+        'When enabled, upstream 429/403/401 errors will auto-retry without marking the account as rate-limited or errored. Suitable for upstream pointing to another gateway instance.',
       poolModeRetryCount: 'Same-Account Retries',
       poolModeRetryCountHint:
         'Only applies in pool mode. Use 0 to disable in-place retry. Default {default}, maximum {max}.',
@@ -5631,7 +5736,7 @@ export default {
       },
       linuxdo: {
         title: 'LinuxDo Connect Login',
-        description: 'Configure LinuxDo Connect OAuth for Sub2API end-user login',
+        description: 'Configure LinuxDo Connect OAuth for end-user login',
         enable: 'Enable LinuxDo Login',
         enableHint: 'Show LinuxDo login on the login/register pages',
         clientId: 'Client ID',
@@ -5651,7 +5756,7 @@ export default {
       },
       dingtalk: {
         title: 'DingTalk Login',
-        description: 'Configure DingTalk OAuth for Sub2API end-user login',
+        description: 'Configure DingTalk OAuth for end-user login',
         enable: 'Enable DingTalk Login (Internal Corporate App)',
         enableHint: 'Show DingTalk login on the login/register pages',
         clientId: 'Client ID (AppKey)',
@@ -5910,7 +6015,7 @@ export default {
         backendModeDescription:
           'Disables user registration, public site, and self-service features. Only admin can log in and manage the platform.',
         siteName: 'Site Name',
-        siteNamePlaceholder: 'Sub2API',
+        siteNamePlaceholder: 'Subtrix',
         siteNameHint: 'Displayed in emails and page titles',
         siteSubtitle: 'Site Subtitle',
         siteSubtitlePlaceholder: 'Subscription to API Conversion Platform',
@@ -6200,7 +6305,7 @@ export default {
         fromEmail: 'From Email',
         fromEmailPlaceholder: "noreply{'@'}example.com",
         fromName: 'From Name',
-        fromNamePlaceholder: 'Sub2API',
+        fromNamePlaceholder: 'Subtrix',
         useTls: 'Use TLS',
         useTlsHint: 'Enable TLS encryption for SMTP connection'
       },
@@ -6849,14 +6954,14 @@ export default {
     // Admin tour steps
     admin: {
       welcome: {
-        title: '👋 Welcome to Sub2API',
-        description: '<div style="line-height: 1.8;"><p style="margin-bottom: 16px;">Sub2API is a powerful AI service gateway platform that helps you easily manage and distribute AI services.</p><p style="margin-bottom: 12px;"><b>🎯 Core Features:</b></p><ul style="margin-left: 20px; margin-bottom: 16px;"><li>📦 <b>Group Management</b> - Create service tiers (VIP, Free Trial, etc.)</li><li>🔗 <b>Account Pool</b> - Connect multiple upstream AI service accounts</li><li>🔑 <b>Key Distribution</b> - Generate independent API Keys for users</li><li>💰 <b>Billing Control</b> - Flexible rate and quota management</li></ul><p style="color: #10b981; font-weight: 600;">Let\'s complete the initial setup in 3 minutes →</p></div>',
+        title: 'Welcome to Subtrix',
+        description: '<div style="line-height: 1.8;"><p style="margin-bottom: 16px;">Subtrix is an AI service gateway platform that helps you manage and distribute AI services.</p><p style="margin-bottom: 12px;"><b>Core Features:</b></p><ul style="margin-left: 20px; margin-bottom: 16px;"><li><b>Group Management</b> - Create service tiers (VIP, Free Trial, etc.)</li><li><b>Account Pool</b> - Connect multiple upstream AI service accounts</li><li><b>Key Distribution</b> - Generate independent API Keys for users</li><li><b>Billing Control</b> - Flexible rate and quota management</li></ul><p style="color: #10b981; font-weight: 600;">Let\'s complete the initial setup in 3 minutes.</p></div>',
         nextBtn: 'Start Setup 🚀',
         prevBtn: 'Skip'
       },
       groupManage: {
         title: '📦 Step 1: Group Management',
-        description: '<div style="line-height: 1.7;"><p style="margin-bottom: 12px;"><b>What is a Group?</b></p><p style="margin-bottom: 12px;">Groups are the core concept of Sub2API, like a "service package":</p><ul style="margin-left: 20px; margin-bottom: 12px; font-size: 13px;"><li>🎯 Each group can contain multiple upstream accounts</li><li>💰 Each group has independent billing multiplier</li><li>👥 Can be set as public or exclusive</li></ul><p style="margin-top: 12px; padding: 8px 12px; background: #f0fdf4; border-left: 3px solid #10b981; border-radius: 4px; font-size: 13px;"><b>💡 Example:</b> You can create "VIP Premium" (high rate) and "Free Trial" (low rate) groups</p><p style="margin-top: 16px; color: #10b981; font-weight: 600;">👉 Click "Group Management" on the left sidebar</p></div>'
+        description: '<div style="line-height: 1.7;"><p style="margin-bottom: 12px;"><b>What is a Group?</b></p><p style="margin-bottom: 12px;">Groups work like service packages:</p><ul style="margin-left: 20px; margin-bottom: 12px; font-size: 13px;"><li>Each group can contain multiple upstream accounts</li><li>Each group has independent billing multiplier</li><li>Can be set as public or exclusive</li></ul><p style="margin-top: 12px; padding: 8px 12px; background: #f0fdf4; border-left: 3px solid #10b981; border-radius: 4px; font-size: 13px;"><b>Example:</b> You can create "VIP Premium" (high rate) and "Free Trial" (low rate) groups</p><p style="margin-top: 16px; color: #10b981; font-weight: 600;">Click "Group Management" on the left sidebar</p></div>'
       },
       createGroup: {
         title: '➕ Create New Group',
@@ -6949,8 +7054,8 @@ export default {
     // User tour steps
     user: {
       welcome: {
-        title: '👋 Welcome to Sub2API',
-        description: '<div style="line-height: 1.8;"><p style="margin-bottom: 16px;">Hello! Welcome to the Sub2API AI service platform.</p><p style="margin-bottom: 12px;"><b>🎯 Quick Start:</b></p><ul style="margin-left: 20px; margin-bottom: 16px;"><li>🔑 Create API Key</li><li>📋 Copy key to your application</li><li>🚀 Start using AI services</li></ul><p style="color: #10b981; font-weight: 600;">Just 1 minute, let\'s get started →</p></div>',
+        title: 'Welcome to Subtrix',
+        description: '<div style="line-height: 1.8;"><p style="margin-bottom: 16px;">Hello! Welcome to the AI service platform.</p><p style="margin-bottom: 12px;"><b>Quick Start:</b></p><ul style="margin-left: 20px; margin-bottom: 16px;"><li>Create API Key</li><li>Copy key to your application</li><li>Start using AI services</li></ul><p style="color: #10b981; font-weight: 600;">Just 1 minute, let\'s get started.</p></div>',
         nextBtn: 'Start 🚀',
         prevBtn: 'Skip'
       },

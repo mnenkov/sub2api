@@ -350,7 +350,7 @@
                 </a>
               </div>
 
-              <!-- Priority 5: Up to date - show GitHub link -->
+              <!-- Priority 5: Up to date - show release link -->
               <a
                 v-else-if="releaseInfo?.html_url && releaseInfo.html_url !== '#'"
                 :href="releaseInfo.html_url"

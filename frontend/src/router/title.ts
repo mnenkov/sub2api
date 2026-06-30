@@ -7,7 +7,7 @@ import type { CustomMenuItem } from '@/types'
  * English-only note removed during locale cleanup.
  */
 export function resolveDocumentTitle(routeTitle: unknown, siteName?: string, titleKey?: string): string {
-  const normalizedSiteName = typeof siteName === 'string' && siteName.trim() ? siteName.trim() : 'Sub2API'
+  const normalizedSiteName = typeof siteName === 'string' && siteName.trim() ? siteName.trim() : 'Subtrix'
 
   if (typeof titleKey === 'string' && titleKey.trim()) {
     const translated = i18n.global.t(titleKey)

@@ -124,7 +124,7 @@ const expectedPhrase = computed(() => complianceStore.expectedPhrase)
 const canSubmit = computed(() => typedPhrase.value.trim() === expectedPhrase.value)
 const currentDocument = computed(() => enDocument)
 const documentUrl = computed(() => {
-  return complianceStore.status?.document_url_en || 'https://github.com/Wei-Shaw/sub2api/blob/main/docs/legal/admin-compliance.en.md'
+  return complianceStore.status?.document_url_en || ''
 })
 const inputError = computed(() => {
   if (!attemptedSubmit.value || canSubmit.value) {
