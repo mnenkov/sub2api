@@ -48,7 +48,7 @@ const route = useRoute()
 const { t } = useI18n()
 const providerName = computed(() => t('auth.wechatProviderName'))
 
-function localizeWeChatHint(zh: string, en: string): string {
+function localizeWeChatHint(en: string): string {
   return en
 }
 
@@ -65,7 +65,6 @@ const disabledHint = computed(() => {
       return t('auth.oauthFlow.wechatBrowserOnly')
     case 'native_app_required':
       return localizeWeChatHint(
-        'Only WeChat Mobile App login is configured. Start authorization from the native app through the WeChat SDK.',
         'This site only has WeChat mobile app login configured. Continue from the native app through the WeChat SDK.',
       )
     case 'not_configured':
