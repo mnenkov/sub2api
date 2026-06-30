@@ -5,7 +5,7 @@ import { useI18n } from 'vue-i18n'
 const props = defineProps<{
   used: number
   limit: number
-  label?: string // 文字前缀，如 "D" / "W"；不传时显示 icon
+  label?: string // English-only note removed during locale cleanup
 }>()
 
 const { t } = useI18n()

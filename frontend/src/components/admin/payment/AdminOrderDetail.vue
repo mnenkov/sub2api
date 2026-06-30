@@ -132,7 +132,7 @@ const creditedAmountSymbol = currencySymbol('USD')
 
 const paymentAmountSymbol = computed(() => currencySymbol(props.order?.currency))
 
-/** 充值金额 (base amount before fee) = pay_amount - fee = pay_amount / (1 + fee_rate/100) */
+/* English-only note removed during locale cleanup */
 const baseAmount = computed(() => {
   if (!props.order) return 0
   const feeRate = Number(props.order.fee_rate) || 0
@@ -140,7 +140,7 @@ const baseAmount = computed(() => {
   return props.order.pay_amount / (1 + feeRate / 100)
 })
 
-/** 手续费 = pay_amount - baseAmount */
+/* English-only note removed during locale cleanup */
 const feeAmount = computed(() => {
   if (!props.order) return 0
   const feeRate = Number(props.order.fee_rate) || 0

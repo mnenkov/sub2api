@@ -56,8 +56,8 @@ const props = defineProps<{
 
 const { t } = useI18n()
 
-// 与 UserDashboardStats 保持一致：把"总值 - 各平台之和"的差作为"其他"行展示，
-// 避免 tooltip 内各平台费用加总与列首总值对不上。
+// English-only note removed during locale cleanup
+// English-only note removed during locale cleanup
 const OTHER_THRESHOLD = 0.0001
 
 interface BreakdownRow {

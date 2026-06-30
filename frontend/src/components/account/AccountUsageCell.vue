@@ -183,7 +183,7 @@
 
     <!-- Antigravity OAuth accounts: fetch usage from API -->
     <template v-else-if="account.platform === 'antigravity' && account.type === 'oauth'">
-      <!-- 账户类型徽章 -->
+      <!-- English-only note removed during locale cleanup. -->
       <div v-if="antigravityTierLabel" class="mb-1 flex items-center gap-1">
         <span
           :class="[
@@ -193,7 +193,7 @@
         >
           {{ antigravityTierLabel }}
         </span>
-        <!-- 不合格账户警告图标 -->
+        <!-- English-only note removed during locale cleanup. -->
         <span
           v-if="hasIneligibleTiers"
           class="group relative cursor-help"
@@ -689,7 +689,7 @@ const shouldLazyLoadOnMobile = computed(() => {
   return shouldFetchUsage.value && !isDesktopViewport.value
 })
 
-// Antigravity quota types (用于 API 返回的数据)
+// English-only note removed during locale cleanup
 interface AntigravityUsageResult {
   utilization: number
   resetTime: string | null
@@ -697,12 +697,12 @@ interface AntigravityUsageResult {
 
 // ===== Antigravity quota from API (usageInfo.antigravity_quota) =====
 
-// 检查是否有从 API 获取的配额数据
+// English-only note removed during locale cleanup
 const hasAntigravityQuotaFromAPI = computed(() => {
   return usageInfo.value?.antigravity_quota && Object.keys(usageInfo.value.antigravity_quota).length > 0
 })
 
-// 从 API 配额数据中获取使用率（多模型取最高使用率）
+// English-only note removed during locale cleanup
 const getAntigravityUsageFromAPI = (
   modelNames: string[]
 ): AntigravityUsageResult | null => {
@@ -726,7 +726,7 @@ const getAntigravityUsageFromAPI = (
     }
   }
 
-  // 如果没有找到任何匹配的模型
+  // English-only note removed during locale cleanup
   if (maxUtilization === 0 && earliestReset === null) {
     const hasAnyData = modelNames.some((m) => quota[m])
     if (!hasAnyData) return null
@@ -769,7 +769,7 @@ const aiCreditsDisplay = computed(() => {
   return total.toFixed(0)
 })
 
-// Antigravity 账户类型（从 load_code_assist 响应中提取）
+// English-only note removed during locale cleanup
 const antigravityTier = computed(() => {
   const extra = props.account.extra as Record<string, unknown> | undefined
   if (!extra) return null
@@ -777,7 +777,7 @@ const antigravityTier = computed(() => {
   const loadCodeAssist = extra.load_code_assist as Record<string, unknown> | undefined
   if (!loadCodeAssist) return null
 
-  // 优先取 paidTier，否则取 currentTier
+  // English-only note removed during locale cleanup
   const paidTier = loadCodeAssist.paidTier as Record<string, unknown> | undefined
   if (paidTier && typeof paidTier.id === 'string') {
     return paidTier.id
@@ -791,7 +791,7 @@ const antigravityTier = computed(() => {
   return null
 })
 
-// Gemini 账户类型（从 credentials 中提取）
+// English-only note removed during locale cleanup
 const geminiTier = computed(() => {
   if (props.account.platform !== 'gemini') return null
   const creds = props.account.credentials as GeminiCredentials | undefined
@@ -804,7 +804,7 @@ const geminiOAuthType = computed(() => {
   return (creds?.oauth_type || '').trim() || null
 })
 
-// Gemini 是否为 Code Assist OAuth
+// English-only note removed during locale cleanup
 const isGeminiCodeAssist = computed(() => {
   if (props.account.platform !== 'gemini') return false
   const creds = props.account.credentials as GeminiCredentials | undefined
@@ -871,14 +871,14 @@ const geminiUserLevel = computed((): string | null => {
   return null
 })
 
-// Gemini 认证类型（按要求：授权方式简称 + 用户等级）
+// English-only note removed during locale cleanup
 const geminiAuthTypeLabel = computed(() => {
   if (props.account.platform !== 'gemini') return null
   if (!geminiChannelShort.value) return null
   return geminiUserLevel.value ? `${geminiChannelShort.value} ${geminiUserLevel.value}` : geminiChannelShort.value
 })
 
-// Gemini 账户类型徽章样式（统一样式）
+// English-only note removed during locale cleanup
 const geminiTierClass = computed(() => {
   // Use channel+level to choose a stable color without depending on raw tier_id variants.
   const channel = geminiChannelShort.value
@@ -902,7 +902,7 @@ const geminiTierClass = computed(() => {
   return ''
 })
 
-// Gemini 配额政策信息
+// English-only note removed during locale cleanup
 const geminiQuotaPolicyChannel = computed(() => {
   if (geminiOAuthType.value === 'google_one') {
     return t('admin.accounts.gemini.quotaPolicy.rows.googleOne.channel')
@@ -1079,7 +1079,7 @@ const formatWindowRequests = (stats: WindowStats) => formatCompactNumber(stats.r
 const formatWindowTokens = (stats: WindowStats) => formatCompactNumber(stats.tokens)
 const formatWindowCost = (stats: WindowStats) => stats.cost.toFixed(2)
 
-// 账户类型显示标签
+// English-only note removed during locale cleanup
 const antigravityTierLabel = computed(() => {
   switch (antigravityTier.value) {
     case 'free-tier':
@@ -1093,7 +1093,7 @@ const antigravityTierLabel = computed(() => {
   }
 })
 
-// 账户类型徽章样式
+// English-only note removed during locale cleanup
 const antigravityTierClass = computed(() => {
   switch (antigravityTier.value) {
     case 'free-tier':
@@ -1107,7 +1107,7 @@ const antigravityTierClass = computed(() => {
   }
 })
 
-// 检测账户是否有不合格状态（ineligibleTiers）
+// English-only note removed during locale cleanup
 const hasIneligibleTiers = computed(() => {
   const extra = props.account.extra as Record<string, unknown> | undefined
   if (!extra) return false
@@ -1119,15 +1119,15 @@ const hasIneligibleTiers = computed(() => {
   return Array.isArray(ineligibleTiers) && ineligibleTiers.length > 0
 })
 
-// Antigravity 403 forbidden 状态
+// English-only note removed during locale cleanup
 const isForbidden = computed(() => !!usageInfo.value?.is_forbidden)
 const forbiddenType = computed(() => usageInfo.value?.forbidden_type || 'forbidden')
 const validationURL = computed(() => usageInfo.value?.validation_url || '')
 
-// 需要重新授权（401）
+// English-only note removed during locale cleanup
 const needsReauth = computed(() => !!usageInfo.value?.needs_reauth)
 
-// 降级错误标签（rate_limited / network_error）
+// English-only note removed during locale cleanup
 const usageErrorLabel = computed(() => {
   const code = usageInfo.value?.error_code
   if (code === 'rate_limited') return t('admin.accounts.rateLimited')

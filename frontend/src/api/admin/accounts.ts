@@ -440,9 +440,9 @@ export interface BatchTodayStatsResponse {
 }
 
 /**
- * 批量获取多个账号的今日统计
- * @param accountIds - 账号 ID 列表
- * @returns 以账号 ID（字符串）为键的统计映射
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
  */
 export async function getBatchTodayStats(accountIds: number[]): Promise<BatchTodayStatsResponse> {
   const { data } = await apiClient.post<BatchTodayStatsResponse>('/admin/accounts/today-stats/batch', {

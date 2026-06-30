@@ -36,7 +36,7 @@ import {
   type PaymentRecoverySnapshot,
 } from '@/components/payment/paymentFlow'
 
-const { t, locale } = useI18n()
+const { t } = useI18n()
 const route = useRoute()
 const router = useRouter()
 
@@ -91,7 +91,7 @@ function restoreAirwallexSnapshot(): PaymentRecoverySnapshot | null {
 
 onMounted(async () => {
   const snapshot = restoreAirwallexSnapshot()
-  const checkoutLocale = locale.value.toLowerCase().startsWith('zh') ? 'zh' : 'en'
+  const checkoutLocale = 'en'
 
   if (!snapshot) {
     loading.value = false

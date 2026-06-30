@@ -2,7 +2,7 @@ export type FingerprintSignalType = "header_exact" | "header_prefix" | "body_pat
 
 export interface FingerprintSignalRow {
   type: FingerprintSignalType;
-  match: string; // 变体用 " / " 展示与录入
+  match: string; // English-only note removed during locale cleanup
   required: boolean;
 }
 

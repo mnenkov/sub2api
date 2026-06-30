@@ -91,13 +91,13 @@ const isSearchable = computed(() => {
 const filteredGroups = computed(() => {
   let result: AdminGroup[] = props.groups
   if (props.platform) {
-    // antigravity 账户启用混合调度后，可选择 anthropic/gemini 分组
+    // English-only note removed during locale cleanup
     if (props.platform === 'antigravity' && props.mixedScheduling) {
       result = result.filter(
         (g) => g.platform === 'antigravity' || g.platform === 'anthropic' || g.platform === 'gemini'
       )
     } else {
-      // 默认：只能选择同 platform 的分组
+      // English-only note removed during locale cleanup
       result = result.filter((g) => g.platform === props.platform)
     }
   }

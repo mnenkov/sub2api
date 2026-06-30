@@ -78,7 +78,7 @@ export async function generate(
     value
   }
 
-  // 订阅类型专用字段
+  // English-only note removed during locale cleanup
   if (type === 'subscription') {
     payload.group_id = groupId
     if (validityDays && validityDays > 0) {

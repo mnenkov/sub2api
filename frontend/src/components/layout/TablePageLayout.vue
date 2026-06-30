@@ -1,23 +1,23 @@
 <template>
   <div class="table-page-layout" :class="{ 'mobile-mode': isMobile }">
-    <!-- 固定区域：操作按钮 -->
+    <!-- English-only note removed during locale cleanup. -->
     <div v-if="$slots.actions" class="layout-section-fixed">
       <slot name="actions" />
     </div>
 
-    <!-- 固定区域：搜索和过滤器 -->
+    <!-- English-only note removed during locale cleanup. -->
     <div v-if="$slots.filters" class="layout-section-fixed">
       <slot name="filters" />
     </div>
 
-    <!-- 滚动区域：表格 -->
+    <!-- English-only note removed during locale cleanup. -->
     <div class="layout-section-scrollable">
       <div class="card table-scroll-container">
         <slot name="table" />
       </div>
     </div>
 
-    <!-- 固定区域：分页器 -->
+    <!-- English-only note removed during locale cleanup. -->
     <div v-if="$slots.pagination" class="layout-section-fixed">
       <slot name="pagination" />
     </div>
@@ -44,10 +44,10 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-/* 桌面端：Flexbox 布局 */
+/* English-only note removed during locale cleanup */
 .table-page-layout {
   @apply flex flex-col gap-6;
-  height: calc(100vh - 64px - 4rem); /* 减去 header + lg:p-8 的上下padding */
+  height: calc(100vh - 64px - 4rem); /* English-only note removed during locale cleanup */
 }
 
 .layout-section-fixed {
@@ -58,21 +58,21 @@ onUnmounted(() => {
   @apply flex-1 min-h-0 flex flex-col;
 }
 
-/* 表格滚动容器 - 增强版表体滚动方案 */
+/* English-only note removed during locale cleanup */
 .table-scroll-container {
   @apply flex flex-col overflow-hidden h-full bg-white dark:bg-dark-800 rounded-2xl border border-gray-200 dark:border-dark-700 shadow-sm;
 }
 
 .table-scroll-container :deep(.table-wrapper) {
   @apply flex-1 overflow-x-auto overflow-y-auto;
-  /* 确保横向滚动条显示在最底部 */
+  /* English-only note removed during locale cleanup */
   scrollbar-gutter: stable;
 }
 
 .table-scroll-container :deep(table) {
   @apply w-full;
-  min-width: max-content; /* 关键：确保表格宽度根据内容撑开，从而触发横向滚动 */
-  display: table; /* 使用标准 table 布局以支持 sticky 列 */
+  min-width: max-content; /* English-only note removed during locale cleanup */
+  display: table; /* English-only note removed during locale cleanup */
 }
 
 .table-scroll-container :deep(thead) {
@@ -80,7 +80,7 @@ onUnmounted(() => {
 }
 
 .table-scroll-container :deep(tbody) {
-  /* 保持默认 table-row-group 显示，不使用 block */
+  /* English-only note removed during locale cleanup */
 }
 
 .table-scroll-container :deep(th) {
@@ -91,7 +91,7 @@ onUnmounted(() => {
   @apply px-5 py-4 text-sm text-gray-700 dark:text-gray-300 border-b border-gray-100 dark:border-dark-800;
 }
 
-/* 移动端：恢复正常滚动 */
+/* English-only note removed during locale cleanup */
 .table-page-layout.mobile-mode .table-scroll-container {
   @apply h-auto overflow-visible border-none shadow-none bg-transparent;
 }

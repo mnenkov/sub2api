@@ -287,7 +287,7 @@
               <label class="input-label">{{ t('admin.redeem.codeType') }}</label>
               <Select v-model="generateForm.type" :options="typeOptions" />
             </div>
-            <!-- 余额/并发类型：显示数值输入 -->
+            <!-- English-only note removed during locale cleanup. -->
             <div v-if="generateForm.type !== 'subscription' && generateForm.type !== 'invitation'">
               <label class="input-label">
                 {{
@@ -305,13 +305,13 @@
                 class="input"
               />
             </div>
-            <!-- 邀请码类型：显示提示信息 -->
+            <!-- English-only note removed during locale cleanup. -->
             <div v-if="generateForm.type === 'invitation'" class="rounded-lg bg-blue-50 p-3 dark:bg-blue-900/20">
               <p class="text-sm text-blue-700 dark:text-blue-300">
                 {{ t('admin.redeem.invitationHint') }}
               </p>
             </div>
-            <!-- 订阅类型：显示分组选择和有效天数 -->
+            <!-- English-only note removed during locale cleanup. -->
             <template v-if="generateForm.type === 'subscription'">
               <div>
                 <label class="input-label">{{ t('admin.redeem.selectGroup') }}</label>
@@ -653,7 +653,7 @@ const showResultDialog = ref(false)
 const generatedCodes = ref<RedeemCode[]>([])
 const subscriptionGroups = ref<Group[]>([])
 
-// 订阅类型分组选项
+// English-only note removed during locale cleanup
 const subscriptionGroupOptions = computed(() => {
   return subscriptionGroups.value
     .filter((g) => g.subscription_type === 'subscription')
@@ -837,7 +837,7 @@ const generateForm = reactive({
   custom_expiry_days: 7
 })
 
-// 监听类型变化，邀请码类型时自动设置 value 为 0
+// English-only note removed during locale cleanup
 watch(
   () => generateForm.type,
   (newType) => {
@@ -1018,7 +1018,7 @@ const buildBatchUpdateFields = (): BatchUpdateRedeemCodeFields | null => {
 }
 
 const handleGenerateCodes = async () => {
-  // 订阅类型必须选择分组
+  // English-only note removed during locale cleanup
   if (generateForm.type === 'subscription' && !generateForm.group_id) {
     appStore.showError(t('admin.redeem.groupRequired'))
     return
@@ -1043,7 +1043,7 @@ const handleGenerateCodes = async () => {
     showGenerateDialog.value = false
     generatedCodes.value = result
     showResultDialog.value = true
-    // 重置表单
+    // English-only note removed during locale cleanup
     generateForm.group_id = null
     generateForm.validity_days = 30
     generateForm.expiry_option = 'never'
@@ -1167,7 +1167,7 @@ const handleBatchUpdate = async () => {
   }
 }
 
-// 加载订阅类型分组
+// English-only note removed during locale cleanup
 const loadSubscriptionGroups = async () => {
   try {
     const groups = await adminAPI.groups.getAll()

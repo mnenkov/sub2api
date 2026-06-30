@@ -45,7 +45,7 @@ export function useOnboardingTour(options: OnboardingOptions) {
     currentClickListener = null
   }
 
-  // 使用 store 管理的全局 driver 实例
+  // English-only note removed during locale cleanup
   let driverInstance: Driver | null = onboardingStore.getDriverInstance()
   let currentClickListener: {
     element: HTMLElement
@@ -77,7 +77,7 @@ export function useOnboardingTour(options: OnboardingOptions) {
   }
 
   /**
-   * 检查元素是否存在，如果不存在则重试
+   * English-only note removed during locale cleanup.
    */
   const ensureElement = async (selector: string, timeout = 5000): Promise<boolean> => {
     const startTime = Date.now()
@@ -92,15 +92,15 @@ export function useOnboardingTour(options: OnboardingOptions) {
   }
 
   const startTour = async (startIndex = 0) => {
-    // 动态获取当前用户角色和步骤
+    // English-only note removed during locale cleanup
     const isAdmin = userStore.user?.role === 'admin'
     const isSimpleMode = userStore.isSimpleMode
     const steps = isAdmin ? getAdminSteps(t, isSimpleMode) : getUserSteps(t)
 
-    // 确保 DOM 就绪
+    // English-only note removed during locale cleanup
     await nextTick()
 
-    // 如果指定了起始步骤，确保元素可见
+    // English-only note removed during locale cleanup
     const currentStep = steps[startIndex]
     if (currentStep?.element && typeof currentStep.element === 'string') {
       await ensureElement(currentStep.element, TIMING.ELEMENT_TIMEOUT_MS)
@@ -110,27 +110,27 @@ export function useOnboardingTour(options: OnboardingOptions) {
       driverInstance.destroy()
     }
 
-    // 创建新的 driver 实例并存储到 store
+    // English-only note removed during locale cleanup
     driverInstance = driver({
       showProgress: true,
       steps,
       animate: true,
-      allowClose: false, // 禁止点击遮罩关闭
+      allowClose: false, // English-only note removed during locale cleanup
       stagePadding: 4,
       popoverClass: 'theme-tour-popover',
       nextBtnText: t('common.next'),
       prevBtnText: t('common.back'),
       doneBtnText: t('common.confirm'),
 
-      // 导航处理
+      // English-only note removed during locale cleanup
       onNextClick: async (_el, _step, { config, state }) => {
-        // 如果是最后一步，点击则是"完成"
+        // English-only note removed during locale cleanup
         if (state.activeIndex === (config.steps?.length ?? 0) - 1) {
           markAsSeen()
           driverInstance?.destroy()
           onboardingStore.setDriverInstance(null)
         } else {
-          // 注意：交互式步骤通常隐藏 Next 按钮，此处逻辑为防御性编程
+          // English-only note removed during locale cleanup
           const currentIndex = state.activeIndex ?? 0
           const currentStep = steps[currentIndex]
 
@@ -159,7 +159,7 @@ export function useOnboardingTour(options: OnboardingOptions) {
         onboardingStore.setDriverInstance(null)
       },
 
-      // 渲染时重组 Footer 布局
+      // English-only note removed during locale cleanup
       onPopoverRender: (popover, { config, state }) => {
         // Class name constants for easier maintenance
         const CLASS_REORGANIZED = 'reorganized'
@@ -179,7 +179,7 @@ export function useOnboardingTour(options: OnboardingOptions) {
             return
           }
 
-          // 1.5 交互式步骤提示
+          // English-only note removed during locale cleanup
           const currentStep = steps[state.activeIndex ?? 0]
 
           if (currentStep && isInteractiveStep(currentStep) && popover.description) {
@@ -201,7 +201,7 @@ export function useOnboardingTour(options: OnboardingOptions) {
             }
           }
 
-          // 2. 底部：DOM 重组
+          // English-only note removed during locale cleanup
           if (!footerEl.classList.contains(CLASS_REORGANIZED)) {
             footerEl.classList.add(CLASS_REORGANIZED)
 
@@ -253,7 +253,7 @@ export function useOnboardingTour(options: OnboardingOptions) {
             footerEl.appendChild(rightContainer)
           }
 
-          // 3. 状态更新
+          // English-only note removed during locale cleanup
           const isLastStep = state.activeIndex === (config.steps?.length ?? 0) - 1
           const activeNextBtn = nextButton || footerEl.querySelector(`.${CLASS_NEXT_BTN}`)
 
@@ -269,12 +269,12 @@ export function useOnboardingTour(options: OnboardingOptions) {
         }
       },
 
-      // 步骤高亮时触发
+      // English-only note removed during locale cleanup
       onHighlightStarted: async (element, step) => {
-        // 清理之前的监听器
+        // English-only note removed during locale cleanup
         cleanupClickListener()
 
-        // 尝试等待元素
+        // English-only note removed during locale cleanup
         if (!element && step.element && typeof step.element === 'string') {
            const exists = await ensureElement(step.element, 8000)
            if (!exists) {
@@ -399,7 +399,7 @@ export function useOnboardingTour(options: OnboardingOptions) {
 
       onDestroyed: () => {
         cleanupClickListener()
-        // 清理全局监听器 (由此处唯一管理)
+        // English-only note removed during locale cleanup
         if (globalKeyboardHandler) {
           document.removeEventListener('keydown', globalKeyboardHandler, { capture: true })
           globalKeyboardHandler = null
@@ -410,7 +410,7 @@ export function useOnboardingTour(options: OnboardingOptions) {
 
     onboardingStore.setDriverInstance(driverInstance)
 
-    // 添加全局键盘监听器
+    // English-only note removed during locale cleanup
     globalKeyboardHandler = (e: KeyboardEvent) => {
       if (!driverInstance?.isActive()) return
 
@@ -425,7 +425,7 @@ export function useOnboardingTour(options: OnboardingOptions) {
 
       if (e.key === 'ArrowRight') {
         const target = e.target as HTMLElement
-        // 允许在输入框中使用方向键
+        // English-only note removed during locale cleanup
         if (['INPUT', 'TEXTAREA'].includes(target?.tagName)) {
            return
         }
@@ -433,7 +433,7 @@ export function useOnboardingTour(options: OnboardingOptions) {
         e.preventDefault()
         e.stopPropagation()
 
-        // 对于交互式步骤，箭头键应该触发交互而非跳过
+        // English-only note removed during locale cleanup
         const currentIndex = driverInstance!.getActiveIndex() ?? 0
         const currentStep = steps[currentIndex]
 
@@ -443,21 +443,21 @@ export function useOnboardingTour(options: OnboardingOptions) {
             : currentStep.element as HTMLElement
 
           if (targetElement) {
-            // 对于非输入类元素，提示用户需要点击或按Enter
+            // English-only note removed during locale cleanup
             const isClickable = !['INPUT', 'TEXTAREA', 'SELECT'].includes(targetElement.tagName)
             if (isClickable) {
-              // 不自动触发，只是停留提示
+              // English-only note removed during locale cleanup
               return
             }
           }
         }
 
-        // 非交互式步骤才允许箭头键翻页
+        // English-only note removed during locale cleanup
         driverInstance!.moveNext()
       }
       else if (e.key === 'Enter') {
         const target = e.target as HTMLElement
-        // 允许在输入框中使用回车
+        // English-only note removed during locale cleanup
         if (['INPUT', 'TEXTAREA'].includes(target?.tagName)) {
            return
         }
@@ -465,7 +465,7 @@ export function useOnboardingTour(options: OnboardingOptions) {
         e.preventDefault()
         e.stopPropagation()
 
-        // 回车键处理交互式步骤
+        // English-only note removed during locale cleanup
         const currentIndex = driverInstance!.getActiveIndex() ?? 0
         const currentStep = steps[currentIndex]
 
@@ -486,7 +486,7 @@ export function useOnboardingTour(options: OnboardingOptions) {
       }
       else if (e.key === 'ArrowLeft') {
         const target = e.target as HTMLElement
-        // 允许在输入框中使用方向键
+        // English-only note removed during locale cleanup
         if (['INPUT', 'TEXTAREA', 'SELECT'].includes(target?.tagName) || target?.isContentEditable) {
            return
         }
@@ -531,12 +531,12 @@ export function useOnboardingTour(options: OnboardingOptions) {
       return
     }
 
-    // 简易模式下禁用新手引导
+    // English-only note removed during locale cleanup
     if (userStore.isSimpleMode) {
       return
     }
 
-    // 只在管理员+标准模式下自动启动
+    // English-only note removed during locale cleanup
     const isAdmin = userStore.user?.role === 'admin'
     if (!isAdmin) {
       return
@@ -553,7 +553,7 @@ export function useOnboardingTour(options: OnboardingOptions) {
       clearTimeout(autoStartTimer)
       autoStartTimer = null
     }
-    // 关键修复：不再此处清理 globalKeyboardHandler，交由 driver.onDestroyed 管理
+    // English-only note removed during locale cleanup
     onboardingStore.clearControlMethods()
   })
 

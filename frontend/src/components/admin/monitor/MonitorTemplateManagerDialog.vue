@@ -406,7 +406,7 @@ async function handleSubmit() {
   }
 }
 
-// --- apply to monitors (picker 流程) ---
+// English-only note removed during locale cleanup
 const applyPicker = reactive<{ show: boolean; tpl: ChannelMonitorTemplate | null }>({
   show: false,
   tpl: null,
@@ -417,7 +417,7 @@ function confirmApply(tpl: ChannelMonitorTemplate) {
   applyPicker.show = true
 }
 
-// picker 提交后触发：刷新模板列表（拿最新 associated_monitors）+ 通知父组件
+// English-only note removed during locale cleanup
 async function onApplied(_affected: number) {
   await fetchTemplates()
   emit('updated')

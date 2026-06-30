@@ -21,7 +21,7 @@ interface Props {
   queryMode: string
   loading: boolean
   lastUpdated: Date | null
-  thresholds?: OpsMetricThresholds | null // 阈值配置
+  thresholds?: OpsMetricThresholds | null // English-only note removed during locale cleanup
   autoRefreshEnabled?: boolean
   autoRefreshCountdown?: number
   fullscreen?: boolean
@@ -177,7 +177,7 @@ function handleGroupChange(val: string | number | boolean | null) {
 function handleTimeRangeChange(val: string | number | boolean | null) {
   const newValue = String(val || '1h')
   if (newValue === 'custom') {
-    // 初始化为最近1小时
+    // English-only note removed during locale cleanup
     const now = new Date()
     const oneHourAgo = new Date(now.getTime() - 60 * 60 * 1000)
     customStartTimeInput.value = oneHourAgo.toISOString().slice(0, 16)
@@ -201,8 +201,8 @@ function handleCustomTimeRangeConfirm() {
 
 function handleCustomTimeRangeCancel() {
   showCustomTimeRangeDialog.value = false
-  // 如果当前不是 custom，不需要做任何事
-  // 如果当前是 custom，保持不变
+  // English-only note removed during locale cleanup
+  // English-only note removed during locale cleanup
 }
 
 function handleQueryModeChange(val: string | number | boolean | null) {
@@ -885,11 +885,11 @@ function handleToolbarRefresh() {
           </span>
 
           <span>·</span>
-          <span>{{ t('common.refresh') }}: {{ props.lastUpdated ? props.lastUpdated.toLocaleString('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }).replace(/\//g, '-') : t('common.unknown') }}</span>
+          <span>{{ t('common.refresh') }}: {{ props.lastUpdated ? props.lastUpdated.toLocaleString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }) : t('common.unknown') }}</span>
 
           <template v-if="props.autoRefreshEnabled && props.autoRefreshCountdown !== undefined">
             <span>·</span>
-            <span>剩余 {{ props.autoRefreshCountdown }}s</span>
+            <span>Remaining {{ props.autoRefreshCountdown }}s</span>
           </template>
         </div>
       </div>

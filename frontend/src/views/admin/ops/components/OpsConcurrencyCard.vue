@@ -22,7 +22,7 @@ const concurrency = ref<OpsConcurrencyStatsResponse | null>(null)
 const availability = ref<OpsAccountAvailabilityStatsResponse | null>(null)
 const userConcurrency = ref<OpsUserConcurrencyStatsResponse | null>(null)
 
-// 用户视图开关
+// English-only note removed during locale cleanup
 const showByUser = ref(false)
 
 const realtimeEnabled = computed(() => {
@@ -33,7 +33,7 @@ function safeNumber(n: unknown): number {
   return typeof n === 'number' && Number.isFinite(n) ? n : 0
 }
 
-// 计算显示维度
+// English-only note removed during locale cleanup
 const displayDimension = computed<'platform' | 'group' | 'account' | 'user'>(() => {
   if (showByUser.value) {
     return 'user'
@@ -47,37 +47,37 @@ const displayDimension = computed<'platform' | 'group' | 'account' | 'user'>(() 
   return 'platform'
 })
 
-// 平台/分组汇总行数据
+// English-only note removed during locale cleanup
 interface SummaryRow {
   key: string
   name: string
   platform?: string
-  // 账号统计
+  // English-only note removed during locale cleanup
   total_accounts: number
   available_accounts: number
   rate_limited_accounts: number
   error_accounts: number
-  // 并发统计
+  // English-only note removed during locale cleanup
   total_concurrency: number
   used_concurrency: number
   waiting_in_queue: number
-  // 计算字段
+  // English-only note removed during locale cleanup
   availability_percentage: number
   concurrency_percentage: number
 }
 
-// 账号详细行数据
+// English-only note removed during locale cleanup
 interface AccountRow {
   key: string
   name: string
   platform: string
   group_name: string
-  // 并发
+  // English-only note removed during locale cleanup
   current_in_use: number
   max_capacity: number
   waiting_in_queue: number
   load_percentage: number
-  // 状态
+  // English-only note removed during locale cleanup
   is_available: boolean
   is_rate_limited: boolean
   rate_limit_remaining_sec?: number
@@ -87,7 +87,7 @@ interface AccountRow {
   error_message?: string
 }
 
-// 用户行数据
+// English-only note removed during locale cleanup
 interface UserRow {
   key: string
   user_id: number
@@ -99,7 +99,7 @@ interface UserRow {
   load_percentage: number
 }
 
-// 平台维度汇总
+// English-only note removed during locale cleanup
 const platformRows = computed((): SummaryRow[] => {
   const concStats = concurrency.value?.platform || {}
   const availStats = availability.value?.platform || {}
@@ -132,7 +132,7 @@ const platformRows = computed((): SummaryRow[] => {
   }).sort((a, b) => b.concurrency_percentage - a.concurrency_percentage)
 })
 
-// 分组维度汇总
+// English-only note removed during locale cleanup
 const groupRows = computed((): SummaryRow[] => {
   const concStats = concurrency.value?.group || {}
   const availStats = availability.value?.group || {}
@@ -144,7 +144,7 @@ const groupRows = computed((): SummaryRow[] => {
       const conc = concStats[gid] || {}
       const avail = availStats[gid] || {}
 
-      // 只显示匹配的平台
+      // English-only note removed during locale cleanup
       if (props.platformFilter && conc.platform !== props.platformFilter && avail.platform !== props.platformFilter) {
         return null
       }
@@ -175,7 +175,7 @@ const groupRows = computed((): SummaryRow[] => {
   return rows.sort((a, b) => b.concurrency_percentage - a.concurrency_percentage)
 })
 
-// 账号维度详细
+// English-only note removed during locale cleanup
 const accountRows = computed((): AccountRow[] => {
   const concStats = concurrency.value?.account || {}
   const availStats = availability.value?.account || {}
@@ -187,7 +187,7 @@ const accountRows = computed((): AccountRow[] => {
       const conc = concStats[aid] || {}
       const avail = availStats[aid] || {}
 
-      // 只显示匹配的分组
+      // English-only note removed during locale cleanup
       if (typeof props.groupIdFilter === 'number' && props.groupIdFilter > 0) {
         if (conc.group_id !== props.groupIdFilter && avail.group_id !== props.groupIdFilter) {
           return null
@@ -215,15 +215,15 @@ const accountRows = computed((): AccountRow[] => {
     .filter((row): row is NonNullable<typeof row> => row !== null)
 
   return rows.sort((a, b) => {
-    // 优先显示异常账号
+    // English-only note removed during locale cleanup
     if (a.has_error !== b.has_error) return a.has_error ? -1 : 1
     if (a.is_rate_limited !== b.is_rate_limited) return a.is_rate_limited ? -1 : 1
-    // 然后按负载排序
+    // English-only note removed during locale cleanup
     return b.load_percentage - a.load_percentage
   })
 })
 
-// 用户维度详细
+// English-only note removed during locale cleanup
 const userRows = computed((): UserRow[] => {
   const userStats = userConcurrency.value?.user || {}
 
@@ -244,7 +244,7 @@ const userRows = computed((): UserRow[] => {
     .sort((a, b) => b.current_in_use - a.current_in_use || b.load_percentage - a.load_percentage)
 })
 
-// 根据维度选择数据
+// English-only note removed during locale cleanup
 const displayRows = computed(() => {
   if (displayDimension.value === 'user') return userRows.value
   if (displayDimension.value === 'account') return accountRows.value
@@ -264,11 +264,11 @@ async function loadData() {
   errorMessage.value = ''
   try {
     if (showByUser.value) {
-      // 用户视图模式只加载用户并发数据
+      // English-only note removed during locale cleanup
       const userData = await opsAPI.getUserConcurrencyStats()
       userConcurrency.value = userData
     } else {
-      // 常规模式加载账号/平台/分组数据
+      // English-only note removed during locale cleanup
       const [concData, availData] = await Promise.all([
         opsAPI.getConcurrencyStats(props.platformFilter, props.groupIdFilter),
         opsAPI.getAccountAvailabilityStats(props.platformFilter, props.groupIdFilter)
@@ -284,7 +284,7 @@ async function loadData() {
   }
 }
 
-// 刷新节奏由父组件统一控制（OpsDashboard Header 的刷新状态/倒计时）
+// English-only note removed during locale cleanup
 watch(
   () => props.refreshToken,
   () => {
@@ -293,7 +293,7 @@ watch(
   }
 )
 
-// 切换用户视图时重新加载数据
+// English-only note removed during locale cleanup
 watch(
   () => showByUser.value,
   () => {
@@ -342,7 +342,7 @@ watch(
 
 <template>
   <div class="flex h-full flex-col rounded-3xl bg-white p-6 shadow-sm ring-1 ring-gray-900/5 dark:bg-dark-800 dark:ring-dark-700">
-    <!-- 头部 -->
+    <!-- English-only note removed during locale cleanup. -->
     <div class="mb-4 flex shrink-0 items-center justify-between gap-3">
       <h3 class="flex items-center gap-2 text-sm font-bold text-gray-900 dark:text-white">
         <svg class="h-4 w-4 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -351,7 +351,7 @@ watch(
         {{ t('admin.ops.concurrency.title') }}
       </h3>
       <div class="flex items-center gap-2">
-        <!-- 用户视图切换按钮 -->
+        <!-- English-only note removed during locale cleanup. -->
         <button
           class="flex items-center justify-center rounded-lg px-2 py-1 transition-colors"
           :class="showByUser
@@ -364,7 +364,7 @@ watch(
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
           </svg>
         </button>
-        <!-- 刷新按钮 -->
+        <!-- English-only note removed during locale cleanup. -->
         <button
           class="flex items-center gap-1 rounded-lg bg-gray-100 px-2 py-1 text-[11px] font-semibold text-gray-700 transition-colors hover:bg-gray-200 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-dark-700 dark:text-gray-300 dark:hover:bg-dark-600"
           :disabled="loading"
@@ -378,12 +378,12 @@ watch(
       </div>
     </div>
 
-    <!-- 错误提示 -->
+    <!-- English-only note removed during locale cleanup. -->
     <div v-if="errorMessage" class="mb-3 shrink-0 rounded-xl bg-red-50 p-2.5 text-xs text-red-600 dark:bg-red-900/20 dark:text-red-400">
       {{ errorMessage }}
     </div>
 
-    <!-- 禁用状态 -->
+    <!-- English-only note removed during locale cleanup. -->
     <div
       v-if="!realtimeEnabled"
       class="flex flex-1 items-center justify-center rounded-xl border border-dashed border-gray-200 text-sm text-gray-500 dark:border-dark-700 dark:text-gray-400"
@@ -391,9 +391,9 @@ watch(
       {{ t('admin.ops.concurrency.disabledHint') }}
     </div>
 
-    <!-- 数据展示区域 -->
+    <!-- English-only note removed during locale cleanup. -->
     <div v-else class="flex min-h-0 flex-1 flex-col overflow-hidden rounded-xl border border-gray-200 dark:border-dark-700">
-      <!-- 维度标题栏 -->
+      <!-- English-only note removed during locale cleanup. -->
       <div class="flex shrink-0 items-center justify-between border-b border-gray-200 bg-gray-50 px-3 py-2 dark:border-dark-700 dark:bg-dark-900">
         <span class="text-[10px] font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">
           {{ displayTitle }}
@@ -403,15 +403,15 @@ watch(
         </span>
       </div>
 
-      <!-- 空状态 -->
+      <!-- English-only note removed during locale cleanup. -->
       <div v-if="displayRows.length === 0" class="flex flex-1 items-center justify-center text-sm text-gray-500 dark:text-gray-400">
         {{ t('admin.ops.concurrency.empty') }}
       </div>
 
-      <!-- 用户视图 -->
+      <!-- English-only note removed during locale cleanup. -->
       <div v-else-if="displayDimension === 'user'" class="custom-scrollbar max-h-[360px] flex-1 space-y-2 overflow-y-auto p-3">
         <div v-for="row in (displayRows as UserRow[])" :key="row.key" class="rounded-lg bg-gray-50 p-2.5 dark:bg-dark-900">
-          <!-- 用户信息和并发 -->
+          <!-- English-only note removed during locale cleanup. -->
           <div class="mb-1.5 flex items-center justify-between gap-2">
             <div class="flex min-w-0 flex-1 items-center gap-1.5">
               <span class="truncate text-[11px] font-bold text-gray-900 dark:text-white" :title="row.username || row.user_email">
@@ -427,12 +427,12 @@ watch(
             </div>
           </div>
 
-          <!-- 进度条 -->
+          <!-- English-only note removed during locale cleanup. -->
           <div class="h-1.5 w-full overflow-hidden rounded-full bg-gray-200 dark:bg-dark-700">
             <div class="h-full rounded-full transition-all duration-300" :class="getLoadBarClass(row.load_percentage)" :style="getLoadBarStyle(row.load_percentage)"></div>
           </div>
 
-          <!-- 等待队列 -->
+          <!-- English-only note removed during locale cleanup. -->
           <div v-if="row.waiting_in_queue > 0" class="mt-1.5 flex justify-end">
             <span class="rounded-full bg-purple-100 px-1.5 py-0.5 text-[10px] font-semibold text-purple-700 dark:bg-purple-900/30 dark:text-purple-400">
               {{ t('admin.ops.concurrency.queued', { count: row.waiting_in_queue }) }}
@@ -441,10 +441,10 @@ watch(
         </div>
       </div>
 
-      <!-- 汇总视图（平台/分组） -->
+      <!-- English-only note removed during locale cleanup. -->
       <div v-else-if="displayDimension === 'platform' || displayDimension === 'group'" class="custom-scrollbar max-h-[360px] flex-1 space-y-2 overflow-y-auto p-3">
         <div v-for="row in (displayRows as SummaryRow[])" :key="row.key" class="rounded-lg bg-gray-50 p-3 dark:bg-dark-900">
-          <!-- 标题行 -->
+          <!-- English-only note removed during locale cleanup. -->
           <div class="mb-2 flex items-center justify-between gap-2">
             <div class="flex items-center gap-2">
               <div class="truncate text-[11px] font-bold text-gray-900 dark:text-white" :title="row.name">
@@ -460,7 +460,7 @@ watch(
             </div>
           </div>
 
-          <!-- 进度条 -->
+          <!-- English-only note removed during locale cleanup. -->
           <div class="mb-2 h-1.5 w-full overflow-hidden rounded-full bg-gray-200 dark:bg-dark-700">
             <div
               class="h-full rounded-full transition-all duration-300"
@@ -469,9 +469,9 @@ watch(
             ></div>
           </div>
 
-          <!-- 统计信息 -->
+          <!-- English-only note removed during locale cleanup. -->
           <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-[10px]">
-            <!-- 账号统计 -->
+            <!-- English-only note removed during locale cleanup. -->
             <div class="flex items-center gap-1">
               <svg class="h-3 w-3 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path
@@ -488,7 +488,7 @@ watch(
               <span class="text-gray-400 dark:text-gray-500">{{ row.availability_percentage }}%</span>
             </div>
 
-            <!-- 限流账号 -->
+            <!-- English-only note removed during locale cleanup. -->
             <span
               v-if="row.rate_limited_accounts > 0"
               class="rounded-full bg-amber-100 px-1.5 py-0.5 font-semibold text-amber-700 dark:bg-amber-900/30 dark:text-amber-400"
@@ -496,7 +496,7 @@ watch(
               {{ t('admin.ops.concurrency.rateLimited', { count: row.rate_limited_accounts }) }}
             </span>
 
-            <!-- 异常账号 -->
+            <!-- English-only note removed during locale cleanup. -->
             <span
               v-if="row.error_accounts > 0"
               class="rounded-full bg-red-100 px-1.5 py-0.5 font-semibold text-red-700 dark:bg-red-900/30 dark:text-red-400"
@@ -504,7 +504,7 @@ watch(
               {{ t('admin.ops.concurrency.errorAccounts', { count: row.error_accounts }) }}
             </span>
 
-            <!-- 等待队列 -->
+            <!-- English-only note removed during locale cleanup. -->
             <span
               v-if="row.waiting_in_queue > 0"
               class="rounded-full bg-purple-100 px-1.5 py-0.5 font-semibold text-purple-700 dark:bg-purple-900/30 dark:text-purple-400"
@@ -515,10 +515,10 @@ watch(
         </div>
       </div>
 
-      <!-- 账号详细视图 -->
+      <!-- English-only note removed during locale cleanup. -->
       <div v-else class="custom-scrollbar max-h-[360px] flex-1 space-y-2 overflow-y-auto p-3">
         <div v-for="row in (displayRows as AccountRow[])" :key="row.key" class="rounded-lg bg-gray-50 p-2.5 dark:bg-dark-900">
-          <!-- 账号名称和并发 -->
+          <!-- English-only note removed during locale cleanup. -->
           <div class="mb-1.5 flex items-center justify-between gap-2">
             <div class="min-w-0 flex-1">
               <div class="truncate text-[11px] font-bold text-gray-900 dark:text-white" :title="row.name">
@@ -529,9 +529,9 @@ watch(
               </div>
             </div>
             <div class="flex shrink-0 items-center gap-2">
-              <!-- 并发使用 -->
+              <!-- English-only note removed during locale cleanup. -->
               <span class="font-mono text-[11px] font-bold text-gray-900 dark:text-white"> {{ row.current_in_use }}/{{ row.max_capacity }} </span>
-              <!-- 状态徽章 -->
+              <!-- English-only note removed during locale cleanup. -->
               <span
                 v-if="row.is_available"
                 class="inline-flex items-center gap-1 rounded bg-green-100 px-1.5 py-0.5 text-[10px] font-medium text-green-700 dark:bg-green-900/30 dark:text-green-400"
@@ -582,12 +582,12 @@ watch(
             </div>
           </div>
 
-          <!-- 进度条 -->
+          <!-- English-only note removed during locale cleanup. -->
           <div class="h-1.5 w-full overflow-hidden rounded-full bg-gray-200 dark:bg-dark-700">
             <div class="h-full rounded-full transition-all duration-300" :class="getLoadBarClass(row.load_percentage)" :style="getLoadBarStyle(row.load_percentage)"></div>
           </div>
 
-          <!-- 等待队列 -->
+          <!-- English-only note removed during locale cleanup. -->
           <div v-if="row.waiting_in_queue > 0" class="mt-1.5 flex justify-end">
             <span class="rounded-full bg-purple-100 px-1.5 py-0.5 text-[10px] font-semibold text-purple-700 dark:bg-purple-900/30 dark:text-purple-400">
               {{ t('admin.ops.concurrency.queued', { count: row.waiting_in_queue }) }}

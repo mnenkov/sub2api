@@ -329,7 +329,7 @@ import {
 } from '@/utils/oauthAffiliate'
 import type { LoginAgreementDocument } from '@/types'
 
-const { t, locale } = useI18n()
+const { t } = useI18n()
 const LOGIN_AGREEMENT_STORAGE_KEY = 'sub2api_login_agreement_consent'
 
 // ==================== Router & Stores ====================
@@ -567,7 +567,7 @@ function rejectLoginAgreement(): void {
   localStorage.removeItem(LOGIN_AGREEMENT_STORAGE_KEY)
   agreementAccepted.value = false
   showAgreementModal.value = false
-  appStore.showWarning('未同意最新条款前，无法注册或使用快捷登录。')
+  appStore.showWarning('Accept the latest terms before registering or using quick sign-in.')
 }
 
 // ==================== Promo Code Validation ====================
@@ -613,7 +613,6 @@ async function validatePromoCodeDebounced(code: string): Promise<void> {
       promoValidation.valid = false
       promoValidation.invalid = true
       promoValidation.bonusAmount = null
-      // 根据错误码显示对应的翻译
       promoValidation.message = getPromoErrorMessage(result.error_code)
     }
   } catch (error) {
@@ -738,7 +737,7 @@ function buildEmailSuffixNotAllowedMessage(): string {
   if (normalizedWhitelist.length === 0) {
     return t('auth.emailSuffixNotAllowed')
   }
-  const separator = String(locale.value || '').toLowerCase().startsWith('zh') ? '、' : ', '
+  const separator = ', '
   return t('auth.emailSuffixNotAllowedWithAllowed', {
     suffixes: formatRegistrationEmailSuffixWhitelistForMessage(normalizedWhitelist, {
       separator,
@@ -757,7 +756,7 @@ function validateForm(): boolean {
   let isValid = true
 
   if (agreementGateActive.value) {
-    appStore.showWarning('请先阅读并同意最新条款后再注册。')
+    appStore.showWarning('Please read and accept the latest terms before registering.')
     if (loginAgreementMode.value !== 'checkbox') {
       showAgreementModal.value = true
     }

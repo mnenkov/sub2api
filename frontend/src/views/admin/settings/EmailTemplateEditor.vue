@@ -113,7 +113,7 @@
                   : 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-300'
               "
             >
-              {{ selectedEventMeta.optional ? localText("可退订通知", "Optional") : localText("事务邮件", "Transactional") }}
+              {{ selectedEventMeta.optional ? "Optional" : "Transactional" }}
             </span>
           </div>
           <p class="mt-2 text-sm leading-6 text-gray-600 dark:text-gray-300">
@@ -312,73 +312,6 @@ interface EventDisplayMeta {
   categoryLabel: string;
 }
 
-function localText(zh: string, en: string): string {
-  return locale.value.toLowerCase().startsWith("zh") ? zh : en;
-}
-
-const eventDisplayMeta: Record<string, EventDisplayMeta> = {
-  "auth.verify_code": {
-    label: "邮箱验证码",
-    timing: "注册、绑定邮箱、OAuth 补全邮箱或 TOTP 邮箱校验时发送。",
-    categoryLabel: "认证安全",
-  },
-  "auth.password_reset": {
-    label: "密码重置",
-    timing: "用户请求密码重置链接时发送。",
-    categoryLabel: "认证安全",
-  },
-  "notification_email.verify_code": {
-    label: "通知邮箱验证码",
-    timing: "用户添加并验证额外通知邮箱时发送。",
-    categoryLabel: "认证安全",
-  },
-  "subscription.purchase_success": {
-    label: "订阅开通成功",
-    timing: "订阅订单完成支付并成功开通或续期后发送。",
-    categoryLabel: "订阅",
-  },
-  "subscription.expiry_reminder": {
-    label: "订阅到期提醒",
-    timing: "后台任务在订阅仍有效且距离到期剩余 7 天、3 天、1 天时各发送一次，可通过邮件设置中的开关关闭。",
-    categoryLabel: "订阅",
-  },
-  "balance.low": {
-    label: "余额不足提醒",
-    timing: "用户余额低于全局或个人配置的提醒阈值时发送。",
-    categoryLabel: "计费",
-  },
-  "balance.recharge_success": {
-    label: "余额充值成功",
-    timing: "余额充值订单支付完成并入账后发送。",
-    categoryLabel: "计费",
-  },
-  "account.quota_alert": {
-    label: "账号限额告警",
-    timing: "上游账号的用量达到配置的额度告警阈值时发送给管理员通知邮箱。",
-    categoryLabel: "管理告警",
-  },
-  "content_moderation.violation_notice": {
-    label: "内容审计违规提醒",
-    timing: "用户请求命中内容审计或风控规则、但尚未被禁用时发送。",
-    categoryLabel: "风控",
-  },
-  "content_moderation.account_disabled": {
-    label: "内容审计禁用账号",
-    timing: "内容审计违规次数达到封禁阈值并自动禁用用户账号时发送。",
-    categoryLabel: "风控",
-  },
-  "ops.alert": {
-    label: "运维告警",
-    timing: "运维监控规则触发告警并满足邮件通知配置时发送给运维收件人。",
-    categoryLabel: "运维",
-  },
-  "ops.scheduled_report": {
-    label: "运维定时报表",
-    timing: "运维日报、周报、错误摘要或账号健康报表到达配置的发送时间时发送。",
-    categoryLabel: "运维",
-  },
-};
-
 const eventDisplayMetaEn: Record<string, EventDisplayMeta> = {
   "auth.verify_code": {
     label: "Email Verification Code",
@@ -451,11 +384,7 @@ function normalizeEventOption(option: EmailTemplateEventOption): EmailTemplateOp
 
 function eventMetaFor(option?: EmailTemplateOption | null) {
   if (!option) return null;
-  const displayMeta = (
-    locale.value.toLowerCase().startsWith("zh")
-      ? eventDisplayMeta
-      : eventDisplayMetaEn
-  )[option.value];
+  const displayMeta = eventDisplayMetaEn[option.value];
   const label = displayMeta?.label || option.label || option.value;
   const timing = displayMeta?.timing || option.description || "";
   const categoryLabel =
@@ -476,17 +405,16 @@ function formatEventOptionLabel(option: EmailTemplateOption): string {
 
 function formatCategory(category: string): string {
   const normalized = category.trim().toLowerCase();
-  if (!normalized) return localText("通知", "Notification");
-  const labels: Record<string, { zh: string; en: string }> = {
-    auth: { zh: "认证安全", en: "Auth" },
-    subscription: { zh: "订阅", en: "Subscription" },
-    billing: { zh: "计费", en: "Billing" },
-    admin: { zh: "管理告警", en: "Admin" },
-    risk_control: { zh: "风控", en: "Risk Control" },
-    ops: { zh: "运维", en: "Ops" },
+  if (!normalized) return "Notification";
+  const labels: Record<string, string> = {
+    auth: "Auth",
+    subscription: "Subscription",
+    billing: "Billing",
+    admin: "Admin",
+    risk_control: "Risk Control",
+    ops: "Ops",
   };
-  const item = labels[normalized];
-  return item ? localText(item.zh, item.en) : category;
+  return labels[normalized] || category;
 }
 
 const selectedEventOption = computed(() => {
@@ -533,11 +461,13 @@ const canPreview = computed(
   () => Boolean(selectedEvent.value && selectedLocale.value) && html.value.trim().length > 0,
 );
 
+function isEnglishTemplateLocale(locale: string): boolean {
+  const lower = locale.toLowerCase();
+  return lower === "en" || lower.startsWith("en-");
+}
+
 function formatLocale(locale: string): string {
   const lower = locale.toLowerCase();
-  if (lower === "zh" || lower.startsWith("zh-")) {
-    return t("admin.settings.emailTemplates.localeZh");
-  }
   if (lower === "en" || lower.startsWith("en-")) {
     return t("admin.settings.emailTemplates.localeEn");
   }
@@ -594,11 +524,11 @@ async function loadTemplateList() {
   try {
     const response = await adminAPI.settings.getEmailTemplates();
     eventOptions.value = response.events.map(normalizeEventOption);
-    localeOptions.value = response.locales;
+    localeOptions.value = response.locales.filter(isEnglishTemplateLocale);
     placeholders.value = response.placeholders || [];
     initializingSelection.value = true;
     selectedEvent.value = eventOptions.value[0]?.value || "";
-    selectedLocale.value = selectInitialLocale(response.locales);
+    selectedLocale.value = selectInitialLocale(localeOptions.value);
     await loadTemplate();
     initializingSelection.value = false;
   } catch (err: unknown) {

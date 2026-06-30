@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col gap-1">
-    <!-- 并发槽位 -->
+    <!-- English-only note removed during locale cleanup. -->
     <div class="flex items-center gap-1">
       <span
         :class="[
@@ -17,7 +17,7 @@
       </span>
     </div>
 
-    <!-- 会话数 -->
+    <!-- English-only note removed during locale cleanup. -->
     <div v-if="sessionsMax > 0" class="flex items-center gap-1">
       <span
         :class="[

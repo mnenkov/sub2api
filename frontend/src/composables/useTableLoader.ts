@@ -18,8 +18,8 @@ interface TableLoaderOptions<T, P> {
 }
 
 /**
- * 通用表格数据加载 Composable
- * 统一处理分页、筛选、搜索防抖和请求取消
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
  */
 export function useTableLoader<T, P extends Record<string, any>>(options: TableLoaderOptions<T, P>) {
   const { fetchFn, initialParams, pageSize, debounceMs = 300 } = options
@@ -79,7 +79,7 @@ export function useTableLoader<T, P extends Record<string, any>>(options: TableL
   const debouncedReload = useDebounceFn(reload, debounceMs)
 
   const handlePageChange = (page: number) => {
-    // 确保页码在有效范围内
+    // English-only note removed during locale cleanup
     const validPage = Math.max(1, Math.min(page, pagination.pages || 1))
     pagination.page = validPage
     load()

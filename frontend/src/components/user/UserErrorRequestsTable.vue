@@ -118,7 +118,7 @@ const emit = defineEmits<{
 }>()
 
 const { t } = useI18n()
-// string | null:clearable 清空时 Select 回传 null,apply 中归一为空串
+// English-only note removed during locale cleanup
 const localModel = ref<string | null>('')
 const localCategory = ref<string>('')
 const localApiKeyId = ref<number | null>(null)
@@ -130,13 +130,13 @@ const categoryOptions = computed(() => [
   ...categoryCodes.map((c) => ({ value: c, label: t('usage.errors.categories.' + c) })),
 ])
 
-// 首项 value: null 表示不按 key 过滤；其余项取自父组件传入的 apiKeys 候选列表。
+// English-only note removed during locale cleanup
 const keyOptions = computed(() => [
   { value: null, label: t('usage.errors.allKeys') },
   ...(props.apiKeys ?? []).map((k) => ({ value: k.id, label: k.name })),
 ])
 
-// 模型候选取自当前已加载错误中出现过的模型；creatable 允许输入任意片段做后端模糊。
+// English-only note removed during locale cleanup
 const modelOptions = computed(() => {
   const seen = new Set<string>()
   const opts: { value: string; label: string }[] = []

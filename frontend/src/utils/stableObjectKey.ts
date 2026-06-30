@@ -1,7 +1,7 @@
 let globalStableObjectKeySeed = 0
 
 /**
- * 为对象实例生成稳定 key（基于 WeakMap，不污染业务对象）
+ * English-only note removed during locale cleanup.
  */
 export function createStableObjectKeyResolver<T extends object>(prefix = 'item') {
   const keyMap = new WeakMap<T, string>()

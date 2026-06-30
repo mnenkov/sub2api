@@ -1669,7 +1669,7 @@
             </div>
           </div>
 
-          <!-- LinuxDo Connect OAuth 登录 -->
+          <!-- English-only note removed during locale cleanup. -->
           <div class="card">
             <div
               class="border-b border-gray-100 px-6 py-4 dark:border-dark-700"
@@ -1787,21 +1787,16 @@
             </div>
           </div>
 
-          <!-- GitHub / Google 邮箱快捷登录 -->
+          <!-- English-only note removed during locale cleanup. -->
           <div class="card">
             <div
               class="border-b border-gray-100 px-6 py-4 dark:border-dark-700"
             >
               <h2 class="text-lg font-semibold text-gray-900 dark:text-white">
-                {{ localText("邮箱快捷登录", "Email OAuth Sign-in") }}
+                Email OAuth Sign-in
               </h2>
               <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
-                {{
-                  localText(
-                    "开启 GitHub 或 Google 邮箱授权登录后，系统会读取已验证邮箱，存在则直接登录，不存在则自动注册。",
-                    "After GitHub or Google email OAuth is enabled, the system reads a verified email, signs in matching users, and auto-registers missing users.",
-                  )
-                }}
+                After GitHub or Google email OAuth is enabled, the system reads a verified email, signs in matching users, and auto-registers missing users.
               </p>
             </div>
             <div class="space-y-6 p-6">
@@ -1813,12 +1808,7 @@
                         GitHub
                       </h3>
                       <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
-                        {{
-                          localText(
-                            "GitHub OAuth App 需要 read:user user:email 权限，回调地址填写下方后端地址。",
-                            "GitHub OAuth App needs read:user user:email scopes. Use the backend callback URL below.",
-                          )
-                        }}
+                        GitHub OAuth App needs read:user user:email scopes. Use the backend callback URL below.
                       </p>
                     </div>
                     <Toggle v-model="form.github_oauth_enabled" />
@@ -1826,28 +1816,15 @@
 
                   <div v-if="form.github_oauth_enabled" class="mt-4 space-y-4">
                     <div class="rounded-lg bg-gray-50 px-3 py-2 text-xs text-gray-600 dark:bg-dark-800 dark:text-gray-300">
-                      <template v-if="isZhLocale">
-                        开通引导：GitHub Settings → Developer settings →
-                        <a
-                          data-testid="github-oauth-apps-guide-link"
-                          href="https://github.com/settings/developers"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          class="font-medium text-primary-600 hover:underline dark:text-primary-400"
-                        >OAuth Apps</a>
-                        → New OAuth App；Homepage URL 填站点域名，Authorization callback URL 填下面的后端回调地址。
-                      </template>
-                      <template v-else>
-                        Setup guide: GitHub Settings → Developer settings →
-                        <a
-                          data-testid="github-oauth-apps-guide-link"
-                          href="https://github.com/settings/developers"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          class="font-medium text-primary-600 hover:underline dark:text-primary-400"
-                        >OAuth Apps</a>
-                        → New OAuth App. Use your site origin as Homepage URL and the backend callback URL below as Authorization callback URL.
-                      </template>
+                      Setup guide: GitHub Settings → Developer settings →
+                      <a
+                        data-testid="github-oauth-apps-guide-link"
+                        href="https://github.com/settings/developers"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="font-medium text-primary-600 hover:underline dark:text-primary-400"
+                      >OAuth Apps</a>
+                      → New OAuth App. Use your site origin as Homepage URL and the backend callback URL below as Authorization callback URL.
                     </div>
 
                     <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
@@ -1868,7 +1845,7 @@
                           class="input font-mono text-sm"
                           :placeholder="
                             form.github_oauth_client_secret_configured
-                              ? localText('密钥已配置，留空以保留当前值。', 'Secret configured. Leave empty to keep the current value.')
+                              ? ''
                               : 'GitHub OAuth Client Secret'
                           "
                         />
@@ -1877,7 +1854,7 @@
 
                     <div>
                       <label class="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
-                        {{ localText("后端回调地址", "Backend Callback URL") }}
+                        {{ "" }}
                       </label>
                       <input
                         v-model="form.github_oauth_redirect_url"
@@ -1891,7 +1868,7 @@
                           class="btn btn-secondary btn-sm w-fit"
                           @click="setAndCopyEmailOAuthRedirectUrl('github')"
                         >
-                          {{ localText("生成并复制", "Generate and copy") }}
+                          {{ "" }}
                         </button>
                         <code
                           v-if="githubOAuthRedirectUrlSuggestion"
@@ -1904,7 +1881,7 @@
 
                     <div>
                       <label class="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
-                        {{ localText("前端回跳地址", "Frontend Callback URL") }}
+                        {{ "" }}
                       </label>
                       <input
                         v-model="form.github_oauth_frontend_redirect_url"
@@ -1924,10 +1901,7 @@
                       </h3>
                       <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
                         {{
-                          localText(
-                            "Google OAuth 客户端需要 openid email profile 范围，并在凭据里登记后端回调地址。",
-                            "Google OAuth client needs openid email profile scopes and the backend callback URL registered in credentials.",
-                          )
+                          ""
                         }}
                       </p>
                     </div>
@@ -1937,10 +1911,7 @@
                   <div v-if="form.google_oauth_enabled" class="mt-4 space-y-4">
                     <div class="rounded-lg bg-gray-50 px-3 py-2 text-xs text-gray-600 dark:bg-dark-800 dark:text-gray-300">
                       {{
-                        localText(
-                          "开通引导：Google Cloud Console → APIs & Services → OAuth consent screen 完成同意屏幕；Credentials → Create Credentials → OAuth client ID，类型选择 Web application，并把下面地址加入 Authorized redirect URIs。",
-                          "Setup guide: Google Cloud Console → APIs & Services → OAuth consent screen, then Credentials → Create Credentials → OAuth client ID, choose Web application, and add the URL below to Authorized redirect URIs.",
-                        )
+                        ""
                       }}
                     </div>
 
@@ -1962,7 +1933,7 @@
                           class="input font-mono text-sm"
                           :placeholder="
                             form.google_oauth_client_secret_configured
-                              ? localText('密钥已配置，留空以保留当前值。', 'Secret configured. Leave empty to keep the current value.')
+                              ? ''
                               : 'Google OAuth Client Secret'
                           "
                         />
@@ -1971,7 +1942,7 @@
 
                     <div>
                       <label class="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
-                        {{ localText("后端回调地址", "Backend Callback URL") }}
+                        {{ "" }}
                       </label>
                       <input
                         v-model="form.google_oauth_redirect_url"
@@ -1985,7 +1956,7 @@
                           class="btn btn-secondary btn-sm w-fit"
                           @click="setAndCopyEmailOAuthRedirectUrl('google')"
                         >
-                          {{ localText("生成并复制", "Generate and copy") }}
+                          {{ "" }}
                         </button>
                         <code
                           v-if="googleOAuthRedirectUrlSuggestion"
@@ -1998,7 +1969,7 @@
 
                     <div>
                       <label class="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
-                        {{ localText("前端回跳地址", "Frontend Callback URL") }}
+                        {{ "" }}
                       </label>
                       <input
                         v-model="form.google_oauth_frontend_redirect_url"
@@ -2013,7 +1984,7 @@
             </div>
           </div>
 
-          <!-- WeChat Connect OAuth 登录 -->
+          <!-- English-only note removed during locale cleanup. -->
           <div class="card">
             <div
               class="border-b border-gray-100 px-6 py-4 dark:border-dark-700"
@@ -2052,14 +2023,11 @@
                     <div class="flex items-start justify-between gap-4">
                       <div>
                         <h3 class="font-medium text-gray-900 dark:text-white">
-                          {{ localText("PC 应用", "PC App") }}
+                          {{ "" }}
                         </h3>
                         <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
                           {{
-                            localText(
-                              "桌面浏览器通过微信开放平台扫码登录。可与公众号或移动应用同时存在。",
-                              "Desktop browsers sign in through WeChat Open Platform QR login. This can coexist with Official Account or Mobile App.",
-                            )
+                            ""
                           }}
                         </p>
                       </div>
@@ -2085,10 +2053,7 @@
                           type="text"
                           class="input font-mono text-sm"
                           :placeholder="
-                            localText(
-                              '微信开放平台 PC 应用 AppID',
-                              'WeChat Open Platform PC App ID',
-                            )
+                            ''
                           "
                         />
                       </div>
@@ -2105,14 +2070,8 @@
                           class="input font-mono text-sm"
                           :placeholder="
                             form.wechat_connect_open_app_secret_configured
-                              ? localText(
-                                  '密钥已配置，留空以保留当前值。',
-                                  'Secret configured. Leave empty to keep the current value.',
-                                )
-                              : localText(
-                                  '微信开放平台 PC 应用 AppSecret',
-                                  'WeChat Open Platform PC App Secret',
-                                )
+                              ? ''
+                              : ''
                           "
                         />
                       </div>
@@ -2125,14 +2084,11 @@
                     <div class="flex items-start justify-between gap-4">
                       <div>
                         <h3 class="font-medium text-gray-900 dark:text-white">
-                          {{ localText("公众号", "Official Account") }}
+                          {{ "" }}
                         </h3>
                         <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
                           {{
-                            localText(
-                              "仅在微信内浏览器可用；非微信环境下会显示不可用。",
-                              "Only available inside the WeChat browser. It is shown as unavailable outside WeChat.",
-                            )
+                            ""
                           }}
                         </p>
                       </div>
@@ -2150,7 +2106,7 @@
                         <label
                           class="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300"
                         >
-                          {{ localText("公众号 AppID", "Official Account App ID") }}
+                          {{ "" }}
                         </label>
                         <input
                           v-model="form.wechat_connect_mp_app_id"
@@ -2158,10 +2114,7 @@
                           type="text"
                           class="input font-mono text-sm"
                           :placeholder="
-                            localText(
-                              '公众号 AppID',
-                              'Official Account App ID',
-                            )
+                            ''
                           "
                         />
                       </div>
@@ -2170,10 +2123,7 @@
                           class="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300"
                         >
                           {{
-                            localText(
-                              "公众号 AppSecret",
-                              "Official Account App Secret",
-                            )
+                            ""
                           }}
                         </label>
                         <input
@@ -2183,14 +2133,8 @@
                           class="input font-mono text-sm"
                           :placeholder="
                             form.wechat_connect_mp_app_secret_configured
-                              ? localText(
-                                  '密钥已配置，留空以保留当前值。',
-                                  'Secret configured. Leave empty to keep the current value.',
-                                )
-                              : localText(
-                                  '公众号 AppSecret',
-                                  'Official Account App Secret',
-                                )
+                              ? ''
+                              : ''
                           "
                         />
                       </div>
@@ -2203,14 +2147,11 @@
                     <div class="flex items-start justify-between gap-4">
                       <div>
                         <h3 class="font-medium text-gray-900 dark:text-white">
-                          {{ localText("移动应用", "Mobile App") }}
+                          {{ "" }}
                         </h3>
                         <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
                           {{
-                            localText(
-                              "原生移动端通过微信 SDK 唤起授权，网页端不会直接发起该流程。",
-                              "Native mobile clients start authorization through the WeChat SDK. The web UI does not launch this flow directly.",
-                            )
+                            ""
                           }}
                         </p>
                       </div>
@@ -2228,7 +2169,7 @@
                         <label
                           class="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300"
                         >
-                          {{ localText("移动应用 AppID", "Mobile App ID") }}
+                          {{ "" }}
                         </label>
                         <input
                           v-model="form.wechat_connect_mobile_app_id"
@@ -2236,10 +2177,7 @@
                           type="text"
                           class="input font-mono text-sm"
                           :placeholder="
-                            localText(
-                              '移动应用 AppID',
-                              'Mobile App ID',
-                            )
+                            ''
                           "
                         />
                       </div>
@@ -2247,7 +2185,7 @@
                         <label
                           class="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300"
                         >
-                          {{ localText("移动应用 AppSecret", "Mobile App Secret") }}
+                          {{ "" }}
                         </label>
                         <input
                           v-model="form.wechat_connect_mobile_app_secret"
@@ -2256,14 +2194,8 @@
                           class="input font-mono text-sm"
                           :placeholder="
                             form.wechat_connect_mobile_app_secret_configured
-                              ? localText(
-                                  '密钥已配置，留空以保留当前值。',
-                                  'Secret configured. Leave empty to keep the current value.',
-                                )
-                              : localText(
-                                  '移动应用 AppSecret',
-                                  'Mobile App Secret',
-                                )
+                              ? ''
+                              : ''
                           "
                         />
                       </div>
@@ -2280,10 +2212,7 @@
                   class="rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-700 dark:border-amber-900/40 dark:bg-amber-900/10 dark:text-amber-300"
                 >
                   {{
-                    localText(
-                      "如果同时启用 PC 应用和公众号/移动应用，这些应用需要挂在同一个微信开放平台主体下，否则 UnionID 无法稳定归并账号。",
-                      "When PC App is enabled together with Official Account or Mobile App, they should belong to the same WeChat Open Platform account so UnionID can merge identities reliably.",
-                    )
+                    ""
                   }}
                 </div>
 
@@ -2293,10 +2222,7 @@
                       class="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300"
                     >
                       {{
-                        localText(
-                          "浏览器回调地址",
-                          "Browser Redirect URL",
-                        )
+                        ""
                       }}
                     </label>
                     <input
@@ -2308,10 +2234,7 @@
                     />
                     <p class="mt-1.5 text-xs text-gray-500 dark:text-gray-400">
                       {{
-                        localText(
-                          "用于 PC 应用和公众号的网页回调。移动应用走原生 SDK 时不直接使用这个浏览器回调。",
-                          "Used by PC App and Official Account browser callbacks. Native mobile SDK flows do not start from this browser callback directly.",
-                        )
+                        ""
                       }}
                     </p>
                     <div
@@ -2355,7 +2278,7 @@
             </div>
           </div>
 
-          <!-- DingTalk Connect OAuth 登录 -->
+          <!-- English-only note removed during locale cleanup. -->
           <div class="card">
             <div
               class="border-b border-gray-100 px-6 py-4 dark:border-dark-700"
@@ -2486,7 +2409,7 @@
                     </div>
                   </div>
 
-                  <!-- bypass_registration toggle（仅 internal_only 模式下可见可用） -->
+                  <!-- English-only note removed during locale cleanup. -->
                   <div
                     v-if="form.dingtalk_connect_corp_restriction_policy === 'internal_only'"
                     class="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-dark-700"
@@ -2502,7 +2425,7 @@
                     <Toggle v-model="form.dingtalk_connect_bypass_registration" />
                   </div>
 
-                  <!-- 身份同步开关（仅 internal_only 模式下可见） -->
+                  <!-- English-only note removed during locale cleanup. -->
                   <div
                     v-if="form.dingtalk_connect_corp_restriction_policy === 'internal_only'"
                     class="pt-4 border-t border-gray-100 dark:border-dark-700 space-y-2"
@@ -2537,7 +2460,7 @@
                         <input
                           v-model="form.dingtalk_connect_sync_display_name_attr_name"
                           type="text"
-                          placeholder="钉钉姓名"
+                          placeholder="DingTalk name"
                           class="input text-sm flex-1 max-w-xs"
                         />
                       </div>
@@ -2583,7 +2506,7 @@
                         <input
                           v-model="form.dingtalk_connect_sync_corp_email_attr_name"
                           type="text"
-                          placeholder="钉钉企业邮箱"
+                          placeholder="DingTalk corporate email"
                           class="input text-sm flex-1 max-w-xs"
                         />
                       </div>
@@ -2629,7 +2552,7 @@
                         <input
                           v-model="form.dingtalk_connect_sync_dept_attr_name"
                           type="text"
-                          placeholder="钉钉部门"
+                          placeholder="DingTalk department"
                           class="input text-sm flex-1 max-w-xs"
                         />
                       </div>
@@ -2643,7 +2566,7 @@
             </div>
           </div>
 
-          <!-- Generic OIDC OAuth 登录 -->
+          <!-- English-only note removed during locale cleanup. -->
           <div class="card">
             <div
               class="border-b border-gray-100 px-6 py-4 dark:border-dark-700"
@@ -3263,7 +3186,7 @@
                 </div>
               </div>
 
-              <!-- ★ 新增：系统全局默认平台限额矩阵 -->
+              <!-- English-only note removed during locale cleanup. -->
               <div class="border-t border-gray-100 pt-4 dark:border-dark-700">
                 <div class="mb-3">
                   <label class="font-medium text-gray-900 dark:text-white">
@@ -3326,7 +3249,7 @@
                   </table>
                 </div>
               </div>
-              <!-- /全局平台限额矩阵 -->
+              <!-- English-only note removed during locale cleanup. -->
             </div>
           </div>
 
@@ -3601,7 +3524,7 @@
                       </div>
                     </div>
 
-                    <!-- ★ 新增：auth source 平台限额覆盖区块 -->
+                    <!-- English-only note removed during locale cleanup. -->
                     <div class="border-t border-gray-100 pt-4 dark:border-dark-700">
                       <div class="mb-3">
                         <label class="font-medium text-gray-900 dark:text-white">
@@ -3661,7 +3584,7 @@
                         </table>
                       </div>
                     </div>
-                    <!-- /auth source 平台限额覆盖区块 -->
+                    <!-- English-only note removed during locale cleanup. -->
                   </div>
                 </div>
               </div>
@@ -4345,7 +4268,7 @@
                 />
               </div>
 
-              <!-- messages cache_control 改写 -->
+              <!-- English-only note removed during locale cleanup. -->
               <div class="flex items-center justify-between">
                 <div>
                   <label
@@ -4368,7 +4291,7 @@
                 <Toggle v-model="form.rewrite_message_cache_control" />
               </div>
 
-              <!-- Antigravity UA 版本 -->
+              <!-- English-only note removed during locale cleanup. -->
               <div>
                 <label
                   class="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300"
@@ -5454,12 +5377,12 @@
 	              <div class="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
 	                <div>
 	                  <h2 class="text-lg font-semibold text-gray-900 dark:text-white">
-	                    {{ localText("登录条款确认", "Login agreement") }}
+	                    {{ localText("Login agreement", "Login agreement") }}
 	                  </h2>
 	                  <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
 	                    {{
 	                      localText(
-	                        "控制登录页是否要求用户先阅读并同意服务条款、隐私政策或其他 Markdown 文档。",
+	                        "Control whether the login page requires users to accept Markdown policy documents first.",
 	                        "Control whether the login page requires users to accept Markdown policy documents first.",
 	                      )
 	                    }}
@@ -5467,7 +5390,7 @@
 	                </div>
 	                <div class="flex items-center gap-3">
 	                  <span class="text-sm text-gray-600 dark:text-gray-300">
-	                    {{ form.login_agreement_enabled ? localText("已启用", "Enabled") : localText("未启用", "Disabled") }}
+	                    {{ form.login_agreement_enabled ? localText("Enabled", "Enabled") : localText("Disabled", "Disabled") }}
 	                  </span>
 	                  <Toggle v-model="form.login_agreement_enabled" />
 	                </div>
@@ -5478,7 +5401,7 @@
 	              <div class="grid grid-cols-1 gap-5 lg:grid-cols-[minmax(0,1fr)_220px]">
 	                <div>
 	                  <label class="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
-	                    {{ localText("展示形式", "Display mode") }}
+	                    {{ localText("Display mode", "Display mode") }}
 	                  </label>
 	                  <div class="grid grid-cols-2 gap-2 rounded-lg bg-gray-100 p-1 dark:bg-dark-700">
                     <button
@@ -5492,7 +5415,7 @@
                       @click="form.login_agreement_mode = 'modal'"
                     >
                       <Icon name="shield" size="sm" />
-                      {{ localText("弹窗", "Modal") }}
+                      {{ localText("Modal", "Modal") }}
                     </button>
                     <button
                       type="button"
@@ -5505,21 +5428,21 @@
                       @click="form.login_agreement_mode = 'checkbox'"
                     >
                       <Icon name="checkCircle" size="sm" />
-                      {{ localText("复选框", "Checkbox") }}
+                      {{ localText("Checkbox", "Checkbox") }}
                     </button>
                   </div>
                   <p class="mt-1.5 text-xs text-gray-500 dark:text-gray-400">
                     {{
                       form.login_agreement_mode === "checkbox"
-                        ? localText("复选框会显示在登录按钮下方，未勾选前所有登录入口禁用。", "The checkbox appears below the login button and gates all login actions.")
-                        : localText("弹窗会在登录页打开，用户拒绝后所有登录入口保持禁用。", "The modal opens on the login page and gates all login actions until accepted.")
+                        ? localText("The checkbox appears below the login button and gates all login actions.", "The checkbox appears below the login button and gates all login actions.")
+                        : localText("The modal opens on the login page and gates all login actions until accepted.", "The modal opens on the login page and gates all login actions until accepted.")
                     }}
                   </p>
                 </div>
 
                 <div>
                   <label class="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
-                    {{ localText("条款更新日期", "Updated date") }}
+                    {{ localText("Updated date", "Updated date") }}
                   </label>
                   <input
                     v-model="form.login_agreement_updated_at"
@@ -5527,7 +5450,7 @@
                     class="input"
                   />
                   <p class="mt-1.5 text-xs text-gray-500 dark:text-gray-400">
-                    {{ localText("日期或文档内容变化后，用户需要重新同意。", "Changing the date or content requires fresh consent.") }}
+                    {{ localText("Changing the date or content requires fresh consent.", "Changing the date or content requires fresh consent.") }}
                   </p>
                 </div>
               </div>
@@ -5536,12 +5459,12 @@
                 <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                   <div>
                     <h3 class="text-sm font-medium text-gray-900 dark:text-white">
-                      {{ localText("协议文档", "Agreement documents") }}
+                      {{ localText("Agreement documents", "Agreement documents") }}
                     </h3>
                     <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">
                       {{
                         localText(
-                          "文档名称可自定义，内容按 Markdown 保存。可参考：服务条款、使用政策、支持的国家和地区、服务特定条款。",
+                          "Document titles are customizable and content is saved as Markdown. Suggested titles: Terms of Service, Usage Policy, Supported Countries and Regions, Service-Specific Terms.",
                           "Document titles are customizable and content is saved as Markdown.",
                         )
                       }}
@@ -5553,7 +5476,7 @@
                     @click="addLoginAgreementDocument"
                   >
                     <Icon name="plus" size="sm" />
-                    {{ localText("添加文档", "Add document") }}
+                    {{ localText("Add document", "Add document") }}
                   </button>
                 </div>
 
@@ -5581,7 +5504,7 @@
                         </span>
                         <div class="min-w-0">
                           <p class="truncate text-sm font-semibold text-gray-900 dark:text-white">
-                            {{ doc.title || localText("未命名文档", "Untitled document") }}
+                            {{ doc.title || localText("Untitled document", "Untitled document") }}
                           </p>
                           <p class="truncate text-xs text-gray-500 dark:text-gray-400">
                             {{ loginAgreementRoutePath(doc, index) }}
@@ -5604,18 +5527,18 @@
                     <div class="grid grid-cols-1 gap-3 lg:grid-cols-2">
                       <div>
                         <label class="mb-1 block text-xs font-medium text-gray-600 dark:text-gray-400">
-                          {{ localText("文档名称", "Document title") }}
+                          {{ localText("Document title", "Document title") }}
                         </label>
                         <input
                           v-model="doc.title"
                           type="text"
                           class="input text-sm"
-                          :placeholder="localText('例如：服务条款', 'Example: Terms of Service')"
+                          :placeholder="localText('Example: Terms of Service', 'Example: Terms of Service')"
                         />
                       </div>
                       <div>
                         <label class="mb-1 block text-xs font-medium text-gray-600 dark:text-gray-400">
-                          {{ localText("路由标识", "Route slug") }}
+                          {{ localText("Route slug", "Route slug") }}
                         </label>
                         <div class="flex overflow-hidden rounded-lg border border-gray-300 bg-white focus-within:border-primary-500 focus-within:ring-1 focus-within:ring-primary-500 dark:border-dark-600 dark:bg-dark-900">
                           <span class="inline-flex flex-shrink-0 items-center border-r border-gray-200 bg-gray-50 px-3 text-sm text-gray-500 dark:border-dark-700 dark:bg-dark-800 dark:text-dark-400">
@@ -5632,13 +5555,13 @@
                     </div>
                     <div class="mt-3">
                       <label class="mb-1 block text-xs font-medium text-gray-600 dark:text-gray-400">
-                        {{ localText("Markdown 内容", "Markdown content") }}
+                        {{ localText("Markdown content", "Markdown content") }}
                       </label>
                         <textarea
                           v-model="doc.content_md"
                           rows="8"
                           class="input font-mono text-sm"
-                          :placeholder="localText('在这里填写正式 Markdown 内容。', 'Write the final Markdown content here.')"
+                          :placeholder="localText('Write the final Markdown content here.', 'Write the final Markdown content here.')"
                         ></textarea>
                     </div>
                   </div>
@@ -5649,7 +5572,7 @@
         </div>
         <!-- /Tab: Login Agreement -->
 
-	        <!-- Tab: Features (功能开关) -->
+	        <!-- English-only note removed during locale cleanup. -->
         <div v-show="activeTab === 'features'" class="space-y-6">
 
         <div class="card">
@@ -5793,7 +5716,7 @@
           </div>
         </div>
 
-        <!-- Affiliate (邀请返利) feature card -->
+        <!-- English-only note removed during locale cleanup. -->
         <div class="card">
           <div class="border-b border-gray-100 px-6 py-4 dark:border-dark-700">
             <h2 class="text-lg font-semibold text-gray-900 dark:text-white">
@@ -5888,7 +5811,7 @@
                 </p>
               </div>
 
-              <!-- 专属用户管理 -->
+              <!-- English-only note removed during locale cleanup. -->
               <div class="border-t border-gray-100 pt-6 dark:border-dark-700">
                 <div class="mb-3 flex items-center justify-between">
                   <div>
@@ -6940,7 +6863,7 @@
             </div>
           </div>
 
-          <!-- 订阅到期提醒 -->
+          <!-- English-only note removed during locale cleanup. -->
           <div class="card">
             <div
               class="border-b border-gray-100 px-6 py-4 dark:border-dark-700"
@@ -7251,25 +7174,20 @@ import {
   type FingerprintSignalRow,
 } from "./codexFingerprintSignals";
 
-const { t, locale } = useI18n();
+const { t } = useI18n();
 const appStore = useAppStore();
 const adminSettingsStore = useAdminSettingsStore();
-const isZhLocale = computed(() => locale.value.startsWith("zh"));
 
-function localText(zh: string, en: string): string {
-  return isZhLocale.value ? zh : en;
+function localText(_zh: string, en: string): string {
+  return en;
 }
 
 const paymentGuideHref = computed(() =>
-  locale.value.startsWith("zh")
-    ? "https://github.com/Wei-Shaw/sub2api/blob/main/docs/PAYMENT_CN.md"
-    : "https://github.com/Wei-Shaw/sub2api/blob/main/docs/PAYMENT.md",
+  "https://github.com/Wei-Shaw/sub2api/blob/main/docs/PAYMENT.md",
 );
 
 const paymentMethodsHref = computed(() =>
-  locale.value.startsWith("zh")
-    ? "https://github.com/Wei-Shaw/sub2api/blob/main/docs/PAYMENT_CN.md#支持的支付方式"
-    : "https://github.com/Wei-Shaw/sub2api/blob/main/docs/PAYMENT.md#supported-payment-methods",
+  "https://github.com/Wei-Shaw/sub2api/blob/main/docs/PAYMENT.md#supported-payment-methods",
 );
 
 type SettingsTab =
@@ -7358,7 +7276,7 @@ const registrationEmailSuffixWhitelistTags = ref<string[]>([]);
 const registrationEmailSuffixWhitelistDraft = ref("");
 const tablePageSizeOptionsInput = ref("10, 20, 50, 100");
 
-// Admin API Key 状态
+// English-only note removed during locale cleanup
 const adminApiKeyLoading = ref(true);
 const adminApiKeyExists = ref(false);
 const adminApiKeyMasked = ref("");
@@ -7366,7 +7284,7 @@ const adminApiKeyOperating = ref(false);
 const newAdminApiKey = ref("");
 const subscriptionGroups = ref<AdminGroup[]>([]);
 
-// Overload Cooldown (529) 状态
+// English-only note removed during locale cleanup
 const overloadCooldownLoading = ref(true);
 const overloadCooldownSaving = ref(false);
 const overloadCooldownForm = reactive({
@@ -7374,7 +7292,7 @@ const overloadCooldownForm = reactive({
   cooldown_minutes: 10,
 });
 
-// Rate Limit Cooldown (429) 状态
+// English-only note removed during locale cleanup
 const rateLimit429CooldownLoading = ref(true);
 const rateLimit429CooldownSaving = ref(false);
 const rateLimit429CooldownForm = reactive({
@@ -7382,7 +7300,7 @@ const rateLimit429CooldownForm = reactive({
   cooldown_seconds: 5,
 });
 
-// Stream Timeout 状态
+// English-only note removed during locale cleanup
 const streamTimeoutLoading = ref(true);
 const streamTimeoutSaving = ref(false);
 const streamTimeoutForm = reactive({
@@ -7393,7 +7311,7 @@ const streamTimeoutForm = reactive({
   threshold_window_minutes: 10,
 });
 
-// Rectifier 状态
+// English-only note removed during locale cleanup
 const rectifierLoading = ref(true);
 const rectifierSaving = ref(false);
 const rectifierForm = reactive({
@@ -7404,7 +7322,7 @@ const rectifierForm = reactive({
   apikey_signature_patterns: [] as string[],
 });
 
-// Beta Policy 状态
+// English-only note removed during locale cleanup
 const betaPolicyLoading = ref(true);
 const betaPolicySaving = ref(false);
 const betaPolicyForm = reactive({
@@ -7419,12 +7337,12 @@ const betaPolicyForm = reactive({
   }>,
 });
 
-// OpenAI Fast/Flex Policy 状态
+// English-only note removed during locale cleanup
 const openaiFastPolicyForm = reactive({
   rules: [] as OpenAIFastPolicyRule[],
 });
-// 标记 openai_fast_policy_settings 是否已成功从后端加载，
-// 避免后端 GET 出错或字段缺失时，保存把默认规则覆盖成空数组。
+// English-only note removed during locale cleanup
+// English-only note removed during locale cleanup
 const openaiFastPolicyLoaded = ref(false);
 
 const tablePageSizeMin = 5;
@@ -7435,22 +7353,22 @@ function defaultLoginAgreementDocuments(): LoginAgreementDocument[] {
   return [
     {
       id: "terms",
-      title: "服务条款",
+      title: "Terms of Service",
       content_md: "",
     },
     {
       id: "usage-policy",
-      title: "使用政策",
+      title: "Usage Policy",
       content_md: "",
     },
     {
       id: "supported-regions",
-      title: "支持的国家和地区",
+      title: "Supported Countries and Regions",
       content_md: "",
     },
     {
       id: "service-specific-terms",
-      title: "服务特定条款",
+      title: "Service-Specific Terms",
       content_md: "",
     },
   ];
@@ -7878,7 +7796,7 @@ type SettingsForm = Omit<
   google_oauth_client_secret: string;
   force_email_on_third_party_signup: boolean;
   openai_advanced_scheduler_enabled: boolean;
-  // 系统全局平台限额 map；form 内始终归一化为全 4 平台对象（模板非空绑定依赖此不变量）
+  // English-only note removed during locale cleanup
   default_platform_quotas: DefaultPlatformQuotasMap;
 };
 
@@ -7968,13 +7886,13 @@ const form = reactive<SettingsForm>({
   turnstile_secret_key: "",
   turnstile_secret_key_configured: false,
   api_key_acl_trust_forwarded_ip: false,
-  // LinuxDo Connect OAuth 登录
+  // English-only note removed during locale cleanup
   linuxdo_connect_enabled: false,
   linuxdo_connect_client_id: "",
   linuxdo_connect_client_secret: "",
   linuxdo_connect_client_secret_configured: false,
   linuxdo_connect_redirect_url: "",
-  // DingTalk Connect OAuth 登录
+  // English-only note removed during locale cleanup
   dingtalk_connect_enabled: false,
   dingtalk_connect_client_id: "",
   dingtalk_connect_client_secret: "",
@@ -7989,9 +7907,9 @@ const form = reactive<SettingsForm>({
   dingtalk_connect_sync_corp_email_attr_key: "dingtalk_email",
   dingtalk_connect_sync_display_name_attr_key: "dingtalk_name",
   dingtalk_connect_sync_dept_attr_key: "dingtalk_department",
-  dingtalk_connect_sync_corp_email_attr_name: "钉钉企业邮箱",
-  dingtalk_connect_sync_display_name_attr_name: "钉钉姓名",
-  dingtalk_connect_sync_dept_attr_name: "钉钉部门",
+  dingtalk_connect_sync_corp_email_attr_name: "DingTalk corporate email",
+  dingtalk_connect_sync_display_name_attr_name: "DingTalk name",
+  dingtalk_connect_sync_dept_attr_name: "DingTalk department",
   wechat_connect_enabled: false,
   wechat_connect_app_id: "",
   wechat_connect_app_secret: "",
@@ -8012,7 +7930,7 @@ const form = reactive<SettingsForm>({
   wechat_connect_scopes: "snsapi_login",
   wechat_connect_redirect_url: "",
   wechat_connect_frontend_redirect_url: "/auth/wechat/callback",
-  // Generic OIDC OAuth 登录
+  // English-only note removed during locale cleanup
   oidc_connect_enabled: false,
   oidc_connect_provider_name: "OIDC",
   oidc_connect_client_id: "",
@@ -8036,7 +7954,7 @@ const form = reactive<SettingsForm>({
   oidc_connect_userinfo_email_path: "",
   oidc_connect_userinfo_id_path: "",
   oidc_connect_userinfo_username_path: "",
-  // GitHub / Google 邮箱快捷登录
+  // English-only note removed during locale cleanup
   github_oauth_enabled: false,
   github_oauth_client_id: "",
   github_oauth_client_secret: "",
@@ -8066,7 +7984,7 @@ const form = reactive<SettingsForm>({
   // Claude Code version check
   min_claude_code_version: "",
   max_claude_code_version: "",
-  // 分组隔离
+  // English-only note removed during locale cleanup
   allow_ungrouped_key_scheduling: false,
   openai_advanced_scheduler_enabled: false,
   // Gateway forwarding behavior
@@ -8080,14 +7998,14 @@ const form = reactive<SettingsForm>({
   rewrite_message_cache_control: false,
   antigravity_user_agent_version: "",
   openai_codex_user_agent: "",
-  // codex_cli_only 加固
+  // English-only note removed during locale cleanup
   min_codex_version: "",
   max_codex_version: "",
   codex_cli_only_blacklist: "",
   codex_cli_only_whitelist: "",
   codex_cli_only_allow_app_server_clients: false,
   codex_cli_only_engine_fingerprint_signals: "",
-  // 余额、订阅到期与账号限额通知
+  // English-only note removed during locale cleanup
   balance_low_notify_enabled: false,
   balance_low_notify_threshold: 0,
   balance_low_notify_recharge_url: "",
@@ -8099,7 +8017,7 @@ const form = reactive<SettingsForm>({
   channel_monitor_default_interval_seconds: 60,
   // Available Channels feature switch
   available_channels_enabled: false,
-  // Affiliate (邀请返利) feature switch
+  // English-only note removed during locale cleanup
   affiliate_enabled: false,
   // Allow user view error requests
   allow_user_view_error_requests: false,
@@ -8133,26 +8051,17 @@ const authSourceDefaultsMeta = computed(() => [
   {
     source: "github" as AuthSourceType,
     title: "GitHub",
-    description: localText(
-      "通过 GitHub 已验证邮箱首次注册或首次绑定时应用。",
-      "Applied on first signup or first bind through a verified GitHub email.",
-    ),
+    description: "",
   },
   {
     source: "google" as AuthSourceType,
     title: "Google",
-    description: localText(
-      "通过 Google 已验证邮箱首次注册或首次绑定时应用。",
-      "Applied on first signup or first bind through a verified Google email.",
-    ),
+    description: "",
   },
   {
     source: "dingtalk" as AuthSourceType,
-    title: "钉钉",
-    description: localText(
-      "通过钉钉首次注册或首次绑定时应用。",
-      "Applied on first signup or first bind through DingTalk.",
-    ),
+    title: "DingTalk",
+    description: "",
   },
 ]);
 
@@ -8487,7 +8396,7 @@ async function setAndCopyEmailOAuthRedirectUrl(provider: EmailOAuthProvider) {
   }
   await copyToClipboard(
     url,
-    localText("回调地址已写入并复制。", "Callback URL set and copied."),
+    "",
   );
 }
 
@@ -8678,11 +8587,11 @@ function parseTablePageSizeOptionsInput(raw: string): number[] | null {
   return deduped;
 }
 
-// ── codex_cli_only 黑/白名单结构化编辑（行 ↔ JSON）──
+// English-only note removed during locale cleanup
 interface CodexClientRow {
   originator: string;
-  uaContains: string; // 逗号分隔，序列化时拆成 ua_contains 数组
-  skipEngineFingerprint?: boolean; // 仅白名单：命中即跳过引擎指纹门
+  uaContains: string; // English-only note removed during locale cleanup
+  skipEngineFingerprint?: boolean; // English-only note removed during locale cleanup
 }
 const codexBlacklistRows = ref<CodexClientRow[]>([]);
 const codexWhitelistRows = ref<CodexClientRow[]>([]);
@@ -8879,8 +8788,8 @@ async function loadSettings() {
     form.oidc_connect_client_secret = "";
 
     // Load OpenAI fast/flex policy rules from bulk settings.
-    // 仅当 payload 真的包含该字段时填充并标记为已加载；否则保持表单空值，
-    // 让 saveSettings 在未加载时跳过该字段，防止覆盖后端默认规则。
+    // English-only note removed during locale cleanup
+    // English-only note removed during locale cleanup
     if (
       settings.openai_fast_policy_settings &&
       Array.isArray(settings.openai_fast_policy_settings.rules)
@@ -9016,7 +8925,7 @@ async function saveSettings() {
     if (form.login_agreement_enabled && normalizedLoginAgreementDocuments.length === 0) {
       appStore.showError(
         localText(
-          "启用登录条款确认时，至少需要保留一份文档。",
+          "At least one document is required when login agreement is enabled.",
           "At least one document is required when login agreement is enabled.",
         ),
       );
@@ -9028,7 +8937,7 @@ async function saveSettings() {
     if (emptyTitleDocument) {
       appStore.showError(
         localText(
-          "登录条款文档名称不能为空。",
+          "Login agreement document title cannot be empty.",
           "Login agreement document title cannot be empty.",
         ),
       );
@@ -9039,7 +8948,7 @@ async function saveSettings() {
     if (duplicateLoginAgreementDocumentId) {
       appStore.showError(
         localText(
-          `登录条款文档路由不能重复：/legal/${duplicateLoginAgreementDocumentId}`,
+          `Login agreement document routes cannot be duplicated: /legal/${duplicateLoginAgreementDocumentId}`,
           `Login agreement document routes cannot be duplicated: /legal/${duplicateLoginAgreementDocumentId}`,
         ),
       );
@@ -9087,10 +8996,7 @@ async function saveSettings() {
 
     if (form.wechat_connect_mp_enabled && form.wechat_connect_mobile_enabled) {
       appStore.showError(
-        localText(
-          "公众号和移动应用不能同时启用。",
-          "Official Account and Mobile App cannot be enabled at the same time.",
-        ),
+        "",
       );
       return;
     }
@@ -9331,7 +9237,7 @@ async function saveSettings() {
         form.payment_cancel_rate_limit_window_mode,
       payment_alipay_force_qrcode: form.payment_alipay_force_qrcode,
       openai_advanced_scheduler_enabled: form.openai_advanced_scheduler_enabled,
-      // 余额、订阅到期与账号限额通知
+      // English-only note removed during locale cleanup
       balance_low_notify_enabled: form.balance_low_notify_enabled,
       balance_low_notify_threshold:
         Number(form.balance_low_notify_threshold) || 0,
@@ -9349,13 +9255,13 @@ async function saveSettings() {
         Number(form.channel_monitor_default_interval_seconds) || 60,
       // Available Channels feature switch
       available_channels_enabled: form.available_channels_enabled,
-      // Affiliate (邀请返利) feature switch
+      // English-only note removed during locale cleanup
       affiliate_enabled: form.affiliate_enabled,
       allow_user_view_error_requests: form.allow_user_view_error_requests,
     };
 
-    // 仅当 openai_fast_policy_settings 已成功从后端加载时才回写，
-    // 否则省略整个字段，让后端保留既有规则（含默认值）。
+    // English-only note removed during locale cleanup
+    // English-only note removed during locale cleanup
     if (openaiFastPolicyLoaded.value) {
       payload.openai_fast_policy_settings = {
         rules: openaiFastPolicyForm.rules.map((rule) => {
@@ -9524,7 +9430,7 @@ async function sendTestEmail() {
   }
 }
 
-// Admin API Key 方法
+// English-only note removed during locale cleanup
 async function loadAdminApiKey() {
   adminApiKeyLoading.value = true;
   try {
@@ -9586,7 +9492,7 @@ function copyNewKey() {
     });
 }
 
-// Overload Cooldown 方法
+// English-only note removed during locale cleanup
 async function loadOverloadCooldownSettings() {
   overloadCooldownLoading.value = true;
   try {
@@ -9620,7 +9526,7 @@ async function saveOverloadCooldownSettings() {
   }
 }
 
-// Rate Limit Cooldown (429) 方法
+// English-only note removed during locale cleanup
 async function loadRateLimit429CooldownSettings() {
   rateLimit429CooldownLoading.value = true;
   try {
@@ -9654,7 +9560,7 @@ async function saveRateLimit429CooldownSettings() {
   }
 }
 
-// Stream Timeout 方法
+// English-only note removed during locale cleanup
 async function loadStreamTimeoutSettings() {
   streamTimeoutLoading.value = true;
   try {
@@ -9691,13 +9597,13 @@ async function saveStreamTimeoutSettings() {
   }
 }
 
-// Rectifier 方法
+// English-only note removed during locale cleanup
 async function loadRectifierSettings() {
   rectifierLoading.value = true;
   try {
     const settings = await adminAPI.settings.getRectifierSettings();
     Object.assign(rectifierForm, settings);
-    // 确保 patterns 是数组（旧数据可能为 null）
+    // English-only note removed during locale cleanup
     if (!Array.isArray(rectifierForm.apikey_signature_patterns)) {
       rectifierForm.apikey_signature_patterns = [];
     }
@@ -9747,13 +9653,13 @@ const betaPolicyScopeOptions = computed(() => [
   { value: "bedrock", label: t("admin.settings.betaPolicy.scopeBedrock") },
 ]);
 
-// Beta Policy 方法
+// English-only note removed during locale cleanup
 const betaDisplayNames: Record<string, string> = {
   "fast-mode-2026-02-01": "Fast Mode",
   "context-1m-2025-08-07": "Context 1M",
 };
 
-// 快捷预设：按 beta_token 定义预设方案
+// English-only note removed during locale cleanup
 const betaPresets: Record<
   string,
   Array<{
@@ -9775,7 +9681,7 @@ const betaPresets: Record<
   ],
 };
 
-// 常用模型模式（具体 ID + 通配符示例）
+// English-only note removed during locale cleanup
 const commonModelPatterns = [
   "claude-opus-4-6",
   "claude-sonnet-4-6",
@@ -10286,7 +10192,7 @@ onMounted(() => {
 });
 
 // =========================
-// Affiliate (邀请返利) 专属用户管理
+// English-only note removed during locale cleanup
 // =========================
 
 interface AffiliateState {
@@ -10638,9 +10544,9 @@ watch(
   },
 );
 
-// bypass_registration 与身份同步三开关仅在 internal_only 模式下生效。切换 policy 到其它值时，
-// 立即把相关字段重置为 false，避免保存请求里残留旧值。后端 admin handler 与
-// 配置加载层都有 coerce 兜底，这里是 UX 层的同步而非安全防线。
+// English-only note removed during locale cleanup
+// English-only note removed during locale cleanup
+// English-only note removed during locale cleanup
 watch(
   () => form.dingtalk_connect_corp_restriction_policy,
   (policy) => {
@@ -10663,7 +10569,7 @@ watch(
   @apply h-[42px];
 }
 
-/* ============ 系统设置 Tab 导航 ============ */
+/* English-only note removed during locale cleanup */
 .settings-tabs-shell {
   @apply sticky z-20 -mx-1 rounded-2xl border border-white/80 bg-white/90 p-1.5 backdrop-blur-xl;
   top: 4.75rem;

@@ -1,7 +1,7 @@
 <template>
   <BaseDialog :show="show" :title="t('admin.groups.rpmOverridesTitle')" width="wide" @close="handleClose">
     <div v-if="group" class="space-y-4">
-      <!-- 分组信息 -->
+      <!-- English-only note removed during locale cleanup. -->
       <div class="flex flex-wrap items-center gap-3 rounded-lg bg-gray-50 px-4 py-2.5 text-sm dark:bg-dark-700">
         <span class="inline-flex items-center gap-1.5" :class="platformColorClass">
           <PlatformIcon :platform="group.platform" size="sm" />
@@ -15,7 +15,7 @@
         </span>
       </div>
 
-      <!-- 操作区：添加用户 -->
+      <!-- English-only note removed during locale cleanup. -->
       <div class="rounded-lg border border-gray-200 p-3 dark:border-dark-600">
         <h4 class="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
           {{ t('admin.groups.addUserRpm') }}
@@ -82,7 +82,7 @@
         </div>
       </div>
 
-      <!-- 加载状态 -->
+      <!-- English-only note removed during locale cleanup. -->
       <div v-if="loading" class="flex justify-center py-6">
         <svg class="h-6 w-6 animate-spin text-primary-500" fill="none" viewBox="0 0 24 24">
           <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -90,7 +90,7 @@
         </svg>
       </div>
 
-      <!-- 列表 -->
+      <!-- English-only note removed during locale cleanup. -->
       <div v-else>
         <h4 class="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
           {{ t('admin.groups.rpmOverrides') }} ({{ localEntries.length }})
@@ -173,7 +173,7 @@
         </div>
       </div>
 
-      <!-- 底部 -->
+      <!-- English-only note removed during locale cleanup. -->
       <div class="flex items-center gap-3 border-t border-gray-200 pt-4 dark:border-dark-600">
         <template v-if="isDirty">
           <span class="text-xs text-amber-600 dark:text-amber-400">{{ t('admin.groups.unsavedChanges') }}</span>

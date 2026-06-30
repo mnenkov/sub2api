@@ -16,7 +16,7 @@
     @apply min-h-screen;
   }
 
-  /* 自定义滚动条 - 仅针对 Firefox，避免 Chrome 取消 webkit 的全局定制 */
+  /* English-only note removed during locale cleanup */
   @supports (-moz-appearance:none) {
     * {
       scrollbar-width: thin;
@@ -55,7 +55,7 @@
     @apply bg-gray-400 dark:bg-dark-500;
   }
 
-  /* 选中文本样式 */
+  /* English-only note removed during locale cleanup */
   ::selection {
     @apply bg-primary-500/20 text-primary-900 dark:text-primary-100;
   }
@@ -64,7 +64,7 @@
 }
 
 @layer components {
-  /* ============ 按钮样式 ============ */
+  /* English-only note removed during locale cleanup */
   .btn {
     @apply inline-flex items-center justify-center gap-2;
     @apply rounded-xl px-4 py-2.5 text-sm font-medium;
@@ -158,7 +158,7 @@
     @apply rounded-xl p-2.5;
   }
 
-  /* ============ 输入框样式 ============ */
+  /* English-only note removed during locale cleanup */
   .input {
     @apply w-full rounded-xl px-4 py-2.5 text-sm;
     @apply bg-white dark:bg-dark-800;
@@ -197,7 +197,7 @@
     -moz-appearance: textfield;
   }
 
-  /* ============ 玻璃效果 ============ */
+  /* English-only note removed during locale cleanup */
   .glass {
     @apply bg-white/80 backdrop-blur-xl dark:bg-dark-800/80;
   }
@@ -211,7 +211,7 @@
     @apply transition-all duration-300;
   }
 
-  /* ============ 卡片样式 ============ */
+  /* English-only note removed during locale cleanup */
   .card {
     @apply bg-white dark:bg-dark-800/50;
     @apply rounded-2xl;
@@ -246,7 +246,7 @@
     @apply px-6 py-4;
   }
 
-  /* ============ 统计卡片 ============ */
+  /* English-only note removed during locale cleanup */
   .stat-card {
     @apply card p-5;
     @apply flex items-start gap-4;
@@ -294,7 +294,7 @@
     @apply text-red-600 dark:text-red-400;
   }
 
-  /* ============ 表格样式 ============ */
+  /* English-only note removed during locale cleanup */
   .table-container {
     @apply overflow-x-auto rounded-xl border border-gray-200 dark:border-dark-700;
   }
@@ -325,7 +325,7 @@
     @apply hover:bg-gray-50 dark:hover:bg-dark-800/30;
   }
 
-  /* ============ 徽章样式 ============ */
+  /* English-only note removed during locale cleanup */
   .badge {
     @apply inline-flex items-center gap-1;
     @apply rounded-full px-2.5 py-0.5 text-xs font-medium;
@@ -355,7 +355,7 @@
     @apply bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400;
   }
 
-  /* ============ 下拉菜单 ============ */
+  /* English-only note removed during locale cleanup */
   .dropdown {
     @apply absolute z-50;
     @apply bg-white dark:bg-dark-800;
@@ -374,7 +374,7 @@
     @apply flex items-center gap-2;
   }
 
-  /* ============ 模态框 ============ */
+  /* English-only note removed during locale cleanup */
   .modal-overlay {
     @apply fixed inset-0 z-50;
     @apply bg-black/50 backdrop-blur-sm;
@@ -414,7 +414,7 @@
     @apply flex-shrink-0;
   }
 
-  /* 防止body滚动的工具类 */
+  /* English-only note removed during locale cleanup */
   body.modal-open {
     overflow: hidden;
   }
@@ -496,7 +496,7 @@
     @apply flex items-center justify-end gap-3;
   }
 
-  /* ============ Toast 通知 ============ */
+  /* English-only note removed during locale cleanup */
   .toast {
     @apply fixed right-4 top-4 z-[100];
     @apply min-w-[320px] max-w-md;
@@ -523,7 +523,7 @@
     @apply border-l-primary-500;
   }
 
-  /* ============ 侧边栏 ============ */
+  /* English-only note removed during locale cleanup */
   .sidebar {
     @apply fixed inset-y-0 left-0 z-40;
     @apply w-64 bg-white dark:bg-dark-900;
@@ -574,7 +574,7 @@
     @apply text-gray-400 dark:text-dark-500;
   }
 
-  /* ============ 页面头部 ============ */
+  /* English-only note removed during locale cleanup */
   .page-header {
     @apply mb-6;
   }
@@ -587,7 +587,7 @@
     @apply mt-1 text-sm text-gray-500 dark:text-dark-400;
   }
 
-  /* ============ 空状态 ============ */
+  /* English-only note removed during locale cleanup */
   .empty-state {
     @apply flex flex-col items-center justify-center px-4 py-12;
     @apply text-center;
@@ -606,7 +606,7 @@
     @apply max-w-sm text-sm text-gray-500 dark:text-dark-400;
   }
 
-  /* ============ 加载状态 ============ */
+  /* English-only note removed during locale cleanup */
   .spinner {
     @apply h-5 w-5 rounded-full border-2 border-current border-t-transparent;
     @apply animate-spin;
@@ -616,12 +616,12 @@
     @apply animate-pulse rounded bg-gray-200 dark:bg-dark-700;
   }
 
-  /* ============ 分隔线 ============ */
+  /* English-only note removed during locale cleanup */
   .divider {
     @apply my-4 h-px bg-gray-200 dark:bg-dark-700;
   }
 
-  /* ============ 标签页 ============ */
+  /* English-only note removed during locale cleanup */
   .tabs {
     @apply flex gap-1 p-1;
     @apply rounded-xl bg-gray-100 dark:bg-dark-800;
@@ -640,7 +640,7 @@
     @apply shadow-sm;
   }
 
-  /* ============ 进度条 ============ */
+  /* English-only note removed during locale cleanup */
   .progress {
     @apply h-2 overflow-hidden rounded-full bg-gray-200 dark:bg-dark-700;
   }
@@ -650,7 +650,7 @@
     @apply transition-all duration-300;
   }
 
-  /* ============ 开关 ============ */
+  /* English-only note removed during locale cleanup */
   .switch {
     @apply relative h-6 w-11 cursor-pointer rounded-full;
     @apply bg-gray-300 dark:bg-dark-600;
@@ -671,7 +671,7 @@
     @apply translate-x-5;
   }
 
-  /* ============ 代码块 ============ */
+  /* English-only note removed during locale cleanup */
   .code {
     @apply font-mono text-sm;
     @apply bg-gray-100 dark:bg-dark-800;
@@ -722,30 +722,30 @@
     @apply dark:border-red-400 dark:bg-red-950/40 dark:text-red-200;
   }
 
-  /* ============ 表格页面布局优化 ============ */
-  /* 表格容器 - 默认仅支持水平滚动 */
+  /* English-only note removed during locale cleanup */
+  /* English-only note removed during locale cleanup */
   .table-wrapper {
     overflow-x: auto;
   }
 
-  /* 表头固定时添加底部阴影，增强视觉层次 */
+  /* English-only note removed during locale cleanup */
   .table-wrapper thead.sticky {
     box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
   }
 }
 
 @layer utilities {
-  /* 文字渐变 */
+  /* English-only note removed during locale cleanup */
   .text-gradient {
     @apply bg-gradient-to-r from-primary-500 to-accent-500 bg-clip-text text-transparent;
   }
 
-  /* 玻璃效果 */
+  /* English-only note removed during locale cleanup */
   .glass {
     @apply bg-white/80 backdrop-blur-xl dark:bg-dark-800/80;
   }
 
-  /* 隐藏滚动条 */
+  /* English-only note removed during locale cleanup */
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -754,7 +754,7 @@
     display: none;
   }
 
-  /* 安全区域 */
+  /* English-only note removed during locale cleanup */
   .safe-top {
     padding-top: env(safe-area-inset-top);
   }

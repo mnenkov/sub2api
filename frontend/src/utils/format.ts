@@ -1,14 +1,14 @@
 /**
- * 格式化工具函数
- * 参考 CRS 项目的 format.js 实现
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
  */
 
 import { i18n, getLocale } from '@/i18n'
 
 /**
- * 格式化相对时间
- * @param date 日期字符串或 Date 对象
- * @returns 相对时间字符串，如 "5m ago", "2h ago", "3d ago"
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
  */
 export function formatRelativeTime(date: string | Date | null | undefined): string {
   if (!date) return i18n.global.t('common.time.never')
@@ -17,7 +17,7 @@ export function formatRelativeTime(date: string | Date | null | undefined): stri
   const past = new Date(date)
   const diffMs = now.getTime() - past.getTime()
 
-  // 处理未来时间或无效日期
+  // English-only note removed during locale cleanup
   if (diffMs < 0 || isNaN(diffMs)) return i18n.global.t('common.time.never')
 
   const diffSecs = Math.floor(diffMs / 1000)
@@ -32,9 +32,9 @@ export function formatRelativeTime(date: string | Date | null | undefined): stri
 }
 
 /**
- * 格式化数字（支持 K/M/B 单位）
- * @param num 数字
- * @returns 格式化后的字符串，如 "1.2K", "3.5M"
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
  */
 export function formatNumber(num: number | null | undefined): string {
   if (num === null || num === undefined) return '0'
@@ -43,7 +43,7 @@ export function formatNumber(num: number | null | undefined): string {
   const absNum = Math.abs(num)
 
   // Use Intl.NumberFormat for compact notation if supported and needed
-  // Note: Compact notation in 'zh' uses '万/亿', which is appropriate for Chinese
+  // English-only note removed during locale cleanup
   const formatter = new Intl.NumberFormat(locale, {
     notation: absNum >= 10000 ? 'compact' : 'standard',
     maximumFractionDigits: 1
@@ -53,10 +53,10 @@ export function formatNumber(num: number | null | undefined): string {
 }
 
 /**
- * 格式化货币金额
- * @param amount 金额
- * @param currency 货币代码，默认 USD
- * @returns 格式化后的字符串，如 "$1.25"
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
  */
 export function formatCurrency(amount: number | null | undefined, currency: string = 'USD'): string {
   if (amount === null || amount === undefined) return '$0.00'
@@ -75,10 +75,10 @@ export function formatCurrency(amount: number | null | undefined, currency: stri
 }
 
 /**
- * 格式化字节大小
- * @param bytes 字节数
- * @param decimals 小数位数
- * @returns 格式化后的字符串，如 "1.5 MB"
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
  */
 export function formatBytes(bytes: number, decimals: number = 2): string {
   if (bytes === 0) return '0 Bytes'
@@ -93,11 +93,11 @@ export function formatBytes(bytes: number, decimals: number = 2): string {
 }
 
 /**
- * 格式化日期
- * @param date 日期字符串或 Date 对象
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
  * @param options Intl.DateTimeFormatOptions
- * @param localeOverride 可选 locale 覆盖
- * @returns 格式化后的日期字符串
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
  */
 export function formatDate(
   date: string | Date | null | undefined,
@@ -122,9 +122,9 @@ export function formatDate(
 }
 
 /**
- * 格式化日期（只显示日期部分）
- * @param date 日期字符串或 Date 对象
- * @returns 格式化后的日期字符串
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
  */
 export function formatDateOnly(date: string | Date | null | undefined): string {
   return formatDate(date, {
@@ -135,11 +135,11 @@ export function formatDateOnly(date: string | Date | null | undefined): string {
 }
 
 /**
- * 格式化日期时间（完整格式）
- * @param date 日期字符串或 Date 对象
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
  * @param options Intl.DateTimeFormatOptions
- * @param localeOverride 可选 locale 覆盖
- * @returns 格式化后的日期时间字符串
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
  */
 export function formatDateTime(
   date: string | Date | null | undefined,
@@ -150,7 +150,7 @@ export function formatDateTime(
 }
 
 /**
- * 格式化为 datetime-local 控件值（YYYY-MM-DDTHH:mm，使用本地时间）
+ * English-only note removed during locale cleanup.
  */
 export function formatDateTimeLocalInput(timestampSeconds: number | null): string {
   if (!timestampSeconds) return ''
@@ -165,7 +165,7 @@ export function formatDateTimeLocalInput(timestampSeconds: number | null): strin
 }
 
 /**
- * 解析 datetime-local 控件值为时间戳（秒，使用本地时间）
+ * English-only note removed during locale cleanup.
  */
 export function parseDateTimeLocalInput(value: string): number | null {
   if (!value) return null
@@ -175,9 +175,9 @@ export function parseDateTimeLocalInput(value: string): number | null {
 }
 
 /**
- * 格式化 OpenAI reasoning effort（用于使用记录展示）
- * @param effort 原始 effort（如 "low" / "medium" / "high" / "xhigh"）
- * @returns 格式化后的字符串（Low / Medium / High / Xhigh），无值返回 "-"
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
  */
 export function formatReasoningEffort(effort: string | null | undefined): string {
   const raw = (effort ?? '').toString().trim()
@@ -206,9 +206,9 @@ export function formatReasoningEffort(effort: string | null | undefined): string
 }
 
 /**
- * 格式化时间（显示时分秒）
- * @param date 日期字符串或 Date 对象
- * @returns 格式化后的时间字符串
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
  */
 export function formatTime(date: string | Date | null | undefined): string {
   return formatDate(date, {
@@ -220,28 +220,28 @@ export function formatTime(date: string | Date | null | undefined): string {
 }
 
 /**
- * 格式化数字（千分位分隔，不使用紧凑单位）
- * @param num 数字
- * @returns 格式化后的字符串，如 "12,345"
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
  */
 export function formatNumberLocaleString(num: number): string {
   return num.toLocaleString()
 }
 
 /**
- * 格式化金额（固定小数位，不带货币符号）
- * @param amount 金额
- * @param fractionDigits 小数位数，默认 4
- * @returns 格式化后的字符串，如 "1.2345"
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
  */
 export function formatCostFixed(amount: number, fractionDigits: number = 4): string {
   return amount.toFixed(fractionDigits)
 }
 
 /**
- * 格式化 token 数量（>=1M 显示为 M，>=1K 显示为 K，保留 1 位小数）
- * @param tokens token 数量
- * @returns 格式化后的字符串，如 "950", "1.2K", "3.5M"
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
  */
 export function formatTokensK(tokens: number): string {
   if (tokens >= 1_000_000) return `${(tokens / 1_000_000).toFixed(1)}M`
@@ -250,9 +250,9 @@ export function formatTokensK(tokens: number): string {
 }
 
 /**
- * 格式化大数字（K/M/B，保留 1 位小数）
- * @param num 数字
- * @param options allowBillions=false 时最高只显示到 M
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
  */
 export function formatCompactNumber(
   num: number | null | undefined,
@@ -270,9 +270,9 @@ export function formatCompactNumber(
 }
 
 /**
- * 格式化倒计时（从现在到目标时间的剩余时间）
- * @param targetDate 目标日期字符串或 Date 对象
- * @returns 倒计时字符串，如 "2h 41m", "3d 5h", "15m"
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
  */
 export function formatCountdown(targetDate: string | Date | null | undefined): string | null {
   if (!targetDate) return null
@@ -281,7 +281,7 @@ export function formatCountdown(targetDate: string | Date | null | undefined): s
   const target = new Date(targetDate)
   const diffMs = target.getTime() - now.getTime()
 
-  // 如果目标时间已过或无效
+  // English-only note removed during locale cleanup
   if (diffMs <= 0 || isNaN(diffMs)) return null
 
   const diffMins = Math.floor(diffMs / (1000 * 60))
@@ -292,21 +292,21 @@ export function formatCountdown(targetDate: string | Date | null | undefined): s
   const remainingMins = diffMins % 60
 
   if (diffDays > 0) {
-    // 超过1天：显示 "Xd Yh"
+    // English-only note removed during locale cleanup
     return i18n.global.t('common.time.countdown.daysHours', { d: diffDays, h: remainingHours })
   }
   if (diffHours > 0) {
-    // 小于1天：显示 "Xh Ym"
+    // English-only note removed during locale cleanup
     return i18n.global.t('common.time.countdown.hoursMinutes', { h: diffHours, m: remainingMins })
   }
-  // 小于1小时：显示 "Ym"
+  // English-only note removed during locale cleanup
   return i18n.global.t('common.time.countdown.minutes', { m: diffMins })
 }
 
 /**
- * 格式化倒计时并带后缀（如 "2h 41m 后解除"）
- * @param targetDate 目标日期字符串或 Date 对象
- * @returns 完整的倒计时字符串，如 "2h 41m to lift", "2小时41分钟后解除"
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
  */
 export function formatCountdownWithSuffix(targetDate: string | Date | null | undefined): string | null {
   const countdown = formatCountdown(targetDate)
@@ -315,9 +315,9 @@ export function formatCountdownWithSuffix(targetDate: string | Date | null | und
 }
 
 /**
- * 格式化为相对时间 + 具体时间组合
- * @param date 日期字符串或 Date 对象
- * @returns 组合时间字符串，如 "5 天前 · 2026-01-27 15:25"
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
  */
 export function formatRelativeWithDateTime(date: string | Date | null | undefined): string {
   if (!date) return ''
@@ -325,7 +325,7 @@ export function formatRelativeWithDateTime(date: string | Date | null | undefine
   const relativeTime = formatRelativeTime(date)
   const dateTime = formatDateTime(date)
 
-  // 如果是 "从未" 或空字符串，只返回相对时间
+  // English-only note removed during locale cleanup
   if (!dateTime || relativeTime === i18n.global.t('common.time.never')) {
     return relativeTime
   }

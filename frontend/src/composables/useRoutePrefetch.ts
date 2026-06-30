@@ -1,26 +1,26 @@
 /**
- * 路由预加载组合式函数
- * 在浏览器空闲时预加载可能访问的下一个页面，提升导航体验
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
  *
- * 优化说明：
- * - 不使用静态 import() 映射表，避免增加入口文件大小
- * - 通过路由配置动态获取组件的 import 函数
- * - 只在实际需要预加载时才执行
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
  */
 import { ref, readonly } from 'vue'
 import type { RouteLocationNormalized, Router } from 'vue-router'
 
 /**
- * 组件导入函数类型
+ * English-only note removed during locale cleanup.
  */
 type ComponentImportFn = () => Promise<unknown>
 
 /**
- * 预加载邻接表：定义每个路由应该预加载哪些相邻路由
- * 只存储路由路径，不存储 import 函数，避免打包问题
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
  */
 const PREFETCH_ADJACENCY: Record<string, string[]> = {
-  // Admin routes - 预加载最常访问的相邻页面
+  // English-only note removed during locale cleanup
   '/admin/dashboard': ['/admin/accounts', '/admin/users'],
   '/admin/accounts': ['/admin/dashboard', '/admin/users'],
   '/admin/users': ['/admin/groups', '/admin/dashboard'],
@@ -35,7 +35,7 @@ const PREFETCH_ADJACENCY: Record<string, string[]> = {
 }
 
 /**
- * requestIdleCallback 的返回类型
+ * English-only note removed during locale cleanup.
  */
 type IdleCallbackHandle = number | ReturnType<typeof setTimeout>
 
@@ -63,19 +63,19 @@ const cancelScheduledCallback = (handle: IdleCallbackHandle): void => {
 }
 
 /**
- * 路由预加载组合式函数
+ * English-only note removed during locale cleanup.
  *
- * @param router - Vue Router 实例，用于获取路由组件
+ * English-only note removed during locale cleanup.
  */
 export function useRoutePrefetch(router?: Router) {
-  // 当前挂起的预加载任务句柄
+  // English-only note removed during locale cleanup
   const pendingPrefetchHandle = ref<IdleCallbackHandle | null>(null)
 
-  // 已预加载的路由集合
+  // English-only note removed during locale cleanup
   const prefetchedRoutes = ref<Set<string>>(new Set())
 
   /**
-   * 从路由配置中获取组件的 import 函数
+   * English-only note removed during locale cleanup.
    */
   const getComponentImporter = (path: string): ComponentImportFn | null => {
     if (!router) return null
@@ -85,7 +85,7 @@ export function useRoutePrefetch(router?: Router) {
 
     if (route && route.components?.default) {
       const component = route.components.default
-      // 检查是否是懒加载组件（函数形式）
+      // English-only note removed during locale cleanup
       if (typeof component === 'function') {
         return component as ComponentImportFn
       }
@@ -94,20 +94,20 @@ export function useRoutePrefetch(router?: Router) {
   }
 
   /**
-   * 获取当前路由应该预加载的路由路径列表
+   * English-only note removed during locale cleanup.
    */
   const getPrefetchPaths = (route: RouteLocationNormalized): string[] => {
     return PREFETCH_ADJACENCY[route.path] || []
   }
 
   /**
-   * 执行单个组件的预加载
+   * English-only note removed during locale cleanup.
    */
   const prefetchComponent = async (importFn: ComponentImportFn): Promise<void> => {
     try {
       await importFn()
     } catch (error) {
-      // 静默处理预加载错误
+      // English-only note removed during locale cleanup
       if (import.meta.env.DEV) {
         console.debug('[Prefetch] Failed to prefetch component:', error)
       }
@@ -115,7 +115,7 @@ export function useRoutePrefetch(router?: Router) {
   }
 
   /**
-   * 取消挂起的预加载任务
+   * English-only note removed during locale cleanup.
    */
   const cancelPendingPrefetch = (): void => {
     if (pendingPrefetchHandle.value !== null) {
@@ -125,7 +125,7 @@ export function useRoutePrefetch(router?: Router) {
   }
 
   /**
-   * 触发路由预加载
+   * English-only note removed during locale cleanup.
    */
   const triggerPrefetch = (route: RouteLocationNormalized): void => {
     cancelPendingPrefetch()
@@ -140,7 +140,7 @@ export function useRoutePrefetch(router?: Router) {
         const routePath = route.path
         if (prefetchedRoutes.value.has(routePath)) return
 
-        // 获取需要预加载的组件 import 函数
+        // English-only note removed during locale cleanup
         const importFns: ComponentImportFn[] = []
         for (const path of prefetchPaths) {
           const importFn = getComponentImporter(path)
@@ -160,7 +160,7 @@ export function useRoutePrefetch(router?: Router) {
   }
 
   /**
-   * 重置预加载状态
+   * English-only note removed during locale cleanup.
    */
   const resetPrefetchState = (): void => {
     cancelPendingPrefetch()
@@ -168,14 +168,14 @@ export function useRoutePrefetch(router?: Router) {
   }
 
   /**
-   * 判断是否为管理员路由
+   * English-only note removed during locale cleanup.
    */
   const isAdminRoute = (path: string): boolean => {
     return path.startsWith('/admin')
   }
 
   /**
-   * 获取预加载配置（兼容旧 API）
+   * English-only note removed during locale cleanup.
    */
   const getPrefetchConfig = (route: RouteLocationNormalized): ComponentImportFn[] => {
     const paths = getPrefetchPaths(route)
@@ -197,6 +197,6 @@ export function useRoutePrefetch(router?: Router) {
   }
 }
 
-// 兼容旧测试的导出
+// English-only note removed during locale cleanup
 export const _adminPrefetchMap = PREFETCH_ADJACENCY
 export const _userPrefetchMap = PREFETCH_ADJACENCY

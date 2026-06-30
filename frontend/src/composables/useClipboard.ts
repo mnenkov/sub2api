@@ -5,15 +5,15 @@ import { i18n } from '@/i18n'
 const { t } = i18n.global
 
 /**
- * 检测是否支持 Clipboard API（需要安全上下文：HTTPS/localhost）
+ * English-only note removed during locale cleanup.
  */
 function isClipboardSupported(): boolean {
   return !!(navigator.clipboard && window.isSecureContext)
 }
 
 /**
- * 降级方案：使用 textarea + execCommand
- * 使用 textarea 而非 input，以正确处理多行文本
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
  */
 function fallbackCopy(text: string): boolean {
   const textarea = document.createElement('textarea')

@@ -45,11 +45,11 @@ const props = withDefaults(defineProps<{
 
 const appStore = useAppStore()
 const route = useRoute()
-const { t, locale } = useI18n()
+const { t } = useI18n()
 const providerName = computed(() => t('auth.wechatProviderName'))
 
 function localizeWeChatHint(zh: string, en: string): string {
-  return locale.value.startsWith('zh') ? zh : en
+  return en
 }
 
 const resolvedStart = computed(() => resolveWeChatOAuthStart(appStore.cachedPublicSettings))
@@ -65,7 +65,7 @@ const disabledHint = computed(() => {
       return t('auth.oauthFlow.wechatBrowserOnly')
     case 'native_app_required':
       return localizeWeChatHint(
-        '当前仅配置微信移动应用登录，需要在原生 App 中通过微信 SDK 发起授权。',
+        'Only WeChat Mobile App login is configured. Start authorization from the native app through the WeChat SDK.',
         'This site only has WeChat mobile app login configured. Continue from the native app through the WeChat SDK.',
       )
     case 'not_configured':

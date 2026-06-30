@@ -11,7 +11,7 @@ import type { User, LoginRequest, RegisterRequest, AuthResponse } from '@/types'
 const AUTH_TOKEN_KEY = 'auth_token'
 const AUTH_USER_KEY = 'auth_user'
 const REFRESH_TOKEN_KEY = 'refresh_token'
-const TOKEN_EXPIRES_AT_KEY = 'token_expires_at' // 存储过期时间戳而非有效期
+const TOKEN_EXPIRES_AT_KEY = 'token_expires_at' // English-only note removed during locale cleanup
 const PENDING_AUTH_SESSION_KEY = 'pending_auth_session'
 const AUTO_REFRESH_INTERVAL = 60 * 1000 // 60 seconds for user data refresh
 const TOKEN_REFRESH_BUFFER = 120 * 1000 // 120 seconds before expiry to refresh token
@@ -74,7 +74,7 @@ export const useAuthStore = defineStore('auth', () => {
   const user = ref<User | null>(null)
   const token = ref<string | null>(null)
   const refreshTokenValue = ref<string | null>(null)
-  const tokenExpiresAt = ref<number | null>(null) // 过期时间戳（毫秒）
+  const tokenExpiresAt = ref<number | null>(null) // English-only note removed during locale cleanup
   const runMode = ref<'standard' | 'simple'>('standard')
   const pendingAuthSession = ref<PendingAuthSessionSummary | null>(null)
   let refreshIntervalId: ReturnType<typeof setInterval> | null = null
@@ -333,9 +333,9 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   /**
-   * 直接设置 token（用于 OAuth/SSO 回调），并加载当前用户信息。
-   * 会自动读取 localStorage 中已设置的 refresh_token 和 token_expires_in
-   * @param newToken - 后端签发的 JWT access token
+   * English-only note removed during locale cleanup.
+   * English-only note removed during locale cleanup.
+   * English-only note removed during locale cleanup.
    */
   async function setToken(newToken: string): Promise<User> {
     // Clear any previous state first (avoid mixing sessions)

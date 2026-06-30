@@ -1,6 +1,6 @@
 /**
  * Admin Affiliate API endpoints
- * Manage per-user affiliate (邀请返利) configurations:
+ * English-only note removed during locale cleanup.
  * exclusive invite codes (overrides aff_code) and exclusive rebate rates.
  */
 

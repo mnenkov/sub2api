@@ -43,14 +43,14 @@
           d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z"
         />
       </svg>
-      <!-- Tooltip - 向下显示 -->
+      <!-- English-only note removed during locale cleanup. -->
       <div
         class="invisible absolute left-0 top-full z-[100] mt-1.5 min-w-[200px] max-w-[300px] rounded-lg bg-gray-800 px-3 py-2 text-xs text-white opacity-0 shadow-xl transition-all duration-200 group-hover/error:visible group-hover/error:opacity-100 dark:bg-gray-900"
       >
         <div class="whitespace-pre-wrap break-words leading-relaxed text-gray-300">
           {{ account.error_message }}
         </div>
-        <!-- 上方小三角 -->
+        <!-- English-only note removed during locale cleanup. -->
         <div
           class="absolute bottom-full left-3 border-[6px] border-transparent border-b-gray-800 dark:border-b-gray-900"
         ></div>
@@ -76,7 +76,7 @@
       </div>
     </div>
 
-    <!-- Model Status Indicators (普通限流 / 超量请求中) -->
+    <!-- English-only note removed during locale cleanup. -->
     <div
       v-if="activeModelStatuses.length > 0"
       :class="[
@@ -88,7 +88,7 @@
       ]"
     >
       <div v-for="item in activeModelStatuses" :key="`${item.kind}-${item.model}`" class="group relative mb-1 break-inside-avoid">
-        <!-- 积分已用尽 -->
+        <!-- English-only note removed during locale cleanup. -->
         <span
           v-if="item.kind === 'credits_exhausted'"
           class="inline-flex items-center gap-1 rounded bg-red-100 px-1.5 py-0.5 text-xs font-medium text-red-700 dark:bg-red-900/30 dark:text-red-400"
@@ -97,7 +97,7 @@
           {{ t('admin.accounts.status.creditsExhausted') }}
           <span class="text-[10px] opacity-70">{{ formatModelResetTime(item.reset_at) }}</span>
         </span>
-        <!-- 正在走积分（模型限流但积分可用）-->
+        <!-- English-only note removed during locale cleanup. -->
         <span
           v-else-if="item.kind === 'credits_active'"
           class="inline-flex items-center gap-1 rounded bg-amber-100 px-1.5 py-0.5 text-xs font-medium text-amber-700 dark:bg-amber-900/30 dark:text-amber-400"
@@ -106,7 +106,7 @@
           {{ formatScopeName(item.model) }}
           <span class="text-[10px] opacity-70">{{ formatModelResetTime(item.reset_at) }}</span>
         </span>
-        <!-- 普通模型限流 -->
+        <!-- English-only note removed during locale cleanup. -->
         <span
           v-else
           class="inline-flex items-center gap-1 rounded bg-purple-100 px-1.5 py-0.5 text-xs font-medium text-purple-700 dark:bg-purple-900/30 dark:text-purple-400"
@@ -183,7 +183,7 @@ type AccountModelStatusItem = {
   reset_at: string
 }
 
-// Computed: active model statuses (普通模型限流 + 积分耗尽 + 走积分中)
+// English-only note removed during locale cleanup
 const activeModelStatuses = computed<AccountModelStatusItem[]>(() => {
   const extra = props.account.extra as Record<string, unknown> | undefined
   const modelLimits = extra?.model_rate_limits as
@@ -194,7 +194,7 @@ const activeModelStatuses = computed<AccountModelStatusItem[]>(() => {
 
   if (!modelLimits) return items
 
-  // 检查 AICredits key 是否生效（积分是否耗尽）
+  // English-only note removed during locale cleanup
   const aiCreditsEntry = modelLimits['AICredits']
   const hasActiveAICredits = aiCreditsEntry && new Date(aiCreditsEntry.rate_limit_reset_at) > now
   const allowOverages = !!(extra?.allow_overages)
@@ -203,13 +203,13 @@ const activeModelStatuses = computed<AccountModelStatusItem[]>(() => {
     if (new Date(info.rate_limit_reset_at) <= now) continue
 
     if (model === 'AICredits') {
-      // AICredits key → 积分已用尽
+      // English-only note removed during locale cleanup
       items.push({ kind: 'credits_exhausted', model, reset_at: info.rate_limit_reset_at })
     } else if (allowOverages && !hasActiveAICredits) {
-      // 普通模型限流 + overages 启用 + 积分可用 → 正在走积分
+      // English-only note removed during locale cleanup
       items.push({ kind: 'credits_active', model, reset_at: info.rate_limit_reset_at })
     } else {
-      // 普通模型限流
+      // English-only note removed during locale cleanup
       items.push({ kind: 'rate_limit', model, reset_at: info.rate_limit_reset_at })
     }
   }
@@ -219,7 +219,7 @@ const activeModelStatuses = computed<AccountModelStatusItem[]>(() => {
 
 const formatScopeName = (scope: string): string => {
   const aliases: Record<string, string> = {
-    // Claude 系列
+    // English-only note removed during locale cleanup
     'claude-fable-5': 'CFable5',
     'claude-opus-4-6': 'COpus46',
     'claude-opus-4-6-thinking': 'COpus46T',
@@ -228,24 +228,24 @@ const formatScopeName = (scope: string): string => {
     'claude-sonnet-4-6': 'CSon46',
     'claude-sonnet-4-5': 'CSon45',
     'claude-sonnet-4-5-thinking': 'CSon45T',
-    // Gemini 2.5 系列
+    // English-only note removed during locale cleanup
     'gemini-2.5-flash': 'G25F',
     'gemini-2.5-flash-lite': 'G25FL',
     'gemini-2.5-flash-thinking': 'G25FT',
     'gemini-2.5-pro': 'G25P',
     'gemini-2.5-flash-image': 'G25I',
-    // Gemini 3.5 系列
+    // English-only note removed during locale cleanup
     'gemini-3.5-flash': 'G35F',
-    // Gemini 3 系列
+    // English-only note removed during locale cleanup
     'gemini-3-flash': 'G3F',
     'gemini-3.1-pro-high': 'G3PH',
     'gemini-3.1-pro-low': 'G3PL',
     'gemini-3-pro-image': 'G3PI',
     'gemini-3.1-flash-image': 'G31FI',
-    // 其他
+    // English-only note removed during locale cleanup
     'gpt-oss-120b-medium': 'GPT120',
     'tab_flash_lite_preview': 'TabFL',
-    // 旧版 scope 别名（兼容）
+    // English-only note removed during locale cleanup
     claude: 'Claude',
     claude_sonnet: 'CSon',
     claude_opus: 'COpus',

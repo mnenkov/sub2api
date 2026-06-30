@@ -1,8 +1,8 @@
 /**
- * Ops 页面共享的格式化/样式工具。
+ * English-only note removed during locale cleanup.
  *
- * 目标：尽量对齐 `docs/sub2api` 备份版本的视觉表现（需求一致部分保持一致），
- * 同时避免引入额外 UI 依赖。
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
  */
 
 import type { OpsSeverity } from '@/api/admin/ops'
@@ -24,8 +24,8 @@ export function truncateMessage(msg: string, maxLength = 80): string {
 }
 
 /**
- * 格式化日期时间（短格式，和旧 Ops 页面一致）。
- * 输出: `MM-DD HH:mm:ss`
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
  */
 export function formatDateTime(dateStr: string): string {
   const d = new Date(dateStr)
@@ -41,8 +41,8 @@ export function sumNumbers(values: Array<number | null | undefined>): number {
 }
 
 /**
- * 解析 time_range 为分钟数。
- * 支持：`5m/30m/1h/6h/24h`
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
  */
 export function parseTimeRangeMinutes(range: string): number {
   const trimmed = (range || '').trim()

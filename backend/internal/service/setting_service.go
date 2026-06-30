@@ -355,22 +355,22 @@ func defaultLoginAgreementDocuments() []LoginAgreementDocument {
 	return []LoginAgreementDocument{
 		{
 			ID:        "terms",
-			Title:     "服务条款",
+			Title:     "Terms of Service",
 			ContentMD: "",
 		},
 		{
 			ID:        "usage-policy",
-			Title:     "使用政策",
+			Title:     "Usage Policy",
 			ContentMD: "",
 		},
 		{
 			ID:        "supported-regions",
-			Title:     "支持的国家和地区",
+			Title:     "Supported Countries and Regions",
 			ContentMD: "",
 		},
 		{
 			ID:        "service-specific-terms",
-			Title:     "服务特定条款",
+			Title:     "Service-Specific Terms",
 			ContentMD: "",
 		},
 	}
@@ -3434,7 +3434,7 @@ func (s *SettingService) parseSettings(settings map[string]string) *SystemSettin
 		if v := strings.TrimSpace(dingTalkBase.SyncCorpEmailAttrName); v != "" {
 			result.DingTalkConnectSyncCorpEmailAttrName = v
 		} else {
-			result.DingTalkConnectSyncCorpEmailAttrName = "钉钉企业邮箱"
+			result.DingTalkConnectSyncCorpEmailAttrName = "DingTalk corporate email"
 		}
 	}
 	result.DingTalkConnectSyncDisplayNameAttrName = strings.TrimSpace(settings[SettingKeyDingTalkConnectSyncDisplayNameAttrName])
@@ -3442,7 +3442,7 @@ func (s *SettingService) parseSettings(settings map[string]string) *SystemSettin
 		if v := strings.TrimSpace(dingTalkBase.SyncDisplayNameAttrName); v != "" {
 			result.DingTalkConnectSyncDisplayNameAttrName = v
 		} else {
-			result.DingTalkConnectSyncDisplayNameAttrName = "钉钉姓名"
+			result.DingTalkConnectSyncDisplayNameAttrName = "DingTalk name"
 		}
 	}
 	result.DingTalkConnectSyncDeptAttrName = strings.TrimSpace(settings[SettingKeyDingTalkConnectSyncDeptAttrName])
@@ -3450,7 +3450,7 @@ func (s *SettingService) parseSettings(settings map[string]string) *SystemSettin
 		if v := strings.TrimSpace(dingTalkBase.SyncDeptAttrName); v != "" {
 			result.DingTalkConnectSyncDeptAttrName = v
 		} else {
-			result.DingTalkConnectSyncDeptAttrName = "钉钉部门"
+			result.DingTalkConnectSyncDeptAttrName = "DingTalk department"
 		}
 	}
 

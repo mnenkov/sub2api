@@ -1285,7 +1285,7 @@ const formData = ref({
   expiration_date: ''
 })
 
-// 自定义Key验证
+// English-only note removed during locale cleanup
 const customKeyError = computed(() => {
   if (!formData.value.use_custom_key || !formData.value.custom_key) {
     return ''
@@ -1294,7 +1294,7 @@ const customKeyError = computed(() => {
   if (key.length < 16) {
     return t('keys.customKeyTooShort')
   }
-  // 检查字符：只允许字母、数字、下划线、连字符
+  // English-only note removed during locale cleanup
   if (!/^[a-zA-Z0-9_-]+$/.test(key)) {
     return t('keys.customKeyInvalidChars')
   }
@@ -1693,9 +1693,9 @@ const handleSubmit = async () => {
 }
 
 /**
- * 处理删除 API Key 的操作
- * 优化：错误处理改进，优先显示后端返回的具体错误消息（如权限不足等），
- * 若后端未返回消息则显示默认的国际化文本
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
  */
 const handleDelete = async () => {
   if (!selectedKey.value) return
@@ -1706,7 +1706,7 @@ const handleDelete = async () => {
     showDeleteDialog.value = false
     loadApiKeys()
   } catch (error: any) {
-    // 优先使用后端返回的错误消息，提供更具体的错误信息给用户
+    // English-only note removed during locale cleanup
     const errorMsg = error?.message || t('keys.failedToDelete')
     appStore.showError(errorMsg)
   }

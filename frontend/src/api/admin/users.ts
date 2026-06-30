@@ -348,7 +348,7 @@ export async function getPlatformQuotas(id: number): Promise<PlatformQuotasRespo
 }
 
 /**
- * Replace user's platform quotas (全量替换)
+ * English-only note removed during locale cleanup.
  */
 export async function updatePlatformQuotas(
   id: number,

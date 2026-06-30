@@ -238,7 +238,7 @@ async function handleRetryOrder(order: PaymentOrder) {
 function openRefundDialog(order: PaymentOrder) { selectedOrder.value = order; showRefundDialog.value = true }
 
 function isRefundPendingWarning(warning: string | undefined): boolean {
-  return /pending|处理中|待/.test(String(warning || '').toLowerCase())
+  return /pending|processing/.test(String(warning || '').toLowerCase())
 }
 
 async function handleRefund(data: { amount: number; reason: string; deduct_balance: boolean; force: boolean }) {

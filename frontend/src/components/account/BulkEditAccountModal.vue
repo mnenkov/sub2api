@@ -927,7 +927,7 @@
         </div>
       </div>
 
-      <!-- RPM Limit (仅全部为 Anthropic OAuth/SetupToken 时显示) -->
+      <!-- English-only note removed during locale cleanup. -->
       <div v-if="allAnthropicOAuthOrSetupToken" class="border-t border-gray-200 pt-4 dark:border-dark-600">
         <div class="mb-3 flex items-center justify-between">
           <label
@@ -1032,7 +1032,7 @@
             </div>
           </div>
 
-        <!-- 用户消息限速模式（独立于 RPM 开关，始终可见） -->
+        <!-- English-only note removed during locale cleanup. -->
         <div class="mt-4">
           <label class="input-label">{{ t('admin.accounts.quotaControl.rpmLimit.userMsgQueue') }}</label>
           <p class="mt-1 text-xs text-gray-500 dark:text-gray-400 mb-2">
@@ -1216,7 +1216,7 @@ const allOpenAIAPIKey = computed(() => {
   )
 })
 
-// 是否全部为 Anthropic OAuth/SetupToken（RPM 配置仅在此条件下显示）
+// English-only note removed during locale cleanup
 const allAnthropicOAuthOrSetupToken = computed(() => {
   return (
     targetSelectedPlatforms.value.length === 1 &&
@@ -1445,7 +1445,7 @@ const buildUpdatePayload = (): Record<string, unknown> | null => {
   }
 
   if (enableProxy.value) {
-    // 后端期望 proxy_id: 0 表示清除代理，而不是 null
+    // English-only note removed during locale cleanup
     updates.proxy_id = proxyId.value === null ? 0 : proxyId.value
   }
 
@@ -1454,7 +1454,7 @@ const buildUpdatePayload = (): Record<string, unknown> | null => {
   }
 
   if (enableLoadFactor.value) {
-    // 空值/NaN/0 时发送 0（后端约定 <= 0 表示清除）
+    // English-only note removed during locale cleanup
     const lf = loadFactor.value
     updates.load_factor = (lf != null && !Number.isNaN(lf) && lf > 0) ? lf : 0
   }
@@ -1492,10 +1492,10 @@ const buildUpdatePayload = (): Record<string, unknown> | null => {
   }
 
   if (enableModelRestriction.value && !isOpenAIModelRestrictionDisabled.value) {
-    // 统一使用 model_mapping 字段
+    // English-only note removed during locale cleanup
     if (modelRestrictionMode.value === 'whitelist') {
-      // 白名单模式：将模型转换为 model_mapping 格式（key=value）
-      // 空白名单表示“支持所有模型”，需显式发送空对象以覆盖已有限制。
+      // English-only note removed during locale cleanup
+      // English-only note removed during locale cleanup
       const mapping: Record<string, string> = {}
       for (const m of allowedModels.value) {
         mapping[m] = m
@@ -1503,7 +1503,7 @@ const buildUpdatePayload = (): Record<string, unknown> | null => {
       credentials.model_mapping = mapping
       credentialsChanged = true
     } else {
-      // 映射模式下空配置同样表示“支持所有模型”。
+      // English-only note removed during locale cleanup
       const modelMapping = buildModelMappingObject()
       credentials.model_mapping = modelMapping ?? {}
       credentialsChanged = true
@@ -1542,8 +1542,8 @@ const buildUpdatePayload = (): Record<string, unknown> | null => {
     extra.codex_cli_only = codexCLIOnlyEnabled.value
   }
 
-  // 子开关从属于 codex_cli_only：仅当同一次批量编辑也把父开关设为开启时才写入，
-  // 与 Create/Edit 语义对齐，避免在父开关关闭的账号上写入无意义的孤立字段。
+  // English-only note removed during locale cleanup
+  // English-only note removed during locale cleanup
   if (
     enableCodexCLIOnlyAppServer.value &&
     enableCodexCLIOnly.value &&
@@ -1563,7 +1563,7 @@ const buildUpdatePayload = (): Record<string, unknown> | null => {
     credentialsChanged = true
   }
 
-  // RPM limit settings (写入 extra 字段)
+  // English-only note removed during locale cleanup
   if (enableRpmLimit.value) {
     const extra = ensureExtra()
     if (rpmLimitEnabled.value && bulkBaseRpm.value != null && bulkBaseRpm.value > 0) {
@@ -1573,9 +1573,9 @@ const buildUpdatePayload = (): Record<string, unknown> | null => {
         extra.rpm_sticky_buffer = bulkRpmStickyBuffer.value
       }
     } else {
-      // 关闭 RPM 限制 - 设置 base_rpm 为 0，并用空值覆盖关联字段
-      // 后端使用 JSONB || merge 语义，不会删除已有 key，
-      // 所以必须显式发送空值来重置（后端读取时会 fallback 到默认值）
+      // English-only note removed during locale cleanup
+      // English-only note removed during locale cleanup
+      // English-only note removed during locale cleanup
       extra.base_rpm = 0
       extra.rpm_strategy = ''
       extra.rpm_sticky_buffer = 0
@@ -1583,11 +1583,11 @@ const buildUpdatePayload = (): Record<string, unknown> | null => {
     updates.extra = extra
   }
 
-  // UMQ mode（独立于 RPM 保存）
+  // English-only note removed during locale cleanup
   if (userMsgQueueMode.value !== null) {
     const umqExtra = ensureExtra()
-    umqExtra.user_msg_queue_mode = userMsgQueueMode.value  // '' = 清除账号级覆盖
-    umqExtra.user_msg_queue_enabled = false  // 清理旧字段（JSONB merge）
+    umqExtra.user_msg_queue_mode = userMsgQueueMode.value  // English-only note removed during locale cleanup
+    umqExtra.user_msg_queue_enabled = false  // English-only note removed during locale cleanup
   }
 
   if (credentialsChanged) {
@@ -1599,8 +1599,8 @@ const buildUpdatePayload = (): Record<string, unknown> | null => {
 
 const mixedChannelConfirmed = ref(false)
 
-// 是否需要预检查：改了分组 + 全是单一的 antigravity 或 anthropic 平台
-// 多平台混合的情况由 submitBulkUpdate 的 409 catch 兜底
+// English-only note removed during locale cleanup
+// English-only note removed during locale cleanup
 const canPreCheck = () =>
   enableGroups.value &&
   groupIds.value.length > 0 &&
@@ -1615,7 +1615,7 @@ const handleClose = () => {
   emit('close')
 }
 
-// 预检查：提交前调接口检测，有风险就弹窗阻止，返回 false 表示需要用户确认
+// English-only note removed during locale cleanup
 const preCheckMixedChannelRisk = async (built: Record<string, unknown>): Promise<boolean> => {
   if (!canPreCheck()) return true
   if (mixedChannelConfirmed.value) return true
@@ -1683,7 +1683,7 @@ const handleSubmit = async () => {
 }
 
 const submitBulkUpdate = async (baseUpdates: Record<string, unknown>) => {
-  // 无论是预检查确认还是 409 兜底确认，只要 mixedChannelConfirmed 为 true 就带上 flag
+  // English-only note removed during locale cleanup
   const updates = mixedChannelConfirmed.value
     ? { ...baseUpdates, confirm_mixed_channel_risk: true }
     : baseUpdates
@@ -1714,7 +1714,7 @@ const submitBulkUpdate = async (baseUpdates: Record<string, unknown>) => {
       handleClose()
     }
   } catch (error: any) {
-    // 兜底：多平台混合场景下，预检查跳过，由后端 409 触发确认框
+    // English-only note removed during locale cleanup
     if (error.status === 409 && error.error === 'mixed_channel_warning') {
       pendingUpdatesForConfirm.value = baseUpdates
       mixedChannelWarningMessage.value = error.message

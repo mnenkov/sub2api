@@ -100,7 +100,7 @@ interface Emits {
 const props = defineProps<Props>()
 const emit = defineEmits<Emits>()
 
-const { t, locale } = useI18n()
+const { t } = useI18n()
 
 const isOpen = ref(false)
 const containerRef = ref<HTMLElement | null>(null)
@@ -236,8 +236,7 @@ const displayValue = computed(() => {
 
 const formatDate = (dateStr: string): string => {
   const date = new Date(dateStr + 'T00:00:00')
-  const dateLocale = locale.value === 'zh' ? 'zh-CN' : 'en-US'
-  return date.toLocaleDateString(dateLocale, { month: 'short', day: 'numeric' })
+  return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
 }
 
 const isPresetActive = (preset: DatePreset): boolean => {

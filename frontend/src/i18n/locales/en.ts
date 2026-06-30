@@ -6219,7 +6219,7 @@ export default {
         event: 'Event',
         locale: 'Locale',
         localeEn: 'English',
-        localeZh: 'Chinese',
+        localeZh: 'Legacy locale',
         subject: 'Subject',
         subjectPlaceholder: 'Enter the email subject',
         html: 'HTML Template',

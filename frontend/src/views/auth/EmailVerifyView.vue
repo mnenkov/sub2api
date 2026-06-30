@@ -174,7 +174,7 @@ import {
   oauthAffiliatePayload
 } from '@/utils/oauthAffiliate'
 
-const { t, locale } = useI18n()
+const { t } = useI18n()
 
 // ==================== Router & Stores ====================
 
@@ -409,7 +409,7 @@ async function sendCode(): Promise<void> {
     const requestPayload = {
       email: email.value,
       [pendingAuthTokenField.value]: pendingAuthToken.value || undefined,
-      // 优先使用重发时新获取的 token（因为初始 token 可能已被使用）
+      // English-only note removed during locale cleanup
       turnstile_token: resendTurnstileToken.value || initialTurnstileToken.value || undefined
     } as Parameters<typeof sendVerifyCode>[0]
     const response = isPendingOAuthFlow()
@@ -434,7 +434,7 @@ async function sendCode(): Promise<void> {
     codeSent.value = true
     startCountdown(response.countdown)
 
-    // Reset turnstile state（token 已使用，清除以避免重复使用）
+    // English-only note removed during locale cleanup
     initialTurnstileToken.value = ''
     showResendTurnstile.value = false
     resendTurnstileToken.value = ''
@@ -581,7 +581,7 @@ function buildEmailSuffixNotAllowedMessage(): string {
   if (normalizedWhitelist.length === 0) {
     return t('auth.emailSuffixNotAllowed')
   }
-  const separator = String(locale.value || '').toLowerCase().startsWith('zh') ? '、' : ', '
+  const separator = ', '
   return t('auth.emailSuffixNotAllowedWithAllowed', {
     suffixes: formatRegistrationEmailSuffixWhitelistForMessage(normalizedWhitelist, {
       separator,

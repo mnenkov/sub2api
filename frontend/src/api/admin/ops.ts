@@ -751,10 +751,10 @@ export interface EmailNotificationConfig {
 }
 
 export interface OpsMetricThresholds {
-  sla_percent_min?: number | null                 // SLA低于此值变红
-  ttft_p99_ms_max?: number | null                 // TTFT P99高于此值变红
-  request_error_rate_percent_max?: number | null  // 请求错误率高于此值变红
-  upstream_error_rate_percent_max?: number | null // 上游错误率高于此值变红
+  sla_percent_min?: number | null                 // English-only note removed during locale cleanup
+  ttft_p99_ms_max?: number | null                 // English-only note removed during locale cleanup
+  request_error_rate_percent_max?: number | null  // English-only note removed during locale cleanup
+  upstream_error_rate_percent_max?: number | null // English-only note removed during locale cleanup
 }
 
 export interface OpsDistributedLockSettings {
@@ -777,12 +777,12 @@ export interface OpsAlertRuntimeSettings {
       reason: string
     }>
   }
-  thresholds: OpsMetricThresholds // 指标阈值配置
+  thresholds: OpsMetricThresholds // English-only note removed during locale cleanup
 }
 
 export interface OpsOpenAIAccountQuotaAutoPauseSettings {
-  default_threshold_5h: number // 0~1，0 表示不启用全局默认 5h 阈值
-  default_threshold_7d: number // 0~1，0 表示不启用全局默认 7d 阈值
+  default_threshold_5h: number // English-only note removed during locale cleanup
+  default_threshold_7d: number // English-only note removed during locale cleanup
 }
 
 export interface OpsAdvancedSettings {
@@ -912,7 +912,7 @@ export interface OpsErrorLog {
   user_id?: number | null
   user_email: string
   api_key_id?: number | null
-  // 关联 api_key 名称（后端 LEFT JOIN api_keys；软删保留 name，故已删 key 仍有原名）。
+  // English-only note removed during locale cleanup
   api_key_name?: string
   api_key_deleted?: boolean
   account_id?: number | null
@@ -1094,7 +1094,7 @@ export type OpsErrorListQueryParams = {
   account_id?: number | null
   user_id?: number
   api_key_id?: number
-  // 模型过滤：后端以 COALESCE(requested_model, model) 精确匹配（admin 路径）。
+  // English-only note removed during locale cleanup
   model?: string
 
   phase?: string

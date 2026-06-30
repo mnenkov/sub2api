@@ -1,14 +1,14 @@
 <script setup lang="ts">
 /**
- * 导航进度条组件
- * 在页面顶部显示加载进度，提供导航反馈
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
  */
 import { computed } from 'vue'
 import { useNavigationLoadingState } from '@/composables/useNavigationLoading'
 
 const { isLoading } = useNavigationLoadingState()
 
-// 进度条可见性
+// English-only note removed during locale cleanup
 const isVisible = computed(() => isLoading.value)
 </script>
 
@@ -54,7 +54,7 @@ const isVisible = computed(() => isLoading.value)
   animation: progress-slide 1.5s ease-in-out infinite;
 }
 
-/* 暗色模式下的进度条颜色 */
+/* English-only note removed during locale cleanup */
 :root.dark .navigation-progress-bar {
   background: linear-gradient(
     90deg,
@@ -66,7 +66,7 @@ const isVisible = computed(() => isLoading.value)
   );
 }
 
-/* 进度条滑动动画 */
+/* English-only note removed during locale cleanup */
 @keyframes progress-slide {
   0% {
     transform: translateX(-100%);
@@ -76,7 +76,7 @@ const isVisible = computed(() => isLoading.value)
   }
 }
 
-/* 淡入淡出过渡 */
+/* English-only note removed during locale cleanup */
 .progress-fade-enter-active {
   transition: opacity 0.15s ease-out;
 }
@@ -90,7 +90,7 @@ const isVisible = computed(() => isLoading.value)
   opacity: 0;
 }
 
-/* 减少动画模式 */
+/* English-only note removed during locale cleanup */
 @media (prefers-reduced-motion: reduce) {
   .navigation-progress-bar {
     animation: progress-pulse 2s ease-in-out infinite;

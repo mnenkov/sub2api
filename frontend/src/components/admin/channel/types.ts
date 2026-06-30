@@ -24,7 +24,7 @@ export interface PricingFormEntry {
   intervals: IntervalFormEntry[]
 }
 
-// 价格转换：后端存 per-token，前端显示 per-MTok ($/1M tokens)
+// English-only note removed during locale cleanup
 const MTOK = 1_000_000
 
 export function toNullableNumber(val: number | string | null | undefined): number | null {
@@ -33,16 +33,16 @@ export function toNullableNumber(val: number | string | null | undefined): numbe
   return isNaN(num) ? null : num
 }
 
-/** 前端显示值($/MTok) → 后端存储值(per-token) */
+/* English-only note removed during locale cleanup */
 export function mTokToPerToken(val: number | string | null | undefined): number | null {
   const num = toNullableNumber(val)
   return num === null ? null : parseFloat((num / MTOK).toPrecision(10))
 }
 
-/** 后端存储值(per-token) → 前端显示值($/MTok) */
+/* English-only note removed during locale cleanup */
 export function perTokenToMTok(val: number | null | undefined): number | null {
   if (val === null || val === undefined) return null
-  // toPrecision(10) 消除 IEEE 754 浮点乘法精度误差，如 5e-8 * 1e6 = 0.04999...96 → 0.05
+  // English-only note removed during locale cleanup
   return parseFloat((val * MTOK).toPrecision(10))
 }
 
@@ -74,11 +74,11 @@ export function formIntervalsToAPI(intervals: IntervalFormEntry[]): PricingInter
   }))
 }
 
-// ── 模型模式冲突检测 ──────────────────────────────────────
+// English-only note removed during locale cleanup
 
 interface ModelPattern {
   pattern: string
-  prefix: string  // lowercase, 通配符去掉尾部 *
+  prefix: string  // English-only note removed during locale cleanup
   wildcard: boolean
 }
 
@@ -96,11 +96,11 @@ function patternsConflict(a: ModelPattern, b: ModelPattern): boolean {
   if (!a.wildcard && !b.wildcard) return a.prefix === b.prefix
   if (a.wildcard && !b.wildcard) return b.prefix.startsWith(a.prefix)
   if (!a.wildcard && b.wildcard) return a.prefix.startsWith(b.prefix)
-  // 双通配符：任一前缀是另一前缀的前缀即冲突
+  // English-only note removed during locale cleanup
   return a.prefix.startsWith(b.prefix) || b.prefix.startsWith(a.prefix)
 }
 
-/** 检测模型模式列表中的冲突，返回冲突的两个模式名；无冲突返回 null */
+/* English-only note removed during locale cleanup */
 export function findModelConflict(models: string[]): [string, string] | null {
   const patterns = models.map(toModelPattern)
   for (let i = 0; i < patterns.length; i++) {
@@ -113,14 +113,14 @@ export function findModelConflict(models: string[]): [string, string] | null {
   return null
 }
 
-// ── 区间校验 ──────────────────────────────────────────────
+// English-only note removed during locale cleanup
 
-/** 校验区间列表的合法性，返回错误消息；通过则返回 null
+/** Validate interval list and return an error message, or null when valid.
  *
- * mode 决定区间语义：
- * - token：区间是上下文 token 数分段 (min, max]，不能重叠，无上限段必须放最后
- * - per_request / image：区间是按 tier_label 分层（1K/2K/4K 等），后端按 label
- *   匹配，不依赖 min/max，因此跳过重叠 / last-unlimited 校验
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
  */
 export function validateIntervals(
   intervals: IntervalFormEntry[],
@@ -128,7 +128,7 @@ export function validateIntervals(
 ): string | null {
   if (!intervals || intervals.length === 0) return null
 
-  // 按 min_tokens 排序（不修改原数组）
+  // English-only note removed during locale cleanup
   const sorted = [...intervals].sort((a, b) => a.min_tokens - b.min_tokens)
 
   for (let i = 0; i < sorted.length; i++) {
@@ -136,21 +136,21 @@ export function validateIntervals(
     if (err) return err
   }
 
-  // per_request / image 模式按 tier_label 匹配，不做 token 区间重叠校验
+  // English-only note removed during locale cleanup
   if (mode !== 'token') return null
   return checkIntervalOverlap(sorted)
 }
 
 function validateSingleInterval(iv: IntervalFormEntry, idx: number): string | null {
   if (iv.min_tokens < 0) {
-    return `区间 #${idx + 1}: 最小 token 数 (${iv.min_tokens}) 不能为负数`
+    return `Interval #${idx + 1}: minimum token count (${iv.min_tokens}) cannot be negative`
   }
   if (iv.max_tokens != null) {
     if (iv.max_tokens <= 0) {
-      return `区间 #${idx + 1}: 最大 token 数 (${iv.max_tokens}) 必须大于 0`
+      return `Interval #${idx + 1}: maximum token count (${iv.max_tokens}) must be greater than 0`
     }
     if (iv.max_tokens <= iv.min_tokens) {
-      return `区间 #${idx + 1}: 最大 token 数 (${iv.max_tokens}) 必须大于最小 token 数 (${iv.min_tokens})`
+      return `Interval #${idx + 1}: maximum token count (${iv.max_tokens}) must be greater than minimum token count (${iv.min_tokens})`
     }
   }
   return validateIntervalPrices(iv, idx)
@@ -158,15 +158,15 @@ function validateSingleInterval(iv: IntervalFormEntry, idx: number): string | nu
 
 function validateIntervalPrices(iv: IntervalFormEntry, idx: number): string | null {
   const prices: [string, number | string | null][] = [
-    ['输入价格', iv.input_price],
-    ['输出价格', iv.output_price],
-    ['缓存写入价格', iv.cache_write_price],
-    ['缓存读取价格', iv.cache_read_price],
-    ['单次价格', iv.per_request_price],
+    ['Input price', iv.input_price],
+    ['Output price', iv.output_price],
+    ['Cache write price', iv.cache_write_price],
+    ['Cache read price', iv.cache_read_price],
+    ['Per-request price', iv.per_request_price],
   ]
   for (const [name, val] of prices) {
     if (val != null && val !== '' && Number(val) < 0) {
-      return `区间 #${idx + 1}: ${name}不能为负数`
+      return `Interval #${idx + 1}: ${name} cannot be negative`
     }
   }
   return null
@@ -174,22 +174,22 @@ function validateIntervalPrices(iv: IntervalFormEntry, idx: number): string | nu
 
 function checkIntervalOverlap(sorted: IntervalFormEntry[]): string | null {
   for (let i = 0; i < sorted.length; i++) {
-    // 无上限区间必须是最后一个
+    // English-only note removed during locale cleanup
     if (sorted[i].max_tokens == null && i < sorted.length - 1) {
-      return `区间 #${i + 1}: 无上限区间（最大 token 数为空）只能是最后一个`
+      return `Interval #${i + 1}: an unbounded interval (empty maximum token count) must be last`
     }
     if (i === 0) continue
     const prev = sorted[i - 1]
-    // (min, max] 语义：前一个区间上界 > 当前区间下界则重叠
+    // English-only note removed during locale cleanup
     if (prev.max_tokens == null || prev.max_tokens > sorted[i].min_tokens) {
       const prevMax = prev.max_tokens == null ? '∞' : String(prev.max_tokens)
-      return `区间 #${i} 和 #${i + 1} 重叠：前一个区间上界 (${prevMax}) 大于当前区间下界 (${sorted[i].min_tokens})`
+      return `Intervals #${i} and #${i + 1} overlap: previous upper bound (${prevMax}) is greater than current lower bound (${sorted[i].min_tokens})`
     }
   }
   return null
 }
 
-/** 平台对应的模型 tag 样式（背景+文字） */
+/* English-only note removed during locale cleanup */
 export function getPlatformTagClass(platform: string): string {
   switch (platform) {
     case 'anthropic': return 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400'
@@ -201,7 +201,7 @@ export function getPlatformTagClass(platform: string): string {
   }
 }
 
-/** 平台对应的模型文字色（仅 text-*，用于 input/text 场景）— 与 getPlatformTagClass 同色系 */
+/* English-only note removed during locale cleanup */
 export function getPlatformTextClass(platform: string): string {
   switch (platform) {
     case 'anthropic': return 'text-orange-700 dark:text-orange-400'

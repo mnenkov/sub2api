@@ -46,11 +46,11 @@
 import { computed, watch, onMounted, onUnmounted, ref, nextTick } from 'vue'
 import Icon from '@/components/icons/Icon.vue'
 
-// 生成唯一ID以避免多个对话框时ID冲突
+// English-only note removed during locale cleanup
 let dialogIdCounter = 0
 const dialogId = `modal-title-${++dialogIdCounter}`
 
-// 焦点管理
+// English-only note removed during locale cleanup
 const dialogRef = ref<HTMLElement | null>(null)
 let previousActiveElement: HTMLElement | null = null
 
@@ -116,12 +116,12 @@ watch(
   () => props.show,
   async (isOpen) => {
     if (isOpen) {
-      // 保存当前焦点元素
+      // English-only note removed during locale cleanup
       previousActiveElement = document.activeElement as HTMLElement
-      // 使用CSS类而不是直接操作style,更易于管理多个对话框
+      // English-only note removed during locale cleanup
       document.body.classList.add('modal-open')
 
-      // 等待DOM更新后设置焦点到对话框
+      // English-only note removed during locale cleanup
       await nextTick()
       if (dialogRef.value) {
         const firstFocusable = dialogRef.value.querySelector<HTMLElement>(
@@ -131,7 +131,7 @@ watch(
       }
     } else {
       document.body.classList.remove('modal-open')
-      // 恢复之前的焦点
+      // English-only note removed during locale cleanup
       if (previousActiveElement && typeof previousActiveElement.focus === 'function') {
         previousActiveElement.focus()
       }
@@ -147,7 +147,7 @@ onMounted(() => {
 
 onUnmounted(() => {
   document.removeEventListener('keydown', handleEscape)
-  // 确保组件卸载时移除滚动锁定
+  // English-only note removed during locale cleanup
   document.body.classList.remove('modal-open')
 })
 </script>

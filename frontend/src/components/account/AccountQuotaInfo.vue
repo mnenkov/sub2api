@@ -41,26 +41,26 @@ const { t } = useI18n()
 const now = ref(new Date())
 let timer: ReturnType<typeof setInterval> | null = null
 
-// 是否为 Code Assist OAuth
-// 判断逻辑与后端保持一致：project_id 存在即为 Code Assist
+// English-only note removed during locale cleanup
+// English-only note removed during locale cleanup
 const isCodeAssist = computed(() => {
   const creds = props.account.credentials as GeminiCredentials | undefined
-  // 显式为 code_assist，或 legacy 情况（oauth_type 为空但 project_id 存在）
+  // English-only note removed during locale cleanup
   return creds?.oauth_type === 'code_assist' || (!creds?.oauth_type && !!creds?.project_id)
 })
 
-// 是否为 Google One OAuth
+// English-only note removed during locale cleanup
 const isGoogleOne = computed(() => {
   const creds = props.account.credentials as GeminiCredentials | undefined
   return creds?.oauth_type === 'google_one'
 })
 
-// 是否应该显示配额信息
+// English-only note removed during locale cleanup
 const shouldShowQuota = computed(() => {
   return props.account.platform === 'gemini'
 })
 
-// Tier 标签文本
+// English-only note removed during locale cleanup
 const tierLabel = computed(() => {
   const creds = props.account.credentials as GeminiCredentials | undefined
 
@@ -88,14 +88,14 @@ const tierLabel = computed(() => {
     return 'Google One'
   }
 
-  // API Key: 显示 AI Studio
+  // English-only note removed during locale cleanup
   const tier = (creds?.tier_id || '').toString().trim().toLowerCase()
   if (tier === 'aistudio_paid') return 'AI Studio Pay-as-you-go'
   if (tier === 'aistudio_free') return 'AI Studio Free Tier'
   return 'AI Studio'
 })
 
-// Tier Badge 样式（统一样式）
+// English-only note removed during locale cleanup
 const tierBadgeClass = computed(() => {
   const creds = props.account.credentials as GeminiCredentials | undefined
 
@@ -121,27 +121,27 @@ const tierBadgeClass = computed(() => {
     return 'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300'
   }
 
-  // AI Studio 默认样式：蓝色
+  // English-only note removed during locale cleanup
   const tier = (creds?.tier_id || '').toString().trim().toLowerCase()
   if (tier === 'aistudio_paid') return 'bg-blue-100 text-blue-600 dark:bg-blue-900/40 dark:text-blue-300'
   if (tier === 'aistudio_free') return 'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300'
   return 'bg-blue-100 text-blue-600 dark:bg-blue-900/40 dark:text-blue-300'
 })
 
-// 是否限流
+// English-only note removed during locale cleanup
 const isRateLimited = computed(() => {
   if (!props.account.rate_limit_reset_at) return false
   const resetTime = Date.parse(props.account.rate_limit_reset_at)
-  // 防护：如果日期解析失败（NaN），则认为未限流
+  // English-only note removed during locale cleanup
   if (Number.isNaN(resetTime)) return false
   return resetTime > now.value.getTime()
 })
 
-// 倒计时文本
+// English-only note removed during locale cleanup
 const resetCountdown = computed(() => {
   if (!props.account.rate_limit_reset_at) return ''
   const resetTime = Date.parse(props.account.rate_limit_reset_at)
-  // 防护：如果日期解析失败，显示 "-"
+  // English-only note removed during locale cleanup
   if (Number.isNaN(resetTime)) return '-'
 
   const diffMs = resetTime - now.value.getTime()
@@ -160,33 +160,33 @@ const resetCountdown = computed(() => {
   return `${diffHours}h ${mins}m`
 })
 
-// 是否紧急（< 1分钟）
+// English-only note removed during locale cleanup
 const isUrgent = computed(() => {
   if (!props.account.rate_limit_reset_at) return false
   const resetTime = Date.parse(props.account.rate_limit_reset_at)
-  // 防护：如果日期解析失败，返回 false
+  // English-only note removed during locale cleanup
   if (Number.isNaN(resetTime)) return false
 
   const diffMs = resetTime - now.value.getTime()
   return diffMs > 0 && diffMs < 60000
 })
 
-// 监听限流状态，动态启动/停止定时器
+// English-only note removed during locale cleanup
 watch(
   () => isRateLimited.value,
   (limited) => {
     if (limited && !timer) {
-      // 进入限流状态，启动定时器
+      // English-only note removed during locale cleanup
       timer = setInterval(() => {
         now.value = new Date()
       }, 1000)
     } else if (!limited && timer) {
-      // 解除限流，停止定时器
+      // English-only note removed during locale cleanup
       clearInterval(timer)
       timer = null
     }
   },
-  { immediate: true } // 立即执行，确保挂载时已限流的情况也能启动定时器
+  { immediate: true } // English-only note removed during locale cleanup
 )
 
 onUnmounted(() => {

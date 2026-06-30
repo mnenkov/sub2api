@@ -560,18 +560,18 @@
                   Google One
                 </span>
                 <span class="text-xs text-gray-500 dark:text-gray-400">
-                  个人账号，享受 Google One 订阅配额
+                  Personal account with Google One subscription quota
                 </span>
                 <div class="mt-2 flex flex-wrap gap-1">
                   <span
                     class="rounded bg-purple-100 px-2 py-0.5 text-[10px] font-semibold text-purple-700 dark:bg-purple-900/40 dark:text-purple-300"
                   >
-                    推荐个人用户
+                    Recommended for individuals
                   </span>
                   <span
                     class="rounded bg-emerald-100 px-2 py-0.5 text-[10px] font-semibold text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300"
                   >
-                    无需 GCP
+                    No GCP required
                   </span>
                 </div>
               </div>
@@ -603,10 +603,10 @@
                   GCP Code Assist
                 </span>
                 <span class="text-xs text-gray-500 dark:text-gray-400">
-                  企业级，需要 GCP 项目
+                  Enterprise-grade, requires a GCP project
                 </span>
                 <div class="mt-1 text-xs text-gray-500 dark:text-gray-400">
-                  需要激活 GCP 项目并绑定信用卡
+                  Requires an active GCP project with a billing card
                   <a
                     :href="geminiHelpLinks.gcpProject"
                     class="ml-1 text-blue-600 hover:underline dark:text-blue-400"
@@ -620,12 +620,12 @@
                   <span
                     class="rounded bg-blue-100 px-2 py-0.5 text-[10px] font-semibold text-blue-700 dark:bg-blue-900/40 dark:text-blue-300"
                   >
-                    企业用户
+                    Enterprise users
                   </span>
                   <span
                     class="rounded bg-emerald-100 px-2 py-0.5 text-[10px] font-semibold text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300"
                   >
-                    高并发
+                    High concurrency
                   </span>
                 </div>
               </div>
@@ -648,7 +648,7 @@
               >
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
               </svg>
-              <span>{{ showAdvancedOAuth ? '隐藏' : '显示' }}高级选项（自建 OAuth Client）</span>
+              <span>{{ showAdvancedOAuth ? 'Hide' : 'Show' }} advanced options (custom OAuth client)</span>
             </button>
           </div>
 
@@ -951,7 +951,7 @@
       </div>
 
       <!-- Antigravity model restriction (applies to OAuth + Upstream) -->
-      <!-- Antigravity 只支持模型映射模式，不支持白名单模式 -->
+      <!-- English-only note removed during locale cleanup. -->
       <div v-if="form.platform === 'antigravity'" class="border-t border-gray-200 pt-4 dark:border-dark-600">
         <label class="input-label">{{ t('admin.accounts.modelRestriction') }}</label>
 
@@ -1006,7 +1006,7 @@
                   </svg>
                 </button>
               </div>
-              <!-- 校验错误提示 -->
+              <!-- English-only note removed during locale cleanup. -->
               <p v-if="!isValidWildcardPattern(mapping.from)" class="text-xs text-red-500">
                 {{ t('admin.accounts.wildcardOnlyAtEnd') }}
               </p>
@@ -1114,7 +1114,7 @@
           <p class="input-hint">{{ t('admin.accounts.gemini.tier.aiStudioHint') }}</p>
         </div>
 
-        <!-- Model Restriction Section (Antigravity 已在上层条件排除) -->
+        <!-- English-only note removed during locale cleanup. -->
         <div class="border-t border-gray-200 pt-4 dark:border-dark-600">
           <label class="input-label">{{ t('admin.accounts.modelRestriction') }}</label>
 
@@ -1722,7 +1722,7 @@
         </div>
       </div>
 
-      <!-- 配额控制 (Anthropic apikey/bedrock: 配额限制 + 亲和) -->
+      <!-- English-only note removed during locale cleanup. -->
       <div
         v-if="form.platform === 'anthropic' && (form.type === 'apikey' || form.type === 'bedrock')"
         class="border-t border-gray-200 pt-4 dark:border-dark-600 space-y-4"
@@ -1774,7 +1774,7 @@
         />
       </div>
 
-      <!-- 配额控制 (非 Anthropic apikey/bedrock) -->
+      <!-- English-only note removed during locale cleanup. -->
       <div
         v-else-if="form.type === 'apikey' || form.type === 'bedrock'"
         class="border-t border-gray-200 pt-4 dark:border-dark-600 space-y-4"
@@ -1826,7 +1826,7 @@
         />
       </div>
 
-      <!-- OpenAI OAuth Model Mapping (OAuth 类型没有 apikey 容器，需要独立的模型映射区域) -->
+      <!-- English-only note removed during locale cleanup. -->
       <div
         v-if="(form.platform === 'openai' || form.platform === 'grok') && accountCategory === 'oauth-based'"
         class="border-t border-gray-200 pt-4 dark:border-dark-600"
@@ -2142,7 +2142,7 @@
         </div>
       </div>
 
-      <!-- 配额控制 (Anthropic OAuth/SetupToken: 亲和 + 窗口费用 + 会话 + RPM 等) -->
+      <!-- English-only note removed during locale cleanup. -->
       <div
         v-if="form.platform === 'anthropic' && accountCategory === 'oauth-based'"
         class="border-t border-gray-200 pt-4 dark:border-dark-600 space-y-4"
@@ -2363,7 +2363,7 @@
 
           </div>
 
-          <!-- 用户消息限速模式（独立于 RPM 开关，始终可见） -->
+          <!-- English-only note removed during locale cleanup. -->
           <div class="mt-4">
             <label class="input-label">{{ t('admin.accounts.quotaControl.rpmLimit.userMsgQueue') }}</label>
             <p class="mt-1 text-xs text-gray-500 dark:text-gray-400 mb-2">
@@ -2566,7 +2566,7 @@
         <p class="input-hint">{{ t('admin.accounts.expiresAtHint') }}</p>
       </div>
 
-      <!-- OpenAI 自动透传开关（OAuth/API Key） -->
+      <!-- English-only note removed during locale cleanup. -->
       <div
         v-if="form.platform === 'openai'"
         class="border-t border-gray-200 pt-4 dark:border-dark-600"
@@ -2596,7 +2596,7 @@
         </div>
       </div>
 
-      <!-- OpenAI WS Mode 三态（off/ctx_pool/passthrough） -->
+      <!-- English-only note removed during locale cleanup. -->
       <div
         v-if="form.platform === 'openai' && (accountCategory === 'oauth-based' || accountCategory === 'apikey')"
         class="border-t border-gray-200 pt-4 dark:border-dark-600"
@@ -2617,7 +2617,7 @@
         </div>
       </div>
 
-      <!-- Anthropic API Key 自动透传开关 -->
+      <!-- English-only note removed during locale cleanup. -->
       <div
         v-if="form.platform === 'anthropic' && accountCategory === 'apikey'"
         class="border-t border-gray-200 pt-4 dark:border-dark-600"
@@ -2667,7 +2667,7 @@
         </div>
       </div>
 
-      <!-- OpenAI OAuth Codex 官方客户端限制开关 -->
+      <!-- English-only note removed during locale cleanup. -->
       <div
         v-if="form.platform === 'openai' && accountCategory === 'oauth-based'"
         class="border-t border-gray-200 pt-4 dark:border-dark-600"
@@ -2723,7 +2723,7 @@
         </div>
       </div>
 
-      <!-- OpenAI Compact 能力配置 -->
+      <!-- English-only note removed during locale cleanup. -->
       <div
         v-if="form.platform === 'openai' && (accountCategory === 'oauth-based' || accountCategory === 'apikey')"
         class="border-t border-gray-200 pt-4 dark:border-dark-600 space-y-4"
@@ -2859,7 +2859,7 @@
             >
               ?
             </span>
-            <!-- Tooltip（向下显示避免被弹窗裁剪） -->
+            <!-- English-only note removed during locale cleanup. -->
             <div
               class="pointer-events-none absolute left-0 top-full z-[100] mt-1.5 w-72 rounded bg-gray-900 px-3 py-2 text-xs text-white opacity-0 transition-opacity group-hover:opacity-100 dark:bg-gray-700"
             >
@@ -2898,7 +2898,7 @@
           </div>
         </div>
 
-        <!-- Group Selection - 仅标准模式显示 -->
+        <!-- English-only note removed during locale cleanup. -->
         <GroupSelector
           v-if="!authStore.isSimpleMode"
           v-model="form.group_ids"
@@ -3072,7 +3072,7 @@
                 rel="noreferrer"
                 class="text-sm text-blue-600 hover:underline dark:text-blue-400"
               >
-                修改归属地
+                Edit location
               </a>
               <span class="text-gray-400">·</span>
               <a
@@ -3775,11 +3775,11 @@ const form = reactive({
 
 // Helper to check if current type needs OAuth flow
 const isOAuthFlow = computed(() => {
-  // Antigravity upstream 类型不需要 OAuth 流程
+  // English-only note removed during locale cleanup
   if (form.platform === 'antigravity' && antigravityAccountType.value === 'upstream') {
     return false
   }
-  // Bedrock 类型不需要 OAuth 流程
+  // English-only note removed during locale cleanup
   if (form.platform === 'anthropic' && accountCategory.value === 'bedrock') {
     return false
   }
@@ -3825,7 +3825,7 @@ watch(
         .catch(() => { tlsFingerprintProfiles.value = [] })
       // Modal opened - fill related models
       allowedModels.value = [...getModelsByPlatform(form.platform)]
-      // Antigravity: 默认使用映射模式并填充默认映射
+      // English-only note removed during locale cleanup
       if (form.platform === 'antigravity') {
         antigravityModelRestrictionMode.value = 'mapping'
         fetchAntigravityDefaultMappings().then(mappings => {
@@ -3847,12 +3847,12 @@ watch(
 watch(
   [accountCategory, addMethod, antigravityAccountType, () => form.platform],
   ([category, method, agType]) => {
-    // Antigravity upstream 类型（实际创建为 apikey）
+    // English-only note removed during locale cleanup
     if (form.platform === 'antigravity' && agType === 'upstream') {
       form.type = 'apikey'
       return
     }
-    // Bedrock 类型
+    // English-only note removed during locale cleanup
     if (form.platform === 'anthropic' && category === 'bedrock') {
       form.type = 'bedrock' as AccountType
       return
@@ -3884,7 +3884,7 @@ watch(
     // Clear model-related settings
     allowedModels.value = []
     modelMappings.value = []
-    // Antigravity: 默认使用映射模式并填充默认映射
+    // English-only note removed during locale cleanup
     if (newPlatform === 'antigravity') {
       antigravityModelRestrictionMode.value = 'mapping'
       fetchAntigravityDefaultMappings().then(mappings => {
@@ -4004,8 +4004,8 @@ watch(
   [antigravityModelRestrictionMode, () => form.platform],
   ([, platform]) => {
     if (platform !== 'antigravity') return
-    // Antigravity 默认不做限制：白名单留空表示允许所有（包含未来新增模型）。
-    // 如果需要快速填充常用模型，可在组件内点“填充相关模型”。
+    // English-only note removed during locale cleanup
+    // English-only note removed during locale cleanup
   }
 )
 
@@ -4404,7 +4404,7 @@ const buildOpenAIExtra = (base?: Record<string, unknown>): Record<string, unknow
     extra.openai_apikey_responses_websockets_v2_mode = openaiAPIKeyResponsesWebSocketV2Mode.value
     extra.openai_apikey_responses_websockets_v2_enabled = isOpenAIWSModeEnabled(openaiAPIKeyResponsesWebSocketV2Mode.value)
   }
-  // 清理兼容旧键，统一改用分类型开关。
+  // English-only note removed during locale cleanup
   delete extra.responses_websockets_v2_enabled
   delete extra.openai_ws_enabled
   if (openaiPassthroughEnabled.value) {
@@ -4659,7 +4659,7 @@ const handleSubmit = async () => {
       api_key: upstreamApiKey.value.trim()
     }
 
-    // Antigravity 只使用映射模式
+    // English-only note removed during locale cleanup
     const antigravityModelMapping = buildModelMappingObject(
       'mapping',
       [],
@@ -4722,7 +4722,7 @@ const handleSubmit = async () => {
     credentials.tier_id = geminiTierAIStudio.value
   }
 
-  // Add model mapping if configured（OpenAI 开启自动透传时不应用）
+  // English-only note removed during locale cleanup
   if (!isOpenAIModelRestrictionDisabled.value) {
     const modelMapping = buildModelMappingObject(modelRestrictionMode.value, allowedModels.value, modelMappings.value)
     if (modelMapping) {
@@ -4897,7 +4897,7 @@ const createAccountAndFinish = async (
   })
 }
 
-// Grok 手动 RT 批量验证和创建
+// English-only note removed during locale cleanup
 const handleGrokValidateRT = async (refreshTokenInput: string) => {
   if (!refreshTokenInput.trim()) return
 
@@ -4986,7 +4986,7 @@ const handleGrokValidateRT = async (refreshTokenInput: string) => {
   }
 }
 
-// OpenAI OAuth 授权码兑换
+// English-only note removed during locale cleanup
 const handleOpenAIExchange = async (authCode: string) => {
   const oauthClient = openaiOAuth
   if (!authCode.trim() || !oauthClient.sessionId.value) return
@@ -5015,7 +5015,7 @@ const handleOpenAIExchange = async (authCode: string) => {
     const extra = buildOpenAIExtra(oauthExtra)
     const shouldCreateOpenAI = form.platform === 'openai'
 
-    // Add model mapping for OpenAI OAuth accounts（透传模式下不应用）
+    // English-only note removed during locale cleanup
     if (shouldCreateOpenAI && !isOpenAIModelRestrictionDisabled.value) {
       const modelMapping = buildModelMappingObject(modelRestrictionMode.value, allowedModels.value, modelMappings.value)
       if (modelMapping) {
@@ -5029,7 +5029,7 @@ const handleOpenAIExchange = async (authCode: string) => {
       }
     }
 
-    // 应用临时不可调度配置
+    // English-only note removed during locale cleanup
     if (!applyTempUnschedConfig(credentials)) {
       return
     }
@@ -5064,7 +5064,7 @@ const handleOpenAIExchange = async (authCode: string) => {
   }
 }
 
-// OpenAI 手动 RT 批量验证和创建
+// English-only note removed during locale cleanup
 // OpenAI Mobile RT client_id
 const OPENAI_MOBILE_RT_CLIENT_ID = 'app_LlGpXReQgckcGGUo2JrYvtJK'
 
@@ -5224,7 +5224,7 @@ const handleOpenAIImportCodexPAT = async (accessToken: string) => {
   }
 }
 
-// OpenAI RT 批量验证和创建（共享逻辑）
+// English-only note removed during locale cleanup
 const handleOpenAIBatchRT = async (refreshTokenInput: string, clientId?: string) => {
   const oauthClient = openaiOAuth
   if (!refreshTokenInput.trim()) return
@@ -5269,7 +5269,7 @@ const handleOpenAIBatchRT = async (refreshTokenInput: string, clientId?: string)
         const oauthExtra = oauthClient.buildExtraInfo(tokenInfo) as Record<string, unknown> | undefined
         const extra = buildOpenAIExtra(oauthExtra)
 
-        // Add model mapping for OpenAI OAuth accounts（透传模式下不应用）
+        // English-only note removed during locale cleanup
         if (shouldCreateOpenAI && !isOpenAIModelRestrictionDisabled.value) {
           const modelMapping = buildModelMappingObject(modelRestrictionMode.value, allowedModels.value, modelMappings.value)
           if (modelMapping) {
@@ -5338,13 +5338,13 @@ const handleOpenAIBatchRT = async (refreshTokenInput: string, clientId?: string)
   }
 }
 
-// 手动输入 RT（Codex CLI client_id，默认）
+// English-only note removed during locale cleanup
 const handleOpenAIValidateRT = (rt: string) => handleOpenAIBatchRT(rt)
 
-// 手动输入 Mobile RT
+// English-only note removed during locale cleanup
 const handleOpenAIValidateMobileRT = (rt: string) => handleOpenAIBatchRT(rt, OPENAI_MOBILE_RT_CLIENT_ID)
 
-// Antigravity 手动 RT 批量验证和创建
+// English-only note removed during locale cleanup
 const handleAntigravityValidateRT = async (refreshTokenInput: string) => {
   if (!refreshTokenInput.trim()) return
 
@@ -5436,7 +5436,7 @@ const handleAntigravityValidateRT = async (refreshTokenInput: string) => {
   }
 }
 
-// Gemini OAuth 授权码兑换
+// English-only note removed during locale cleanup
 const handleGeminiExchange = async (authCode: string) => {
   if (!authCode.trim() || !geminiOAuth.sessionId.value) return
 
@@ -5473,7 +5473,7 @@ const handleGeminiExchange = async (authCode: string) => {
   }
 }
 
-// Antigravity OAuth 授权码兑换
+// English-only note removed during locale cleanup
 const handleAntigravityExchange = async (authCode: string) => {
   if (!authCode.trim() || !antigravityOAuth.sessionId.value) return
 
@@ -5500,7 +5500,7 @@ const handleAntigravityExchange = async (authCode: string) => {
 		const credentials = antigravityOAuth.buildCredentials(tokenInfo)
 		applyAntigravityProjectID(credentials, antigravityProjectId.value, 'create')
 		applyInterceptWarmup(credentials, interceptWarmupRequests.value, 'create')
-		// Antigravity 只使用映射模式
+		// English-only note removed during locale cleanup
 		const antigravityModelMapping = buildModelMappingObject(
 			'mapping',
 			[],
@@ -5519,7 +5519,7 @@ const handleAntigravityExchange = async (authCode: string) => {
   }
 }
 
-// Grok OAuth 授权码兑换
+// English-only note removed during locale cleanup
 const handleGrokExchange = async (authCode: string) => {
   if (!authCode.trim() || !grokOAuth.sessionId.value) return
 
@@ -5554,7 +5554,7 @@ const handleGrokExchange = async (authCode: string) => {
   }
 }
 
-// Anthropic OAuth 授权码兑换
+// English-only note removed during locale cleanup
 const handleAnthropicExchange = async (authCode: string) => {
   if (!authCode.trim() || !oauth.sessionId.value) return
 
@@ -5602,7 +5602,7 @@ const handleAnthropicExchange = async (authCode: string) => {
       }
     }
 
-    // UMQ mode（独立于 RPM）
+    // English-only note removed during locale cleanup
     if (userMsgQueueMode.value) {
       extra.user_msg_queue_mode = userMsgQueueMode.value
     }
@@ -5643,7 +5643,7 @@ const handleAnthropicExchange = async (authCode: string) => {
   }
 }
 
-// 主入口：根据平台路由到对应处理函数
+// English-only note removed during locale cleanup
 const handleExchangeCode = async () => {
   const authCode = oauthFlowRef.value?.authCode || ''
 
@@ -5727,7 +5727,7 @@ const handleCookieAuth = async (sessionKey: string) => {
           }
         }
 
-        // UMQ mode（独立于 RPM）
+        // English-only note removed during locale cleanup
         if (userMsgQueueMode.value) {
           extra.user_msg_queue_mode = userMsgQueueMode.value
         }

@@ -686,9 +686,9 @@ const router = createRouter({
  */
 let authInitialized = false
 
-// 初始化导航加载状态和预加载
+// English-only note removed during locale cleanup
 const navigationLoading = useNavigationLoadingState()
-// 延迟初始化预加载，传入 router 实例
+// English-only note removed during locale cleanup
 let routePrefetch: ReturnType<typeof useRoutePrefetch> | null = null
 const BACKEND_MODE_ALLOWED_PATHS = ['/login', '/key-usage', '/setup', '/payment/result', '/payment/airwallex', '/legal']
 const BACKEND_MODE_CALLBACK_PATHS = [
@@ -719,7 +719,7 @@ function isBackendModePublicRouteAllowed(path: string, hasPendingAuthSession: bo
 }
 
 router.beforeEach(async (to, _from, next) => {
-  // 开始导航加载状态
+  // English-only note removed during locale cleanup
   navigationLoading.startNavigation()
 
   const authStore = useAuthStore()
@@ -830,7 +830,7 @@ router.beforeEach(async (to, _from, next) => {
     }
   }
 
-  // 简易模式下限制访问某些页面
+  // English-only note removed during locale cleanup
   if (authStore.isSimpleMode) {
     const restrictedPaths = [
       '/admin/groups',
@@ -841,7 +841,7 @@ router.beforeEach(async (to, _from, next) => {
     ]
 
     if (restrictedPaths.some((path) => to.path.startsWith(path))) {
-      // 简易模式下访问受限页面,重定向到仪表板
+      // English-only note removed during locale cleanup
       next(authStore.isAdmin ? '/admin/dashboard' : '/dashboard')
       return
     }
@@ -868,14 +868,14 @@ router.beforeEach(async (to, _from, next) => {
  * Navigation guard: End loading and trigger prefetch
  */
 router.afterEach((to) => {
-  // 结束导航加载状态
+  // English-only note removed during locale cleanup
   navigationLoading.endNavigation()
 
-  // 懒初始化预加载（首次导航时创建，传入 router 实例）
+  // English-only note removed during locale cleanup
   if (!routePrefetch) {
     routePrefetch = useRoutePrefetch(router)
   }
-  // 触发路由预加载（在浏览器空闲时执行）
+  // English-only note removed during locale cleanup
   routePrefetch.triggerPrefetch(to)
 })
 

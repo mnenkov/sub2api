@@ -216,25 +216,25 @@ const emit = defineEmits<{
   sort: [key: string, order: 'asc' | 'desc']
 }>()
 
-// 表格容器引用
+// English-only note removed during locale cleanup
 const tableWrapperRef = ref<HTMLElement | null>(null)
 const isScrollable = ref(false)
 const actionsColumnNeedsExpanding = ref(false)
 
-// --- 虚拟滚动「整表空白」根治 ---
-// 根因:本组件根 .table-wrapper 为 flex:1 / min-h-0,高度由父级 flex 链决定。@tanstack 虚拟化器
-// 仅在 observeElementRect 回调里写 scrollRect;一旦该回调读到 0 高度(加载瞬间 flex 未结算,或
-// 滚动中动态行高校正触发的 reflow),scrollRect 被钉死为 0 → calculateRange 返回 null → 整表空白。
-// 对策(见下方 virtualizer 选项):
-//   1) 覆写 observeElementRect,直接丢弃 height<=0 的读数,scrollRect 永不被钉成 0;
-//   2) initialRect 给一屏兜底高度,首个有效读数到来前也有行可渲染,绝不空白。
-// 兜底高度:表格区域大致 = 视口高度 - 顶栏/外边距/筛选/分页 ≈ 320px
+// English-only note removed during locale cleanup
+// English-only note removed during locale cleanup
+// English-only note removed during locale cleanup
+// English-only note removed during locale cleanup
+// English-only note removed during locale cleanup
+// English-only note removed during locale cleanup
+// English-only note removed during locale cleanup
+// English-only note removed during locale cleanup
 const estimatedViewportHeight = () => {
   if (typeof window === 'undefined') return 600
   return Math.max(window.innerHeight - 320, 400)
 }
 
-// 覆写默认 observeElementRect:过滤掉 0 高度读数(根治整表空白的关键)
+// English-only note removed during locale cleanup
 const observeElementRectNonZero = (
   instance: any,
   cb: (rect: { width: number; height: number }) => void
@@ -242,32 +242,32 @@ const observeElementRectNonZero = (
   if (rect.height > 0) cb(rect)
 })
 
-// 检查是否可滚动
+// English-only note removed during locale cleanup
 const checkScrollable = () => {
   if (tableWrapperRef.value) {
     isScrollable.value = tableWrapperRef.value.scrollWidth > tableWrapperRef.value.clientWidth
   }
 }
 
-// 检查操作列是否需要展开
+// English-only note removed during locale cleanup
 const checkActionsColumnWidth = () => {
   if (!tableWrapperRef.value) return
 
-  // 查找第一行的操作列单元格
+  // English-only note removed during locale cleanup
   const firstActionCell = tableWrapperRef.value.querySelector('tbody tr:first-child td:last-child')
   if (!firstActionCell) return
 
-  // 查找操作列内容的容器div
+  // English-only note removed during locale cleanup
   const actionsContainer = firstActionCell.querySelector('div')
   if (!actionsContainer) return
 
-  // 临时展开以测量完整宽度
+  // English-only note removed during locale cleanup
   const wasExpanded = actionsExpanded.value
   actionsExpanded.value = true
 
-  // 等待DOM更新
+  // English-only note removed during locale cleanup
   nextTick(() => {
-    // 测量所有按钮的总宽度
+    // English-only note removed during locale cleanup
     const actionItems = actionsContainer.querySelectorAll('button, a, [role="button"]')
     if (actionItems.length <= 2) {
       actionsColumnNeedsExpanding.value = false
@@ -275,7 +275,7 @@ const checkActionsColumnWidth = () => {
       return
     }
 
-    // 计算所有按钮的总宽度（包括gap）
+    // English-only note removed during locale cleanup
     let totalWidth = 0
     actionItems.forEach((item, index) => {
       totalWidth += (item as HTMLElement).offsetWidth
@@ -284,18 +284,18 @@ const checkActionsColumnWidth = () => {
       }
     })
 
-    // 获取单元格可用宽度（减去padding）
-    const cellWidth = (firstActionCell as HTMLElement).clientWidth - 32 // 减去左右padding
+    // English-only note removed during locale cleanup
+    const cellWidth = (firstActionCell as HTMLElement).clientWidth - 32 // English-only note removed during locale cleanup
 
-    // 如果总宽度超过可用宽度，需要展开功能
+    // English-only note removed during locale cleanup
     actionsColumnNeedsExpanding.value = totalWidth > cellWidth
 
-    // 恢复原来的展开状态
+    // English-only note removed during locale cleanup
     actionsExpanded.value = wasExpanded
   })
 }
 
-// 监听尺寸变化
+// English-only note removed during locale cleanup
 let resizeObserver: ResizeObserver | null = null
 let resizeHandler: (() => void) | null = null
 let desktopViewportMediaQuery: MediaQueryList | null = null
@@ -320,7 +320,7 @@ const attachDesktopTableTracking = () => {
     })
     resizeObserver.observe(tableWrapperRef.value)
   } else {
-    // 降级方案：不支持 ResizeObserver 时使用 window resize
+    // English-only note removed during locale cleanup
     resizeHandler = () => {
       checkScrollable()
       checkActionsColumnWidth()
@@ -364,7 +364,7 @@ interface Props {
   stickyFirstColumn?: boolean
   stickyActionsColumn?: boolean
   expandableActions?: boolean
-  actionsCount?: number // 操作按钮总数，用于判断是否需要展开功能
+  actionsCount?: number // English-only note removed during locale cleanup
   rowKey?: string | ((row: any) => string | number)
   /**
    * Default sort configuration (only applied when there is no persisted sort state)
@@ -553,8 +553,8 @@ watch(
   { immediate: true, flush: 'post' }
 )
 
-// 数据/列变化时重新检查滚动状态
-// 注意：不能监听 actionsExpanded，因为 checkActionsColumnWidth 会临时修改它，会导致无限循环
+// English-only note removed during locale cleanup
+// English-only note removed during locale cleanup
 watch(
   [() => props.data.length, columnsSignature],
   async () => {
@@ -565,7 +565,7 @@ watch(
   { flush: 'post' }
 )
 
-// 单独监听展开状态变化，只更新滚动状态
+// English-only note removed during locale cleanup
 watch(actionsExpanded, async () => {
   await nextTick()
   checkScrollable()
@@ -613,11 +613,11 @@ const rowVirtualizer = useVirtualizer(computed(() => ({
   getScrollElement: () => tableWrapperRef.value,
   estimateSize: () => props.estimateRowHeight ?? 56,
   overscan: props.overscan ?? 5,
-  // 兜底高度:首个有效高度读数到来前,先按一屏渲染,避免空白帧
+  // English-only note removed during locale cleanup
   initialRect: { width: 0, height: estimatedViewportHeight() },
-  // 关键:过滤 0 高度读数,杜绝 scrollRect 被钉成 0 → calculateRange 返回 null → 整表空白
+  // English-only note removed during locale cleanup
   observeElementRect: observeElementRectNonZero,
-  // 把测量类 ResizeObserver 回调批到 rAF,避免滚动中同步 reflow 风暴导致的校正抖动/空白
+  // English-only note removed during locale cleanup
   useAnimationFrameWithResizeObserver: true,
 })))
 
@@ -648,12 +648,12 @@ const hasSelectColumn = computed(() => {
   return props.columns.length > 0 && props.columns[0].key === 'select'
 })
 
-// 生成固定列的 CSS 类
+// English-only note removed during locale cleanup
 const getStickyColumnClass = (column: Column, index: number) => {
   const classes: string[] = []
 
   if (props.stickyFirstColumn) {
-    // 如果第一列是勾选列，固定前两列（勾选+名称）
+    // English-only note removed during locale cleanup
     if (hasSelectColumn.value) {
       if (index === 0) {
         classes.push('sticky-col sticky-col-left-first')
@@ -661,14 +661,14 @@ const getStickyColumnClass = (column: Column, index: number) => {
         classes.push('sticky-col sticky-col-left-second')
       }
     } else {
-      // 否则只固定第一列
+      // English-only note removed during locale cleanup
       if (index === 0) {
         classes.push('sticky-col sticky-col-left')
       }
     }
   }
 
-  // 操作列固定（最后一列）
+  // English-only note removed during locale cleanup
   if (props.stickyActionsColumn && column.key === 'actions') {
     classes.push('sticky-col sticky-col-right')
   }
@@ -676,11 +676,11 @@ const getStickyColumnClass = (column: Column, index: number) => {
   return classes.join(' ')
 }
 
-// 根据列数自适应调整内边距
+// English-only note removed during locale cleanup
 const getAdaptivePaddingClass = () => {
   const columnCount = props.columns.length
 
-  // 列数越多，内边距越小
+  // English-only note removed during locale cleanup
   if (columnCount >= 10) {
     return 'px-2' // 8px
   } else if (columnCount >= 7) {
@@ -688,7 +688,7 @@ const getAdaptivePaddingClass = () => {
   } else if (columnCount >= 5) {
     return 'px-4' // 16px
   } else {
-    return 'px-6' // 24px (原始值)
+    return 'px-6' // English-only note removed during locale cleanup
   }
 }
 
@@ -746,9 +746,9 @@ defineExpose({
 </script>
 
 <style scoped>
-/* 表格横向滚动 */
+/* English-only note removed during locale cleanup */
 .table-wrapper {
-  --select-col-width: 52px; /* 勾选列宽度：px-6 (24px*2) + checkbox (16px) */
+  --select-col-width: 52px; /* English-only note removed during locale cleanup */
   position: relative;
   overflow-x: auto;
   overflow-y: auto;
@@ -757,7 +757,7 @@ defineExpose({
   isolation: isolate;
 }
 
-/* 表头容器，确保在滚动时覆盖表体内容 */
+/* English-only note removed during locale cleanup */
 .table-wrapper .table-header {
   position: sticky;
   top: 0;
@@ -769,17 +769,17 @@ defineExpose({
   background-color: rgb(31 41 55);
 }
 
-/* 表体保持在表头下方 */
+/* English-only note removed during locale cleanup */
 .table-body {
   position: relative;
   z-index: 0;
 }
 
-/* 所有表头单元格固定在顶部 */
+/* English-only note removed during locale cleanup */
 .sticky-header-cell {
   position: sticky;
   top: 0;
-  z-index: 210; /* 必须高于所有表体内容 */
+  z-index: 210; /* English-only note removed during locale cleanup */
   background-color: rgb(249 250 251);
 }
 
@@ -787,38 +787,38 @@ defineExpose({
   background-color: rgb(31 41 55);
 }
 
-/* Sticky 列基础样式 */
+/* English-only note removed during locale cleanup */
 .sticky-col {
   position: sticky;
-  z-index: 20; /* 表体固定列 */
+  z-index: 20; /* English-only note removed during locale cleanup */
 }
 
-/* 单列固定（无勾选列时） */
+/* English-only note removed during locale cleanup */
 .sticky-col-left {
   left: 0;
 }
 
-/* 双列固定（有勾选列时）：第一列（勾选） */
+/* English-only note removed during locale cleanup */
 .sticky-col-left-first {
   left: 0;
 }
 
-/* 双列固定（有勾选列时）：第二列（名称） */
+/* English-only note removed during locale cleanup */
 .sticky-col-left-second {
   left: var(--select-col-width);
 }
 
-/* 操作列固定 */
+/* English-only note removed during locale cleanup */
 .sticky-col-right {
   right: 0;
 }
 
-/* 表头 sticky 列 - 需要比普通表头单元格更高的 z-index */
+/* English-only note removed during locale cleanup */
 .sticky-header-cell.sticky-col {
-  z-index: 220; /* 高于普通表头单元格和表体固定列 */
+  z-index: 220; /* English-only note removed during locale cleanup */
 }
 
-/* 表体 sticky 列背景 */
+/* English-only note removed during locale cleanup */
 tbody .sticky-col {
   background-color: white;
 }
@@ -827,7 +827,7 @@ tbody .sticky-col {
   background-color: rgb(17 24 39);
 }
 
-/* hover 状态保持 */
+/* English-only note removed during locale cleanup */
 tbody tr:hover .sticky-col {
   background-color: rgb(249 250 251);
 }
@@ -836,8 +836,8 @@ tbody tr:hover .sticky-col {
   background-color: rgb(31 41 55);
 }
 
-/* 阴影只在可滚动时显示 */
-/* 单列固定右侧阴影 */
+/* English-only note removed during locale cleanup */
+/* English-only note removed during locale cleanup */
 .is-scrollable .sticky-col-left::after {
   content: '';
   position: absolute;
@@ -850,7 +850,7 @@ tbody tr:hover .sticky-col {
   pointer-events: none;
 }
 
-/* 双列固定：只在第二列显示阴影 */
+/* English-only note removed during locale cleanup */
 .is-scrollable .sticky-col-left-second::after {
   content: '';
   position: absolute;
@@ -863,7 +863,7 @@ tbody tr:hover .sticky-col {
   pointer-events: none;
 }
 
-/* 操作列左侧阴影 */
+/* English-only note removed during locale cleanup */
 .is-scrollable .sticky-col-right::before {
   content: '';
   position: absolute;
@@ -876,7 +876,7 @@ tbody tr:hover .sticky-col {
   pointer-events: none;
 }
 
-/* 暗色模式阴影 */
+/* English-only note removed during locale cleanup */
 .dark .is-scrollable .sticky-col-left::after,
 .dark .is-scrollable .sticky-col-left-second::after {
   background: linear-gradient(to right, rgba(0, 0, 0, 0.2), transparent);
@@ -889,16 +889,16 @@ tbody tr:hover .sticky-col {
 
 <style>
 /* ==========================================================================
-   终极悬浮滚动条防丢器 (Sledgehammer Override)
-   绕过 style.css 中 `* { scrollbar-color: transparent }` 的全局悬停隐身诅咒！
+   Floating scrollbar visibility override.
+   Bypasses the global transparent scrollbar-color rule in style.css.
    ========================================================================== */
 
-/* 1. 废除全局针对所有元素的 scrollbar-width 设定，拿回 Chrome/Safari 下 Webkit 滚动条规则的控制权！ */
+/* English-only note removed during locale cleanup */
 .table-wrapper {
-  scrollbar-width: auto !important; /* 阻止 Chrome 121 退化到原生 Mac 闪隐滚动条 */
+  scrollbar-width: auto !important; /* English-only note removed during locale cleanup */
 }
 
-/* 2. 重写 Webkit 滚动层，全部加上 !important 强制覆盖透明悬停陷阱 */
+/* English-only note removed during locale cleanup */
 .table-wrapper::-webkit-scrollbar {
   height: 12px !important;
   width: 12px !important;
@@ -915,7 +915,7 @@ tbody tr:hover .sticky-col {
   background-color: rgba(255, 255, 255, 0.05) !important;
 }
 
-/* 常驻、不透明的滑块，无视鼠标是否 hover 都在那！ */
+/* English-only note removed during locale cleanup */
 .table-wrapper::-webkit-scrollbar-thumb {
   background-color: rgba(107, 114, 128, 0.75) !important; 
   border-radius: 6px !important;
@@ -934,7 +934,7 @@ tbody tr:hover .sticky-col {
   background-color: rgba(209, 213, 219, 0.9) !important;
 }
 
-/* 3. 仅给真正的 Firefox 留的后路 */
+/* English-only note removed during locale cleanup */
 @supports (-moz-appearance:none) {
   .table-wrapper {
     scrollbar-width: thin !important;

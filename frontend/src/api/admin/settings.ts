@@ -16,23 +16,23 @@ export interface DefaultSubscriptionSetting {
   validity_days: number;
 }
 
-// ── 平台限额类型 ──────────────────────────────────────────────────
+// English-only note removed during locale cleanup
 export type PlatformType = "anthropic" | "openai" | "gemini" | "antigravity" | "grok"
 export type QuotaWindowType = "daily" | "weekly" | "monthly"
 
-/** 单平台三档限额；null = 不限制，undefined = 未填（等价 null） */
+/* English-only note removed during locale cleanup */
 export interface PlatformQuotaLimits {
   daily:   number | null
   weekly:  number | null
   monthly: number | null
 }
 
-/** 全平台默认限额 map（key = PlatformType） */
+/* English-only note removed during locale cleanup */
 export type DefaultPlatformQuotasMap = Partial<Record<PlatformType, PlatformQuotaLimits>>
 
 const PLATFORMS: PlatformType[] = ["anthropic", "openai", "gemini", "antigravity", "grok"]
 
-/** 归一化为全 4 平台 × 3 窗口（缺失填 null），供模板非空绑定 */
+/* English-only note removed during locale cleanup */
 export function normalizePlatformQuotasMap(input?: DefaultPlatformQuotasMap | null): DefaultPlatformQuotasMap {
   const result: DefaultPlatformQuotasMap = {}
   for (const p of PLATFORMS) {
@@ -46,7 +46,7 @@ export function normalizePlatformQuotasMap(input?: DefaultPlatformQuotasMap | nu
   return result
 }
 
-/** 提交前清洗：非有限数/负数/空字符串 → null（保留 0 = 显式禁用），返回全 4 平台嵌套 map */
+/* English-only note removed during locale cleanup */
 export function sanitizePlatformQuotasMap(input?: DefaultPlatformQuotasMap | null): DefaultPlatformQuotasMap {
   const clean = (v: unknown): number | null => (typeof v === "number" && Number.isFinite(v) && v >= 0 ? v : null)
   const result: DefaultPlatformQuotasMap = {}
@@ -72,7 +72,7 @@ export interface AuthSourceDefaultsValue {
   subscriptions: DefaultSubscriptionSetting[];
   grant_on_signup: boolean;
   grant_on_first_bind: boolean;
-  // ★ 新增：平台限额覆盖（key = PlatformType）
+  // English-only note removed during locale cleanup
   platform_quotas: DefaultPlatformQuotasMap;
 }
 
@@ -91,14 +91,12 @@ export type WeChatConnectMode = "open" | "mp" | "mobile";
 
 export interface PaymentVisibleMethodSourceOption {
   value: PaymentVisibleMethodSource;
-  labelZh: string;
-  labelEn: string;
+  label: string;
 }
 
 export interface WeChatConnectModeOption {
   value: WeChatConnectMode;
-  labelZh: string;
-  labelEn: string;
+  label: string;
 }
 
 const AUTH_SOURCE_TYPES: AuthSourceType[] = [
@@ -117,29 +115,25 @@ const PAYMENT_VISIBLE_METHOD_SOURCE_OPTIONS: Record<
   PaymentVisibleMethodSourceOption[]
 > = {
   alipay: [
-    { value: "", labelZh: "未配置", labelEn: "Not configured" },
+    { value: "", label: "Not configured" },
     {
       value: "official_alipay",
-      labelZh: "支付宝官方",
-      labelEn: "Official Alipay",
+      label: "Official Alipay",
     },
     {
       value: "easypay_alipay",
-      labelZh: "易支付支付宝",
-      labelEn: "EasyPay Alipay",
+      label: "EasyPay Alipay",
     },
   ],
   wxpay: [
-    { value: "", labelZh: "未配置", labelEn: "Not configured" },
+    { value: "", label: "Not configured" },
     {
       value: "official_wxpay",
-      labelZh: "微信官方",
-      labelEn: "Official WeChat Pay",
+      label: "Official WeChat Pay",
     },
     {
       value: "easypay_wxpay",
-      labelZh: "易支付微信",
-      labelEn: "EasyPay WeChat Pay",
+      label: "EasyPay WeChat Pay",
     },
   ],
 };
@@ -166,16 +160,14 @@ const PAYMENT_VISIBLE_METHOD_SOURCE_ALIASES: Record<
   },
 };
 const WECHAT_CONNECT_MODE_OPTIONS: WeChatConnectModeOption[] = [
-  { value: "open", labelZh: "PC 应用", labelEn: "PC App" },
+  { value: "open", label: "PC App" },
   {
     value: "mp",
-    labelZh: "公众号",
-    labelEn: "Official Account",
+    label: "Official Account",
   },
   {
     value: "mobile",
-    labelZh: "移动应用",
-    labelEn: "Mobile App",
+    label: "Mobile App",
   },
 ];
 const WECHAT_CONNECT_MODE_ALIASES: Record<string, WeChatConnectMode> = {
@@ -364,8 +356,8 @@ export interface SystemSettings {
   password_reset_enabled: boolean;
   frontend_url: string;
   invitation_code_enabled: boolean;
-  totp_enabled: boolean; // TOTP 双因素认证
-  totp_encryption_key_configured: boolean; // TOTP 加密密钥是否已配置
+  totp_enabled: boolean; // English-only note removed during locale cleanup
+  totp_encryption_key_configured: boolean; // English-only note removed during locale cleanup
   login_agreement_enabled: boolean;
   login_agreement_mode: "modal" | "checkbox" | string;
   login_agreement_updated_at: string;
@@ -415,7 +407,7 @@ export interface SystemSettings {
   auth_source_default_google_grant_on_signup?: boolean;
   auth_source_default_google_grant_on_first_bind?: boolean;
   force_email_on_third_party_signup?: boolean;
-  // ── 平台限额（嵌套 JSON，系统层 + 7 auth-source 层）────────────────────────────────
+  // English-only note removed during locale cleanup
   default_platform_quotas?: DefaultPlatformQuotasMap;
   auth_source_default_email_platform_quotas?: DefaultPlatformQuotasMap;
   auth_source_default_linuxdo_platform_quotas?: DefaultPlatformQuotasMap;
@@ -549,7 +541,7 @@ export interface SystemSettings {
   min_claude_code_version: string;
   max_claude_code_version: string;
 
-  // 分组隔离
+  // English-only note removed during locale cleanup
   allow_ungrouped_key_scheduling: boolean;
 
   // Gateway forwarding behavior
@@ -563,7 +555,7 @@ export interface SystemSettings {
   rewrite_message_cache_control: boolean;
   antigravity_user_agent_version: string;
   openai_codex_user_agent: string;
-  // codex_cli_only 加固
+  // English-only note removed during locale cleanup
   min_codex_version: string;
   max_codex_version: string;
   codex_cli_only_blacklist: string;
@@ -606,7 +598,7 @@ export interface SystemSettings {
   payment_visible_method_wxpay_enabled?: boolean;
   openai_advanced_scheduler_enabled?: boolean;
 
-  // 余额、订阅到期与账号限额通知
+  // English-only note removed during locale cleanup
   balance_low_notify_enabled: boolean;
   balance_low_notify_threshold: number;
   balance_low_notify_recharge_url: string;
@@ -621,7 +613,7 @@ export interface SystemSettings {
   // Available Channels feature switch
   available_channels_enabled: boolean;
 
-  // Affiliate (邀请返利) feature switch
+  // English-only note removed during locale cleanup
   affiliate_enabled: boolean;
 
   // OpenAI fast/flex policy
@@ -639,7 +631,7 @@ export interface UpdateSettingsRequest {
   password_reset_enabled?: boolean;
   frontend_url?: string;
   invitation_code_enabled?: boolean;
-  totp_enabled?: boolean; // TOTP 双因素认证
+  totp_enabled?: boolean; // English-only note removed during locale cleanup
   login_agreement_enabled?: boolean;
   login_agreement_mode?: "modal" | "checkbox" | string;
   login_agreement_updated_at?: string;
@@ -688,7 +680,7 @@ export interface UpdateSettingsRequest {
   auth_source_default_google_grant_on_signup?: boolean;
   auth_source_default_google_grant_on_first_bind?: boolean;
   force_email_on_third_party_signup?: boolean;
-  // ── 平台限额（嵌套 JSON，系统层 + 7 auth-source 层）────────────────────────────────
+  // English-only note removed during locale cleanup
   default_platform_quotas?: DefaultPlatformQuotasMap;
   auth_source_default_email_platform_quotas?: DefaultPlatformQuotasMap;
   auth_source_default_linuxdo_platform_quotas?: DefaultPlatformQuotasMap;
@@ -813,7 +805,7 @@ export interface UpdateSettingsRequest {
   rewrite_message_cache_control?: boolean;
   antigravity_user_agent_version?: string;
   openai_codex_user_agent?: string;
-  // codex_cli_only 加固
+  // English-only note removed during locale cleanup
   min_codex_version?: string;
   max_codex_version?: string;
   codex_cli_only_blacklist?: string;
@@ -853,7 +845,7 @@ export interface UpdateSettingsRequest {
   payment_visible_method_alipay_enabled?: boolean;
   payment_visible_method_wxpay_enabled?: boolean;
   openai_advanced_scheduler_enabled?: boolean;
-  // 余额、订阅到期与账号限额通知
+  // English-only note removed during locale cleanup
   balance_low_notify_enabled?: boolean;
   balance_low_notify_threshold?: number;
   balance_low_notify_recharge_url?: string;
@@ -868,7 +860,7 @@ export interface UpdateSettingsRequest {
   // Available Channels feature switch
   available_channels_enabled?: boolean;
 
-  // Affiliate (邀请返利) feature switch
+  // English-only note removed during locale cleanup
   affiliate_enabled?: boolean;
 
   // OpenAI fast/flex policy

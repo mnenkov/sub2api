@@ -91,10 +91,8 @@ import DOMPurify from 'dompurify'
 import { useI18n } from 'vue-i18n'
 import Icon from '@/components/icons/Icon.vue'
 import { getPublicSettings } from '@/api/auth'
-import { getLocale } from '@/i18n'
 import { sanitizeUrl } from '@/utils/url'
 import type { LoginAgreementDocument, PublicSettings } from '@/types'
-import zhAdminCompliance from '../../../../docs/legal/admin-compliance.zh.md?raw'
 import enAdminCompliance from '../../../../docs/legal/admin-compliance.en.md?raw'
 
 type LegalDocumentIcon = 'document' | 'shield' | 'globe' | 'cog'
@@ -130,7 +128,7 @@ const currentDocument = computed<LoginAgreementDocument | null>(() => {
     return {
       id: 'admin-compliance',
       title: t('adminCompliance.title'),
-      content_md: getLocale() === 'zh' ? zhAdminCompliance : enAdminCompliance
+      content_md: enAdminCompliance
     }
   }
   const id = documentId.value
@@ -152,14 +150,14 @@ const renderedHtml = computed(() => {
 })
 
 const documentIcon = computed<LegalDocumentIcon>(() => {
-  const title = currentDocument.value?.title || ''
-  if (title.includes('政策') || title.includes('隐私')) {
+  const title = (currentDocument.value?.title || '').toLowerCase()
+  if (title.includes('policy') || title.includes('privacy')) {
     return 'shield'
   }
-  if (title.includes('国家') || title.includes('地区')) {
+  if (title.includes('countr') || title.includes('region')) {
     return 'globe'
   }
-  if (title.includes('特定')) {
+  if (title.includes('specific')) {
     return 'cog'
   }
   return 'document'

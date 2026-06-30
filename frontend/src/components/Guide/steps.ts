@@ -1,14 +1,14 @@
 import { DriveStep } from 'driver.js'
 
 /**
- * 管理员完整引导流程
- * 交互式引导：指引用户实际操作
- * @param t 国际化函数
- * @param isSimpleMode 是否为简易模式（简易模式下会过滤分组相关步骤）
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
+ * English-only note removed during locale cleanup.
  */
 export const getAdminSteps = (t: (key: string) => string, isSimpleMode = false): DriveStep[] => {
   const allSteps: DriveStep[] = [
-  // ========== 欢迎介绍 ==========
+  // English-only note removed during locale cleanup
   {
     popover: {
       title: t('onboarding.admin.welcome.title'),
@@ -19,7 +19,7 @@ export const getAdminSteps = (t: (key: string) => string, isSimpleMode = false):
     }
   },
 
-  // ========== 第一部分：创建分组 ==========
+  // English-only note removed during locale cleanup
   {
     element: '#sidebar-group-manage',
     popover: {
@@ -91,7 +91,7 @@ export const getAdminSteps = (t: (key: string) => string, isSimpleMode = false):
     }
   },
 
-  // ========== 第二部分：创建账号授权 ==========
+  // English-only note removed during locale cleanup
   {
     element: '#sidebar-channel-manage',
     popover: {
@@ -173,7 +173,7 @@ export const getAdminSteps = (t: (key: string) => string, isSimpleMode = false):
     }
   },
 
-  // ========== 第三部分：创建API密钥 ==========
+  // English-only note removed during locale cleanup
   {
     element: '[data-tour="sidebar-my-keys"]',
     popover: {
@@ -226,11 +226,11 @@ export const getAdminSteps = (t: (key: string) => string, isSimpleMode = false):
   }
   ]
 
-  // 简易模式下过滤分组相关步骤
+  // English-only note removed during locale cleanup
   if (isSimpleMode) {
     return allSteps.filter(step => {
       const element = step.element as string | undefined
-      // 过滤掉分组管理和账号分组选择相关步骤
+      // English-only note removed during locale cleanup
       return !element || (
         !element.includes('sidebar-group-manage') &&
         !element.includes('groups-create-btn') &&
@@ -244,7 +244,7 @@ export const getAdminSteps = (t: (key: string) => string, isSimpleMode = false):
 }
 
 /**
- * 普通用户引导流程
+ * English-only note removed during locale cleanup.
  */
 export const getUserSteps = (t: (key: string) => string): DriveStep[] => [
   {

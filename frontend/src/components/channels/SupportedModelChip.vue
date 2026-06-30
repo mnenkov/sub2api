@@ -40,7 +40,7 @@
         :class="[popoverBorderClass]"
         :style="popoverStyle"
       >
-        <!-- Header：平台主题色背景，含模型名 + 平台徽章 -->
+        <!-- English-only note removed during locale cleanup. -->
         <div
           class="flex items-center justify-between gap-2 rounded-t-lg border-b px-3 py-2"
           :class="[popoverHeaderClass, popoverBorderClass]"
@@ -161,8 +161,8 @@ import {
   BILLING_MODE_IMAGE,
   type BillingMode
 } from '@/constants/channel'
-// 复用 api/channels.ts 的用户侧最小形态 DTO。
-// admin 侧 ChannelModelPricing 字段更多，但结构上是用户 DTO 的超集，admin 视图传入可直接通过结构化子类型检查。
+// English-only note removed during locale cleanup
+// English-only note removed during locale cleanup
 import type { UserPricingInterval, UserSupportedModel } from '@/api/channels'
 import PlatformIcon from '@/components/common/PlatformIcon.vue'
 import type { GroupPlatform } from '@/types'
@@ -171,13 +171,13 @@ import { platformBadgeClass, platformBorderClass, platformBadgeLightClass } from
 const props = withDefaults(
   defineProps<{
     model: UserSupportedModel
-    /** i18n 前缀：管理端传 `admin.availableChannels.pricing`，用户端传 `availableChannels.pricing`。 */
+    /* English-only note removed during locale cleanup */
     pricingKeyPrefix?: string
     noPricingLabel?: string
     showPlatform?: boolean
     /**
-     * 当 model.platform 缺失（如 admin 聚合场景）时，用父行的平台作为兜底着色。
-     * 仅用于视觉，不影响业务逻辑。
+     * English-only note removed during locale cleanup.
+     * English-only note removed during locale cleanup.
      */
     platformHint?: string
   }>(),
@@ -193,7 +193,7 @@ const effectivePlatform = computed<string>(() => props.model.platform || props.p
 
 const { t } = useI18n()
 
-/** 按 token 定价展示时的换算单位：每百万 token。 */
+/* English-only note removed during locale cleanup */
 const perMillionScale = 1_000_000
 
 // Popover border + header classes echo the platform theme so each card reads
