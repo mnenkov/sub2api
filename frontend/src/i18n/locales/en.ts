@@ -12,13 +12,24 @@ export default {
     goToDashboard: 'Go to Dashboard',
     secondaryCta: 'Check API key usage',
     headerTagline: 'AI API Gateway',
-    heroTitle: 'One OpenAI-compatible endpoint for leading AI models',
+    nav: {
+      workflow: 'Workflow',
+      control: 'Control',
+      models: 'Models'
+    },
+    sections: {
+      workflow: 'Gateway workflow',
+      control: 'Operating layer',
+      models: 'Model access',
+      comparison: 'Gateway advantage'
+    },
+    heroTitle: 'One gateway for model access, budgets, and usage control',
     heroSubtitle: 'One Key, All AI Models',
-    heroDescription: 'Route requests to GPT, Claude, Gemini, Grok and more through a single API key with spend controls, shared billing, usage analytics, and zero-config SDK compatibility.',
+    heroDescription: 'Route configured model providers through a single API shape with project keys, spend controls, shared billing, usage analytics, and SDK-friendly migration.',
     heroMetrics: [
-      { value: '25%', label: 'cheaper than going direct' },
-      { value: '<50ms', label: 'routing overhead' },
-      { value: '99.9%', label: 'uptime SLA' }
+      { value: '1', label: 'compatible gateway endpoint' },
+      { value: 'Live', label: 'usage and cost visibility' },
+      { value: 'Policy', label: 'limits before each request' }
     ],
     heroPanel: {
       title: 'Spend guardrail active',
@@ -26,10 +37,10 @@ export default {
       spend: 'Month spend'
     },
     stats: [
-      { value: '25%', label: 'cheaper than direct provider access' },
-      { value: '10+', label: 'models available behind one endpoint' },
-      { value: '<50ms', label: 'median routing overhead' },
-      { value: '99.9%', label: 'uptime SLA for production teams' }
+      { value: '1', label: 'compatible gateway endpoint' },
+      { value: 'Live', label: 'usage and cost visibility' },
+      { value: 'Policy', label: 'limits before each request' },
+      { value: 'Team', label: 'shared billing and analytics' }
     ],
     tags: {
       subscriptionToApi: 'Subscription to API',
@@ -70,8 +81,8 @@ export default {
       subtitle: 'Three simple steps to stress-free AI access'
     },
     features: {
-      title: 'Built for teams shipping with multiple AI providers',
-      subtitle: 'Use one gateway for routing, budgets, collaboration, and analytics while keeping your existing SDKs and HTTP clients.',
+      title: 'Built for teams operating AI access at production scale',
+      subtitle: 'Use one gateway for routing policy, budgets, collaboration, and analytics while keeping your existing SDKs and HTTP clients.',
       unifiedGateway: 'One-Click Access',
       unifiedGatewayDesc: 'Get a single API key to call all connected AI models. No separate applications needed.',
       multiAccount: 'Always Reliable',
@@ -82,7 +93,7 @@ export default {
         {
           icon: 'server',
           title: 'One endpoint for every model',
-          description: 'Call leading models through an OpenAI-compatible base URL without rewriting your application.'
+          description: 'Expose configured model routes through one compatible base URL without rewriting your application.'
         },
         {
           icon: 'shield',
@@ -102,29 +113,29 @@ export default {
         {
           icon: 'bolt',
           title: 'Fast intelligent routing',
-          description: 'Keep routing overhead under 50ms while steering traffic to the right model for each request.'
+          description: 'Steer traffic by policy, availability, and account health while keeping the gateway layer lightweight.'
         },
         {
           icon: 'swap',
-          title: 'Zero-config migration',
+          title: 'Low-friction migration',
           description: 'Change your base URL and API key, then keep using Cursor, Continue, OpenAI SDKs, or raw HTTP.'
         }
       ]
     },
     howItWorks: {
-      title: 'How it works',
+      title: 'How the gateway fits your workflow',
       subtitle: 'Start with your current OpenAI-compatible client, then add model choice, budgets, and team visibility at the gateway layer.',
       steps: [
         {
-          title: 'Point clients at the gateway',
+          title: 'Point clients at your gateway',
           description: 'Swap the base URL and API key in your existing SDK, editor, or HTTP client.'
         },
         {
-          title: 'Choose models and limits',
+          title: 'Choose routes and limits',
           description: 'Enable provider routes, assign team access, and set spend limits per key or group.'
         },
         {
-          title: 'Track usage in one place',
+          title: 'Monitor usage in one place',
           description: 'Review requests, cost, and model mix from a single shared billing and analytics view.'
         }
       ]
@@ -150,12 +161,12 @@ export default {
         {
           feature: 'Model choice',
           direct: 'Each provider needs separate setup',
-          gateway: '10+ models through one OpenAI-compatible endpoint'
+          gateway: 'Configured model routes through one compatible endpoint'
         },
         {
           feature: 'Setup',
           direct: 'SDK and key changes for every provider',
-          gateway: 'Zero-config switch by changing base URL and API key'
+          gateway: 'Low-friction switch by changing base URL and API key'
         },
         {
           feature: 'Visibility',
@@ -171,7 +182,7 @@ export default {
     },
     providers: {
       title: 'Models and tools that fit your workflow',
-      description: 'Route to leading AI providers and keep using the development tools your team already has.',
+      description: 'Route to configured AI providers and keep using the development tools your team already has.',
       compatibility: 'Compatible with Cursor, Continue, OpenAI SDKs, and raw HTTP',
       supported: 'Supported',
       soon: 'Soon',
@@ -196,10 +207,10 @@ export default {
     benefits: {
       title: 'Designed for production usage',
       items: [
-        '25% cheaper than going direct',
-        '10+ models behind one endpoint',
-        '<50ms routing overhead',
-        '99.9% uptime SLA'
+        'One compatible gateway endpoint',
+        'Configured models behind one control plane',
+        'Policy checks before provider calls',
+        'Shared usage and billing visibility'
       ]
     },
     // CTA section
@@ -212,6 +223,15 @@ export default {
     footer: {
       allRightsReserved: 'All rights reserved.',
       tagline: 'Unified model access, budget controls, and team analytics.'
+    },
+    authLayout: {
+      title: 'Sign in to route models, keys, and spend from one control plane.',
+      formTitle: 'Account access',
+      signals: [
+        'Issue OpenAI-compatible keys for every project.',
+        'Apply budget limits before requests reach providers.',
+        'Monitor model usage, cost, and routing health in one place.'
+      ]
     }
   },
 
