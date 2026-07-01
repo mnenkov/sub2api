@@ -11,8 +11,9 @@ describe('resolveDocumentTitle', () => {
   })
 
   it('站点名为空时，回退默认站点名', () => {
-    expect(resolveDocumentTitle('Dashboard', '')).toBe('Dashboard - AI Gateway')
-    expect(resolveDocumentTitle(undefined, '   ')).toBe('AI Gateway')
+    expect(resolveDocumentTitle('Dashboard', '')).toBe('Dashboard - Subtrix')
+    expect(resolveDocumentTitle(undefined, '   ')).toBe('Subtrix')
+    expect(resolveDocumentTitle('Home', 'Sub2API')).toBe('Home - Subtrix')
   })
 
   it('站点名变更时仅影响后续路由标题计算', () => {

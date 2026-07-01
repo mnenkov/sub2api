@@ -394,13 +394,14 @@ import { useI18n } from 'vue-i18n'
 import { useAppStore } from '@/stores'
 import Icon from '@/components/icons/Icon.vue'
 import { buildGatewayUrl } from '@/api/client'
+import { resolvePublicSiteName } from '@/utils/publicBrand'
 
 const { t } = useI18n()
 const appStore = useAppStore()
 
 // ==================== Site Settings (same as HomeView) ====================
 
-const siteName = computed(() => appStore.cachedPublicSettings?.site_name || appStore.siteName || 'Subtrix')
+const siteName = computed(() => resolvePublicSiteName(appStore.cachedPublicSettings?.site_name || appStore.siteName))
 const siteLogo = computed(() => appStore.cachedPublicSettings?.site_logo || appStore.siteLogo || '')
 
 // ==================== Theme (same as HomeView) ====================

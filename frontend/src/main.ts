@@ -4,6 +4,7 @@ import App from './App.vue'
 import router from './router'
 import i18n, { initI18n } from './i18n'
 import { useAppStore } from '@/stores/app'
+import { resolvePublicSiteName } from '@/utils/publicBrand'
 import './style.css'
 
 function initThemeClass() {
@@ -29,7 +30,7 @@ async function bootstrap() {
 
   // Set document title immediately after config is loaded
   if (appStore.siteName) {
-    document.title = `${appStore.siteName} - AI API Gateway`
+    document.title = `${resolvePublicSiteName(appStore.siteName)} - AI API Gateway`
   }
 
   await initI18n()

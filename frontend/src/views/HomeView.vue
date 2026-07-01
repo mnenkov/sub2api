@@ -67,15 +67,27 @@
 
             <div class="mt-9 flex flex-col gap-3 sm:flex-row">
               <router-link
+                v-if="isAuthenticated"
                 :to="isAuthenticated ? dashboardPath : '/login'"
                 class="primary-action"
               >
-                {{ isAuthenticated ? t('home.goToDashboard') : t('home.getStarted') }}
+                {{ t('home.goToDashboard') }}
                 <Icon name="arrowRight" size="md" :stroke-width="2" />
               </router-link>
-              <router-link to="/key-usage" class="secondary-action">
+              <a
+                v-else
+                :href="requestKeyHref"
+                class="primary-action"
+              >
+                {{ t('home.getStarted') }}
+                <Icon name="arrowRight" size="md" :stroke-width="2" />
+              </a>
+              <a :href="healthCheckUrl" target="_blank" rel="noopener noreferrer" class="secondary-action">
                 {{ t('home.secondaryCta') }}
-              </router-link>
+              </a>
+              <button type="button" class="secondary-action" @click="copyBaseUrlSetup">
+                {{ t('home.copyBaseUrl') }}
+              </button>
             </div>
 
             <dl class="mt-10 grid max-w-3xl grid-cols-1 gap-3 sm:grid-cols-3">
@@ -97,9 +109,9 @@
             </div>
 
             <div class="code-window">
-              <div><span class="text-cyan-300">client</span>.baseURL = <span class="text-emerald-300">"https://your-gateway.example/v1"</span></div>
-              <div><span class="text-cyan-300">model</span> = <span class="text-emerald-300">"best-available"</span></div>
-              <div><span class="text-cyan-300">budget</span> = <span class="text-emerald-300">"team-guardrail"</span></div>
+              <div><span class="text-cyan-300">client</span>.baseURL = <span class="text-emerald-300">"https://api.subtrix.org/v1"</span></div>
+              <div><span class="text-cyan-300">apiKey</span> = <span class="text-emerald-300">"sk-subtrix..."</span></div>
+              <div><span class="text-cyan-300">savings</span> = <span class="text-emerald-300">"route + model dependent"</span></div>
             </div>
 
             <div class="routing-panel">
@@ -241,13 +253,17 @@
             <p>{{ t('home.cta.description') }}</p>
           </div>
           <div class="flex flex-col gap-3 sm:flex-row">
-            <router-link :to="isAuthenticated ? dashboardPath : '/login'" class="primary-action">
-              {{ isAuthenticated ? t('home.goToDashboard') : t('home.cta.button') }}
+            <router-link v-if="isAuthenticated" :to="dashboardPath" class="primary-action">
+              {{ t('home.goToDashboard') }}
               <Icon name="arrowRight" size="md" :stroke-width="2" />
             </router-link>
-            <router-link to="/key-usage" class="secondary-action secondary-action--dark">
+            <a v-else :href="requestKeyHref" class="primary-action">
+              {{ t('home.cta.button') }}
+              <Icon name="arrowRight" size="md" :stroke-width="2" />
+            </a>
+            <a :href="healthCheckUrl" target="_blank" rel="noopener noreferrer" class="secondary-action secondary-action--dark">
               {{ t('home.cta.secondaryButton') }}
-            </router-link>
+            </a>
           </div>
         </div>
       </section>
@@ -271,13 +287,14 @@ import { useAppStore, useAuthStore } from '@/stores'
 import Icon from '@/components/icons/Icon.vue'
 import ModelIcon from '@/components/common/ModelIcon.vue'
 import { sanitizeUrl } from '@/utils/url'
+import { resolvePublicSiteName } from '@/utils/publicBrand'
 
 const { t, tm } = useI18n()
 
 const authStore = useAuthStore()
 const appStore = useAppStore()
 
-const siteName = computed(() => appStore.cachedPublicSettings?.site_name || appStore.siteName || 'AI Gateway')
+const siteName = computed(() => resolvePublicSiteName(appStore.cachedPublicSettings?.site_name || appStore.siteName))
 const siteLogo = computed(() => sanitizeUrl(appStore.cachedPublicSettings?.site_logo || appStore.siteLogo || '', { allowRelative: true, allowDataUrl: true }))
 const siteSubtitle = computed(() => appStore.cachedPublicSettings?.site_subtitle || t('home.heroDescription'))
 const homeContent = computed(() => appStore.cachedPublicSettings?.home_content || '')
@@ -292,6 +309,8 @@ const isDark = ref(document.documentElement.classList.contains('dark'))
 const isAuthenticated = computed(() => authStore.isAuthenticated)
 const isAdmin = computed(() => authStore.isAdmin)
 const dashboardPath = computed(() => (isAdmin.value ? '/admin/dashboard' : '/dashboard'))
+const requestKeyHref = 'mailto:hello@subtrix.org?subject=Subtrix%20API%20key%20request'
+const healthCheckUrl = 'https://api.subtrix.org/health'
 const userInitial = computed(() => {
   const user = authStore.user
   if (!user?.email) return ''
@@ -314,6 +333,21 @@ const routeLanes = [
   { name: 'Gemini', value: '21%', width: '48%' },
   { name: 'Grok', value: '14%', width: '34%' }
 ]
+
+async function copyBaseUrlSetup() {
+  const setup = [
+    'Base URL: https://api.subtrix.org/v1',
+    'API key: request from hello@subtrix.org',
+    'Note: compatible routes, models, and savings are route-, model-, and volume-dependent.'
+  ].join('\n')
+
+  try {
+    await navigator.clipboard.writeText(setup)
+    appStore.showSuccess(t('home.copiedBaseUrl'))
+  } catch {
+    appStore.showError(t('home.copyBaseUrlFailed'))
+  }
+}
 
 function toggleTheme() {
   isDark.value = !isDark.value

@@ -76,13 +76,14 @@ import { computed, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useAppStore } from '@/stores'
 import { sanitizeUrl } from '@/utils/url'
+import { resolvePublicSiteName } from '@/utils/publicBrand'
 
 const { t, tm } = useI18n()
 const appStore = useAppStore()
 
-const siteName = computed(() => appStore.cachedPublicSettings?.site_name || appStore.siteName || 'AI Gateway')
+const siteName = computed(() => resolvePublicSiteName(appStore.cachedPublicSettings?.site_name || appStore.siteName))
 const siteLogo = computed(() => sanitizeUrl(appStore.cachedPublicSettings?.site_logo || appStore.siteLogo || '', { allowRelative: true, allowDataUrl: true }))
-const siteSubtitle = computed(() => appStore.cachedPublicSettings?.site_subtitle || 'AI API Gateway Platform')
+const siteSubtitle = computed(() => appStore.cachedPublicSettings?.site_subtitle || t('home.heroDescription'))
 const currentYear = computed(() => new Date().getFullYear())
 const authSignals = computed(() => tm('home.authLayout.signals') as string[])
 

@@ -92,6 +92,7 @@ import { useI18n } from 'vue-i18n'
 import Icon from '@/components/icons/Icon.vue'
 import { getPublicSettings } from '@/api/auth'
 import { sanitizeUrl } from '@/utils/url'
+import { resolvePublicSiteName } from '@/utils/publicBrand'
 import type { LoginAgreementDocument, PublicSettings } from '@/types'
 import enAdminCompliance from '../../../../docs/legal/admin-compliance.en.md?raw'
 
@@ -111,7 +112,7 @@ marked.setOptions({
 const documentId = computed(() => String(route.params.documentId || ''))
 const isAdminComplianceDocument = computed(() => documentId.value === 'admin-compliance')
 const documents = computed(() => settings.value?.login_agreement_documents ?? [])
-const siteName = computed(() => settings.value?.site_name || 'Subtrix')
+const siteName = computed(() => resolvePublicSiteName(settings.value?.site_name))
 const siteLogo = computed(() => sanitizeUrl(settings.value?.site_logo || '', {
   allowRelative: true,
   allowDataUrl: true,

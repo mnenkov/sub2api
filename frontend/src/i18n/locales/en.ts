@@ -8,9 +8,12 @@ export default {
     switchToDark: 'Switch to Dark Mode',
     dashboard: 'Dashboard',
     login: 'Login',
-    getStarted: 'Get Started',
+    getStarted: 'Request a Subtrix API key',
     goToDashboard: 'Go to Dashboard',
-    secondaryCta: 'Check API key usage',
+    secondaryCta: 'Check API health',
+    copyBaseUrl: 'Copy base URL setup',
+    copiedBaseUrl: 'Base URL setup copied',
+    copyBaseUrlFailed: 'Could not copy setup. Copy https://api.subtrix.org/v1 manually.',
     headerTagline: 'AI API Gateway',
     nav: {
       workflow: 'Workflow',
@@ -23,18 +26,18 @@ export default {
       models: 'Model access',
       comparison: 'Gateway advantage'
     },
-    heroTitle: 'One gateway for model access, budgets, and usage control',
+    heroTitle: 'OpenAI-compatible AI access without direct-provider sprawl',
     heroSubtitle: 'One Key, All AI Models',
-    heroDescription: 'Route configured model providers through a single API shape with project keys, spend controls, shared billing, usage analytics, and SDK-friendly migration.',
+    heroDescription: 'Subtrix routes compatible OpenAI and Anthropic-style workloads through customer keys, prepaid quotas, usage ledgers, and model-aware gateway policy. Compatible routes can price up to 65% below retail, depending on route, model, and volume.',
     heroMetrics: [
-      { value: '1', label: 'compatible gateway endpoint' },
-      { value: 'Live', label: 'usage and cost visibility' },
-      { value: 'Policy', label: 'limits before each request' }
+      { value: '65%', label: 'below retail where compatible routes apply' },
+      { value: 'Prepaid', label: 'customer keys, quotas, and ledger' },
+      { value: 'Policy', label: 'route and model dependent controls' }
     ],
     heroPanel: {
-      title: 'Spend guardrail active',
-      description: 'Team budget, key limits, and model routing are enforced before every request.',
-      spend: 'Month spend'
+      title: 'Gateway controls active',
+      description: 'Key quota, route eligibility, and model policy are checked before requests are forwarded.',
+      spend: 'Ledger spend'
     },
     stats: [
       { value: '1', label: 'compatible gateway endpoint' },
@@ -81,8 +84,8 @@ export default {
       subtitle: 'Three simple steps to stress-free AI access'
     },
     features: {
-      title: 'Built for teams operating AI access at production scale',
-      subtitle: 'Use one gateway for routing policy, budgets, collaboration, and analytics while keeping your existing SDKs and HTTP clients.',
+      title: 'Built for teams buying and operating AI access deliberately',
+      subtitle: 'Use Subtrix for practical gateway controls: prepaid balances, per-key quotas, routing visibility, and SDK-compatible migration.',
       unifiedGateway: 'One-Click Access',
       unifiedGatewayDesc: 'Get a single API key to call all connected AI models. No separate applications needed.',
       multiAccount: 'Always Reliable',
@@ -92,58 +95,58 @@ export default {
       items: [
         {
           icon: 'server',
-          title: 'One endpoint for every model',
-          description: 'Expose configured model routes through one compatible base URL without rewriting your application.'
+          title: 'One compatible base URL',
+          description: 'Point OpenAI-compatible SDKs and HTTP clients at Subtrix without rewriting application code.'
         },
         {
           icon: 'shield',
-          title: 'Budget guardrails',
-          description: 'Set spend limits per key, user, or team so experiments cannot run past approved budgets.'
+          title: 'Prepaid quota guardrails',
+          description: 'Issue customer keys with balances and quotas so spend is visible before it becomes an invoice problem.'
         },
         {
           icon: 'users',
-          title: 'Team collaboration',
-          description: 'Share billing, manage access, and track usage across engineers, projects, and teams.'
+          title: 'Customer-ready keys',
+          description: 'Create keys for projects, customers, or teams and review the usage ledger tied to each one.'
         },
         {
           icon: 'chart',
-          title: 'Usage analytics',
-          description: 'See model, team, and key-level spend so cost decisions are based on live usage data.'
+          title: 'Usage ledger',
+          description: 'Track requests, model mix, and cost so savings claims can be checked against actual traffic.'
         },
         {
           icon: 'bolt',
-          title: 'Fast intelligent routing',
-          description: 'Steer traffic by policy, availability, and account health while keeping the gateway layer lightweight.'
+          title: 'Volume-aware routing',
+          description: 'Plan route mix by model, volume, and availability instead of assuming every workload fits one provider.'
         },
         {
           icon: 'swap',
-          title: 'Low-friction migration',
-          description: 'Change your base URL and API key, then keep using Cursor, Continue, OpenAI SDKs, or raw HTTP.'
+          title: 'Low-friction setup',
+          description: 'Change the base URL and API key, then keep using Cursor, Continue, OpenAI SDKs, or raw HTTP.'
         }
       ]
     },
     howItWorks: {
-      title: 'How the gateway fits your workflow',
-      subtitle: 'Start with your current OpenAI-compatible client, then add model choice, budgets, and team visibility at the gateway layer.',
+      title: 'How Subtrix fits your workflow',
+      subtitle: 'Start with your current compatible client, then add prepaid keys, quotas, and route planning at the gateway layer.',
       steps: [
         {
-          title: 'Point clients at your gateway',
-          description: 'Swap the base URL and API key in your existing SDK, editor, or HTTP client.'
+          title: 'Request a customer key',
+          description: 'Contact Subtrix for a prepaid API key and routing plan matched to your models and volume.'
         },
         {
-          title: 'Choose routes and limits',
-          description: 'Enable provider routes, assign team access, and set spend limits per key or group.'
+          title: 'Swap the base URL',
+          description: 'Use https://api.subtrix.org/v1 with your compatible SDK, editor, or HTTP client.'
         },
         {
-          title: 'Monitor usage in one place',
-          description: 'Review requests, cost, and model mix from a single shared billing and analytics view.'
+          title: 'Track usage and adjust routes',
+          description: 'Review request cost and model mix, then plan routing changes as volume and availability change.'
         }
       ]
     },
     // Comparison section
     comparison: {
-      title: 'Why use a gateway instead of direct provider keys?',
-      subtitle: 'Direct keys work for one developer and one model. A gateway gives teams cost control, shared usage, and provider flexibility without changing application code.',
+      title: 'Why use Subtrix instead of only direct provider keys?',
+      subtitle: 'Direct keys are still useful. Subtrix adds prepaid control, customer-ready keys, and compatible route options where the workload and model fit.',
       headers: {
         capability: 'Capability',
         direct: 'Direct provider keys',
@@ -156,33 +159,33 @@ export default {
         {
           feature: 'Cost control',
           direct: 'Provider invoices are scattered by account',
-          gateway: 'Spend limits and shared billing per key or team'
+          gateway: 'Prepaid quotas and a usage ledger per key'
         },
         {
           feature: 'Model choice',
           direct: 'Each provider needs separate setup',
-          gateway: 'Configured model routes through one compatible endpoint'
+          gateway: 'Compatible model routes through one base URL where available'
         },
         {
           feature: 'Setup',
           direct: 'SDK and key changes for every provider',
-          gateway: 'Low-friction switch by changing base URL and API key'
+          gateway: 'Change base URL and API key for compatible clients'
         },
         {
           feature: 'Visibility',
           direct: 'Usage is split across provider dashboards',
-          gateway: 'Analytics show model, team, and key-level spend'
+          gateway: 'Ledger shows request, model, and key-level spend'
         },
         {
           feature: 'Reliability',
           direct: 'Single account limits can interrupt workflows',
-          gateway: 'Routing and failover designed for production traffic'
+          gateway: 'Route planning based on model, availability, and volume'
         }
       ]
     },
     providers: {
-      title: 'Models and tools that fit your workflow',
-      description: 'Route to configured AI providers and keep using the development tools your team already has.',
+      title: 'Compatible routes for common AI workflows',
+      description: 'Use Subtrix with configured OpenAI, Anthropic, Google, xAI, and additional routes when the model and workload are eligible.',
       compatibility: 'Compatible with Cursor, Continue, OpenAI SDKs, and raw HTTP',
       supported: 'Supported',
       soon: 'Soon',
@@ -199,8 +202,8 @@ export default {
       ]
     },
     tools: [
-      { icon: 'cursor', name: 'Cursor', description: 'Change base URL and key' },
-      { icon: 'continue', name: 'Continue', description: 'Use the same API shape' },
+      { icon: 'cursor', name: 'Cursor', description: 'Use Subtrix base URL and key' },
+      { icon: 'continue', name: 'Continue', description: 'Keep a compatible API shape' },
       { icon: 'gpt-5', name: 'OpenAI SDK', description: 'Works with standard clients' },
       { icon: 'raw-http', name: 'Raw HTTP', description: 'Call REST endpoints directly' }
     ],
@@ -215,22 +218,22 @@ export default {
     },
     // CTA section
     cta: {
-      title: 'Start with the clients you already use',
-      description: 'Create a key, set a budget, and route your first OpenAI-compatible request through a unified AI API gateway.',
-      button: 'Start routing',
-      secondaryButton: 'View usage dashboard'
+      title: 'Plan your Subtrix route before you migrate',
+      description: 'Send your target models and monthly volume. We will confirm compatible routes, expected savings, and prepaid key setup without claiming every model or workload fits.',
+      button: 'Request a Subtrix API key',
+      secondaryButton: 'Check API health'
     },
     footer: {
       allRightsReserved: 'All rights reserved.',
-      tagline: 'Unified model access, budget controls, and team analytics.'
+      tagline: 'Compatible AI gateway access with prepaid quotas and route-aware pricing.'
     },
     authLayout: {
-      title: 'Sign in to route models, keys, and spend from one control plane.',
+      title: 'Sign in to manage Subtrix keys, quotas, and usage.',
       formTitle: 'Account access',
       signals: [
-        'Issue OpenAI-compatible keys for every project.',
-        'Apply budget limits before requests reach providers.',
-        'Monitor model usage, cost, and routing health in one place.'
+        'Request or manage OpenAI-compatible customer keys.',
+        'Check prepaid balances and quota limits before routing traffic.',
+        'Review model usage, cost, and gateway health in one place.'
       ]
     }
   },
@@ -6975,8 +6978,8 @@ export default {
     admin: {
       welcome: {
         title: 'Welcome to Subtrix',
-        description: '<div style="line-height: 1.8;"><p style="margin-bottom: 16px;">Subtrix is an AI service gateway platform that helps you manage and distribute AI services.</p><p style="margin-bottom: 12px;"><b>Core Features:</b></p><ul style="margin-left: 20px; margin-bottom: 16px;"><li><b>Group Management</b> - Create service tiers (VIP, Free Trial, etc.)</li><li><b>Account Pool</b> - Connect multiple upstream AI service accounts</li><li><b>Key Distribution</b> - Generate independent API Keys for users</li><li><b>Billing Control</b> - Flexible rate and quota management</li></ul><p style="color: #10b981; font-weight: 600;">Let\'s complete the initial setup in 3 minutes.</p></div>',
-        nextBtn: 'Start Setup 🚀',
+        description: '<div style="line-height: 1.8;"><p style="margin-bottom: 16px;">Subtrix helps you operate a compatible AI API gateway with customer keys, prepaid quotas, usage ledgers, and route-aware pricing.</p><p style="margin-bottom: 12px;"><b>Core workflow:</b></p><ul style="margin-left: 20px; margin-bottom: 16px;"><li><b>Groups</b> - Define route access and billing policy</li><li><b>Accounts</b> - Connect provider routes available to this gateway</li><li><b>API keys</b> - Issue customer or project keys with quotas</li><li><b>Usage ledger</b> - Review model, request, and cost activity</li></ul><p style="color: #10b981; font-weight: 600;">Configure the gateway, then confirm each route by model and volume.</p></div>',
+        nextBtn: 'Start setup',
         prevBtn: 'Skip'
       },
       groupManage: {
@@ -7075,8 +7078,8 @@ export default {
     user: {
       welcome: {
         title: 'Welcome to Subtrix',
-        description: '<div style="line-height: 1.8;"><p style="margin-bottom: 16px;">Hello! Welcome to the AI service platform.</p><p style="margin-bottom: 12px;"><b>Quick Start:</b></p><ul style="margin-left: 20px; margin-bottom: 16px;"><li>Create API Key</li><li>Copy key to your application</li><li>Start using AI services</li></ul><p style="color: #10b981; font-weight: 600;">Just 1 minute, let\'s get started.</p></div>',
-        nextBtn: 'Start 🚀',
+        description: '<div style="line-height: 1.8;"><p style="margin-bottom: 16px;">Use Subtrix to call compatible AI routes with a customer API key, prepaid quota, and visible usage ledger.</p><p style="margin-bottom: 12px;"><b>Quick start:</b></p><ul style="margin-left: 20px; margin-bottom: 16px;"><li>Create or select an API key</li><li>Use the Subtrix base URL in your compatible client</li><li>Check usage and remaining quota before scaling traffic</li></ul><p style="color: #10b981; font-weight: 600;">Route availability and savings depend on model, route, and volume.</p></div>',
+        nextBtn: 'Start',
         prevBtn: 'Skip'
       },
       keyManage: {

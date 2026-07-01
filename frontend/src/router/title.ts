@@ -1,13 +1,14 @@
 import { i18n } from '@/i18n'
 import type { RouteLocationNormalizedLoaded } from 'vue-router'
 import type { CustomMenuItem } from '@/types'
+import { resolvePublicSiteName } from '@/utils/publicBrand'
 
 /**
  * English-only note removed during locale cleanup.
  * English-only note removed during locale cleanup.
  */
 export function resolveDocumentTitle(routeTitle: unknown, siteName?: string, titleKey?: string): string {
-  const normalizedSiteName = typeof siteName === 'string' && siteName.trim() ? siteName.trim() : 'AI Gateway'
+  const normalizedSiteName = resolvePublicSiteName(siteName)
 
   if (typeof titleKey === 'string' && titleKey.trim()) {
     const translated = i18n.global.t(titleKey)
